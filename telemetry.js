@@ -3,7 +3,7 @@
 // little-endian, read exactly. The viewer plays it; the result reads its
 // outcomes.
 
-import { Malformed, Reader } from "./bytes.js?v=0209206a3b9d";
+import { Malformed, Reader } from "./bytes.js?v=32817456008e";
 
 export const CHANNEL = Object.freeze({
   POS_X: 0, POS_Y: 1, VEL_X: 2, VEL_Y: 3, YAW: 4, EXHAUSTION: 5, BREATH_RATE: 6, FUEL_PCT: 7, SPRINTED_M: 8,

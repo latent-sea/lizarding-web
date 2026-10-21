@@ -263,3 +263,7 @@ html, body { margin: 0; background: #08070f; }
   #app .StandingRow .Square { width: 1.2rem; height: 1.2rem; font-size: 0.7rem; }
   #app .StandingName { font-size: 0.72rem; }
 }
+
+/* the door's other way in: Google, under choosing a name */
+#app .DoorOr { margin-top: 10px; text-align: center; }
+#app .Naming .chime-surface.GoogleButton { justify-content: center; }
