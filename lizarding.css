@@ -1,0 +1,218 @@
+/* Lizarding's own look: the desktop's tote cabinet (betting/play/project/
+   cabinet_look.gd) - enamel cards on a night page, brass edges, amber
+   figures, neon titles, cream words. gd-chime's look gives the ground and
+   the palette (--chime-<name>); every rule here starts at #app to win over
+   it. The colours that follow the data - a band of the scale, a runner's
+   hue - are a sheet of their own, written by settings.js. Phones first:
+   every screen scrolls down, never wider than the window. */
+
+#app { --amber: #ffc752; --neon: #ff80b8; --teal: #47ebc7; --brass: #9a8043; --engraved: #c9b277; --enamel-dark: #120f24; }
+html, body { margin: 0; background: #08070f; }
+#app .chime-app { max-width: 72rem; padding: 10px 12px 3rem; gap: 10px; overflow-x: hidden; }
+#app .chime-screen { gap: 12px; min-width: 0; }
+#app .chime-text.Title { color: var(--neon); font-size: 1.6rem; letter-spacing: 0.04em; text-transform: none; }
+#app .chime-text.Words { font-size: 1.05rem; }
+#app .Small { font-size: 0.85rem; }
+#app .Quiet { color: var(--chime-ink-soft); }
+#app .Hint { color: var(--chime-ink-soft); font-size: 0.9rem; }
+#app .Warn { color: var(--neon); }
+#app .Engraving { color: var(--engraved); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+#app .Price { color: var(--amber); font-weight: 700; font-variant-numeric: tabular-nums; }
+#app .Price.Losing { color: var(--chime-ink-soft); font-weight: 400; }
+#app .Said { color: var(--neon); }
+#app .PartHeading { font-size: 1.05rem; font-weight: 700; }
+#app .Part { gap: 8px; }
+#app .Waiting { padding: 2rem 0; text-align: center; }
+
+/* buttons: the desktop's fruit buttons - an edge in the button's colour, filled faintly */
+#app .chime-pressable { border-radius: 8px; border: 2px solid var(--chime-lit); background: rgb(46 42 82 / 0.4); }
+#app .chime-pressable:hover { background: rgb(46 42 82 / 0.8); }
+#app .chime-pressable.BellButton { border-color: var(--amber); background: rgb(255 199 82 / 0.16); color: var(--amber); font-weight: 700; }
+#app .chime-pressable.BellButton:hover { background: rgb(255 199 82 / 0.32); filter: none; }
+#app .chime-pressable.BellButton .Reason { color: var(--chime-ink-soft); }
+#app .chime-pressable.Danger { border-color: var(--neon); color: var(--neon); }
+#app .chime-pressable.chime-current { border-color: var(--teal); background: rgb(71 235 199 / 0.16); }
+#app .chime-pressable.Segment { min-height: 36px; padding: 4px 12px; }
+#app .chime-pressable.ToggleOn { border-color: var(--teal); background: rgb(71 235 199 / 0.32); color: var(--chime-ink); }
+#app .chime-field { background: var(--enamel-dark); border: 1px solid var(--chime-lit); }
+#app .Segments { flex-wrap: wrap; gap: 6px; }
+
+/* the door */
+#app .Door { max-width: 26rem; margin: 10vh auto 0; gap: 14px; text-align: center; align-items: stretch; }
+#app .Wordmark { font-size: 3rem; font-weight: 800; color: var(--neon); text-shadow: 0 0 18px rgb(255 128 184 / 0.5); overflow: visible; }
+#app .Naming { gap: 10px; text-align: left; }
+
+/* the nav bar: one line wide, three on an upright phone */
+#app .Nav { padding: 6px 8px; background: var(--chime-raised); border: 2px solid var(--brass); border-radius: 10px; display: flex; flex-direction: column; gap: 6px; }
+#app .NavLine { gap: 8px; flex-wrap: nowrap; min-width: 0; }
+#app .chime-pressable.NavLink { min-height: 38px; padding: 4px 10px; flex: 0 0 auto; }
+#app .BackButton { gap: 4px; }
+#app .Arrow { font-size: 1.3rem; line-height: 1; }
+#app .StageButton { min-width: 0; flex: 0 1 auto !important; }
+#app .StageName { color: var(--neon); font-weight: 700; }
+#app .Instruction { color: var(--chime-ink-soft); min-width: 0; }
+#app .Countdown { color: var(--amber); font-size: 1.4rem; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 3.2em; text-align: right; }
+#app .Countdown.Closed { color: var(--neon); }
+#app .CreditsLine { gap: 10px; }
+#app .NavLine .CreditsLine { flex: 0 0 11rem; gap: 6px; }
+#app .chime-surface.CreditsBar { padding: 0; height: 10px; border-radius: 5px; background: var(--enamel-dark); border: 1px solid var(--chime-lit); overflow: hidden; min-width: 4rem; }
+#app .chime-surface.Fill { padding: 0; height: 100%; background: linear-gradient(90deg, var(--brass), var(--amber)); }
+#app .Credits { color: var(--amber); font-weight: 700; font-variant-numeric: tabular-nums; }
+#app .Narrow { display: none !important; }
+#app .NavLine .Instruction { flex: 1 1 auto; }
+#app .Banner { padding: 8px 12px; border-radius: 8px; background: rgb(255 128 184 / 0.14); color: var(--neon); }
+#app .Notices { gap: 6px; }
+#app .Toast { padding: 8px 12px; border-radius: 8px; background: var(--chime-lit); color: var(--chime-ink); border-left: 4px solid var(--neon); }
+/* an upright phone: back, stage, menu and timer; then the credits; then the instruction */
+@media (max-width: 40rem) and (orientation: portrait) {
+  #app .Wide { display: none !important; }
+  #app .Narrow { display: block !important; }
+  #app .chime-pressable.Narrow { display: inline-flex !important; }
+  #app .chime-row.Narrow { display: flex !important; }
+  #app .BackWords { display: none; }
+  #app .NavLine .Countdown { margin-left: auto; }
+}
+#app .chime-pressable.MenuItem { width: 100%; min-width: 12rem; }
+#app .Menu { gap: 8px; }
+
+/* a runner's square, in its hue (settings.js writes Runner1 to Runner10) */
+#app .Square { display: inline-grid; place-items: center; flex: 0 0 auto; width: 2.2rem; height: 2.2rem; border-radius: 6px; font-weight: 800; font-size: 1.2rem; overflow: visible; }
+#app .Square.Large { width: 3rem; height: 3rem; font-size: 1.6rem; }
+#app .LizardName { font-size: 1.15rem; font-weight: 700; }
+#app .LizardNameLarge { font-size: 1.5rem; font-weight: 700; }
+#app .chime-pressable.NameLink { background: none; border: none; padding: 0; min-height: 0; color: var(--chime-ink); text-decoration: underline; text-decoration-color: var(--chime-lit); text-underline-offset: 3px; }
+#app .chime-pressable.NameLink:hover { text-decoration-color: var(--teal); }
+
+/* the race card: two rows of five, wide; a column, upright */
+#app .Runners { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr)); gap: 10px; }
+/* five across - two rows of five for a full card - on a wide screen or a phone held sideways */
+@media (min-width: 60rem), (orientation: landscape) and (min-width: 40rem) { #app .Runners { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+@media (orientation: landscape) and (max-width: 60rem) {
+  #app .chime-surface.Runner { padding: 8px; gap: 6px; }
+  #app .Runner .LizardName { font-size: 0.95rem; }
+  #app .Runner .Books { flex-direction: column; align-items: stretch; gap: 4px; }
+  #app .Runner .Book .Price { font-size: 1.2rem; }
+  #app .Runner .PaysFrom, #app .Runner .Small { font-size: 0.78rem; }
+  #app .Runner .Square { width: 1.8rem; height: 1.8rem; font-size: 1rem; }
+  #app .Runner .StripCell { min-width: 1.3rem; height: 1.3rem; font-size: 0.7rem; }
+}
+#app .chime-surface.Runner { display: flex; flex-direction: column; gap: 8px; padding: 10px; background: var(--chime-raised); border: 2px solid var(--brass); border-radius: 10px; min-width: 0; }
+#app .RunnerTop { align-items: flex-start; gap: 10px; }
+#app .Who { gap: 2px; min-width: 0; }
+#app .Books { gap: 14px; align-items: flex-start; }
+#app .Book { gap: 0; min-width: 0; }
+#app .Book .Price { font-size: 1.5rem; }
+#app .PaysFrom { color: var(--amber); font-size: 0.95rem; }
+#app .Stakes { color: var(--teal); font-size: 0.9rem; }
+#app .Strip { gap: 3px; }
+#app .StripCell { min-width: 1.6rem; height: 1.6rem; padding: 0 4px; border-radius: 4px; display: inline-grid; place-items: center; font-size: 0.8rem; font-weight: 700; overflow: visible; }
+#app .Unshaded { background: var(--chime-lit); color: var(--chime-ink); }
+#app .BetButton { justify-content: center; }
+
+/* the bet pop-up */
+#app .chime-sheet { background: var(--chime-raised); border: 2px solid var(--brass); width: min(100%, 34rem); }
+#app .BetSheet { gap: 10px; }
+#app .BetTop { gap: 10px; }
+#app .BookTabs { gap: 0; border-bottom: 1px solid var(--chime-lit); }
+#app .chime-pressable.BookTab { border: none; border-bottom: 3px solid transparent; border-radius: 0; background: none; gap: 6px; flex: 1 1 0; justify-content: center; }
+#app .chime-pressable.BookTab.chime-current { border-bottom-color: var(--amber); color: var(--amber); background: none; }
+#app .TabStake { color: var(--teal); }
+#app .Shares { flex-wrap: wrap; gap: 4px; }
+#app .chime-pressable.Share { min-height: 32px; padding: 2px 8px; }
+#app .Returns { gap: 2px; max-height: 14rem; overflow-y: auto; }
+#app .Return { padding: 2px 4px; border-bottom: 1px solid rgb(46 42 82 / 0.6); }
+#app .BetActions { gap: 8px; }
+
+/* the lizard screen */
+#app .chime-surface.LizardStrip { display: flex; flex-direction: column; gap: 10px; background: var(--chime-raised); border: 2px solid var(--brass); border-radius: 10px; padding: 10px; }
+#app .StripTop { gap: 10px; }
+#app .chime-pressable.ArrowButton { min-width: 44px; justify-content: center; }
+#app .FormTab { color: var(--amber); font-weight: 700; border-bottom: 3px solid var(--amber); align-self: flex-start; padding: 4px 8px; }
+#app .Career { color: var(--chime-ink-soft); }
+#app .FormTable { gap: 3px; }
+#app .FormRows { gap: 3px; }
+#app .chime-surface.FormRow { padding: 4px 6px; display: grid; gap: 4px 6px; align-items: center; background: var(--enamel-dark); border-radius: 6px;
+  grid-template-columns: 4.2rem minmax(5rem, 1.6fr) 3rem 4.4rem 4.4rem 3.6rem 3.4rem 3.4rem 3.6rem 3.6rem minmax(5rem, 1fr); }
+#app .FormRow .chime-surface.Cell { padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+#app .FormRow .CellLabel { display: none; color: var(--engraved); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; }
+#app .FormRow .CellValue { font-size: 0.85rem; }
+#app .FormRow .Shade { min-width: 2.2rem; height: 1.5rem; padding: 0 4px; border-radius: 4px; display: inline-grid; place-items: center; font-weight: 700; align-self: flex-start; }
+#app .FormRow .Stage .CellValue { font-weight: 600; }
+#app .FormHead { background: none; }
+#app .Head { color: var(--engraved); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; }
+/* narrower: each race is a card - its round and stage, then its figures, each saying what it is, then its sprints */
+@media (max-width: 52rem) {
+  #app .chime-surface.FormHead { display: none; }
+  #app .chime-surface.FormRow { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px 10px; padding: 8px 10px; }
+  #app .FormRow .CellLabel { display: block; }
+  #app .FormRow .When { grid-column: 1 / 2; }
+  #app .FormRow .Stage { grid-column: 2 / -1; }
+  #app .FormRow .Sprints { grid-column: 1 / -1; }
+}
+#app .chime-surface.Sprints { padding: 0; }
+#app .SprintMap { gap: 2px; align-items: flex-end; height: 1.4rem; }
+#app .chime-surface.Bar { padding: 0; width: 6px; background: var(--teal); border-radius: 1px; }
+#app .Up0 { height: 1px; opacity: 0.4; } #app .Up1 { height: 10%; } #app .Up2 { height: 20%; } #app .Up3 { height: 30%; } #app .Up4 { height: 40%; }
+#app .Up5 { height: 50%; } #app .Up6 { height: 60%; } #app .Up7 { height: 70%; } #app .Up8 { height: 80%; } #app .Up9 { height: 90%; } #app .Up10 { height: 100%; }
+
+/* the leagues: the list down the left and the table on the right, wide; the list across the top, upright */
+#app .LeaguesBody { align-items: flex-start; gap: 12px; }
+#app .LeagueList { flex-direction: column; gap: 6px; flex: 0 0 13rem; }
+#app .chime-pressable.LeagueChoice { flex-direction: column; align-items: flex-start; gap: 0; width: 100%; }
+#app .chime-surface.LeagueTable { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 8px; background: var(--chime-raised); border: 2px solid var(--brass); border-radius: 10px; }
+#app .TableRows { gap: 2px; }
+#app .chime-surface.TableRow { padding: 4px 8px; border-radius: 6px; border: 2px solid transparent; }
+#app .chime-surface.TableRow.Own { border-color: var(--chime-ink); background: var(--chime-lit); }
+#app .chime-surface.TableRow.Apart { margin-top: 10px; }
+#app .TableRow .Place { min-width: 2rem; color: var(--engraved); }
+#app .TableRow .Score { color: var(--amber); font-variant-numeric: tabular-nums; }
+#app .Code { font-family: ui-monospace, monospace; letter-spacing: 0.15em; color: var(--teal); }
+#app .TableActions, #app .CodeRow { gap: 8px; flex-wrap: wrap; }
+#app .chime-surface.LeagueForm { display: flex; flex-direction: column; gap: 8px; background: var(--chime-raised); border: 1px solid var(--chime-lit); border-radius: 10px; }
+#app .LengthRow { flex-wrap: wrap; align-items: flex-end; }
+#app .LengthField { max-width: 7rem; }
+@media (max-width: 40rem) and (orientation: portrait) {
+  #app .LeaguesBody { flex-direction: column; align-items: stretch; }
+  #app .LeagueList { flex-direction: row; flex: 0 0 auto; overflow-x: auto; max-width: 100%; padding-bottom: 4px; }
+  #app .chime-pressable.LeagueChoice { width: auto; flex: 0 0 auto; }
+}
+
+/* the stage map */
+#app .chime-surface.StageMap { padding: 8px; background: var(--enamel-dark); border: 1px solid var(--chime-lit); border-radius: 10px; }
+#app .StageMap svg { display: block; width: 100%; height: auto; }
+#app .KeyList { flex-wrap: wrap; gap: 14px; }
+#app .KeyItem { gap: 6px; }
+#app .chime-surface.Key { padding: 0; width: 14px; height: 14px; border-radius: 3px; }
+#app .Surface-hard_rock { background: #9EA1B3; } #app .Surface-standard_dirt { background: #BD854D; } #app .Surface-mud { background: #75543A; }
+#app .Surface-wood { background: #E0AD5C; } #app .Surface-water { background: #4D9EFF; }
+
+/* settings */
+#app .chime-pressable.ScaleChoice { flex-wrap: wrap; }
+#app .Samples { gap: 2px; }
+#app .chime-surface.Sample { padding: 0; width: 18px; height: 18px; border-radius: 3px; }
+
+/* the race */
+#app .RaceTop { gap: 10px; }
+#app .chime-surface.RaceView { padding: 0; border: 2px solid var(--brass); border-radius: 10px; overflow: hidden; }
+#app .RaceCanvas { display: block; width: 100%; height: min(62vh, max(240px, 50vw)); }
+
+/* the result */
+#app .ResultRows { gap: 6px; }
+#app .chime-surface.ResultRow { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; background: var(--chime-raised); border: 1px solid var(--chime-lit); border-radius: 10px; }
+#app .chime-surface.ResultRow.Backed { border: 2px solid var(--amber); }
+#app .ResultTop { gap: 10px; }
+#app .ResultTop .Place { min-width: 2.6rem; color: var(--amber); font-weight: 800; font-size: 1.1rem; }
+#app .Times { align-items: flex-end; gap: 0; }
+#app .ResultStats { gap: 14px; flex-wrap: wrap; }
+#app .ResultBets { gap: 2px; }
+#app .Paid { color: var(--teal); }
+
+/* Google's button: its own, drawn in by Google; on a phone, ours that goes to Google and back, drawn as Google's pill */
+#app .chime-surface.GoogleButton { padding: 0; min-height: 44px; display: flex; color-scheme: light; }
+#app .Door .chime-surface.GoogleButton { justify-content: center; }
+#app .GoogleButton .google-redirect { min-height: 44px; padding: 0 1.25rem; border: 1px solid #dadce0; border-radius: 999px; background: #fff; color: #1f1f1f; font: 500 0.95rem/1 system-ui, sans-serif; cursor: pointer; }
+
+/* joining two accounts: the code, large enough to read across a room */
+#app .JoinCode { font-family: ui-monospace, monospace; font-size: 2rem; font-weight: 800; letter-spacing: 0.2em; color: var(--amber); overflow: visible; }
+#app .CodeShown { gap: 8px; padding: 12px; border: 2px solid var(--amber); border-radius: 10px; background: var(--enamel-dark); }
+#app .JoinField { font-family: ui-monospace, monospace; letter-spacing: 0.15em; text-transform: uppercase; }
