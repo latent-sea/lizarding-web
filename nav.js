@@ -4,9 +4,9 @@
 // the race; and the credits, a bar against the next power of ten and the
 // amount. On a wide screen it is one line, on an upright phone three.
 
-import { Driver, Phrase } from "./gd_chime/gd_chime.js?v=cd465bc182b0";
-import { countdownSaid, creditsFill, secondsLeft } from "./rules.js?v=cd465bc182b0";
-import { credits } from "./parts.js?v=cd465bc182b0";
+import { Driver, Phrase } from "./gd_chime/gd_chime.js?v=8f64cedc754d";
+import { countdownSaid, creditsFill, secondsLeft } from "./rules.js?v=8f64cedc754d";
+import { credits } from "./parts.js?v=8f64cedc754d";
 
 export const GOES_BACK = "goes_back";
 export const GOES_HOME = "goes_to_the_card";
@@ -38,7 +38,7 @@ export function countdown(play) {
   return card ? secondsLeft(card.runsAt, play.now.read()) : null;
 }
 
-export function describeNav(ui, play, { screens, instruction }) {
+export function describeNav(ui, play, { screens, instruction, info }) {
   const stage = ui.bound(() => stageOf(play));
   const left = ui.bound(() => countdown(play));
   const balance = play.game.map((g) => g?.balance ?? null);
@@ -57,6 +57,7 @@ export function describeNav(ui, play, { screens, instruction }) {
       ui.pressable(GOES_BACK, {}, [ui.text("‹", "Arrow"), ui.text(ui.words(GOES_BACK), "Face BackWords")], "Pressable NavLink BackButton").goesTo(Driver.BACK).absentWhenRefused(),
       // straight to the race card from anywhere; gone while already there
       ui.pressable(GOES_HOME, {}, [ui.text("⌂", "Arrow"), ui.text(ui.words(GOES_HOME), "Face BackWords")], "Pressable NavLink BackButton").goesTo(screens.card).absentWhenRefused(),
+      info,
       ui.when(stage, ui.pressable(GOES_STAGE, {}, [ui.text(stage.map((s) => s?.name || Phrase.of("The course")), "StageName")], "Pressable NavLink StageButton").goesTo(screens.stage)),
       ui.text(instruction, "Instruction Wide").grow(),
       go(GOES_LEAGUES, screens.leagues, "Wide"),

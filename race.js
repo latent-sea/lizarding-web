@@ -14,12 +14,12 @@
 // field and the player's bets - since the game lets go of races older than
 // the last.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=cd465bc182b0";
-import { readTelemetry, secondsAt } from "./telemetry.js?v=cd465bc182b0";
-import { paid, ordinal } from "./rules.js?v=cd465bc182b0";
-import { credits, square } from "./parts.js?v=cd465bc182b0";
-import { sprintMap } from "./lizard.js?v=cd465bc182b0";
-import { CARD } from "./card.js?v=cd465bc182b0";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=8f64cedc754d";
+import { readTelemetry, secondsAt } from "./telemetry.js?v=8f64cedc754d";
+import { paid, ordinal } from "./rules.js?v=8f64cedc754d";
+import { credits, square } from "./parts.js?v=8f64cedc754d";
+import { sprintMap } from "./lizard.js?v=8f64cedc754d";
+import { CARD } from "./card.js?v=8f64cedc754d";
 
 export const RACE = "race";
 export const RESULT = "result";
@@ -196,13 +196,14 @@ export function mostStakedOn(card, bets) {
   return most > 0 ? staked.indexOf(most) : null;
 }
 
-export function describeRace(ui, play, watching) {
+export function describeRace(ui, play, watching, info = null) {
   const watched = watching.watched;
   const stageName = watched.map((w) => w?.field?.course.name || "");
   return ui.screen(RACE, [
     ui.row([
       ui.text(ui.bound(() => (watched.read() ? Phrase.with("Race %d", [watched.read().race]) : "")), "Engraving"),
       ui.text(stageName, "Words").grow(),
+      ...(info ? [info] : []),
       ui.button(SKIPS, { style: "Pressable" }),
     ], "RaceTop"),
     ui.when(watching.phase.map((p) => p === "waiting"), ui.text(Phrase.of("The race is about to run…"), "Quiet Waiting")),

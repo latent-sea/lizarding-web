@@ -272,3 +272,11 @@ html, body { margin: 0; background: #08070f; }
 #app .chime-surface.LastRace { padding: 10px 12px; border: 2px solid var(--chime-lit); border-radius: 10px; background: var(--chime-raised); }
 #app .chime-surface.LastRace.Up { border-color: var(--teal); }
 #app .LastRaceLine { gap: 10px; flex-wrap: wrap; }
+
+/* the i on every page, and what it opens */
+#app .chime-pressable.InfoButton { min-width: 38px; min-height: 38px; padding: 0; justify-content: center; border-radius: 999px; flex: 0 0 auto; }
+#app .InfoMark { font-family: Georgia, serif; font-style: italic; font-weight: 700; font-size: 1.15rem; color: var(--teal); overflow: visible; }
+#app .DoorTop { justify-content: flex-end; }
+#app .HelpSheet { gap: 10px; max-width: 34rem; }
+#app .HelpParts { gap: 10px; }
+#app .HelpPart { gap: 2px; }
