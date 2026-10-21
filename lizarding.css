@@ -48,7 +48,9 @@ html, body { margin: 0; background: #08070f; }
 #app .chime-pressable.NavLink { min-height: 38px; padding: 4px 10px; flex: 0 0 auto; }
 #app .BackButton { gap: 4px; }
 #app .Arrow { font-size: 1.3rem; line-height: 1; }
-#app .StageButton { min-width: 0; flex: 0 1 auto !important; }
+/* the stage's name stays whole; the instruction line gives way first */
+#app .StageButton { min-width: 0; flex: 0 0 auto !important; }
+#app .NavLine .Instruction { flex: 1 1 0; min-width: 0; }
 #app .StageName { color: var(--neon); font-weight: 700; }
 #app .Instruction { color: var(--chime-ink-soft); min-width: 0; }
 #app .Countdown { color: var(--amber); font-size: 1.4rem; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 3.2em; text-align: right; }
@@ -89,12 +91,14 @@ html, body { margin: 0; background: #08070f; }
 @media (min-width: 60rem), (orientation: landscape) and (min-width: 40rem) { #app .Runners { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 @media (orientation: landscape) and (max-width: 60rem) {
   #app .chime-surface.Runner { padding: 8px; gap: 6px; }
-  #app .Runner .LizardName { font-size: 0.95rem; }
+  #app .Runner .LizardName { font-size: 0.95rem; white-space: normal; overflow-wrap: anywhere; line-height: 1.15; }
+  #app .Runner .Who .Small { white-space: normal; line-height: 1.2; }
   #app .Runner .Books { flex-direction: column; align-items: stretch; gap: 4px; }
   #app .Runner .Book .Price { font-size: 1.2rem; }
   #app .Runner .PaysFrom, #app .Runner .Small { font-size: 0.78rem; }
   #app .Runner .Square { width: 1.8rem; height: 1.8rem; font-size: 1rem; }
-  #app .Runner .StripCell { min-width: 1.3rem; height: 1.3rem; font-size: 0.7rem; }
+  #app .Runner .StripCell { height: 1.3rem; font-size: 0.68rem; }
+  #app .Runner .Strip { gap: 2px; }
 }
 #app .chime-surface.Runner { display: flex; flex-direction: column; gap: 8px; padding: 10px; background: var(--chime-raised); border: 2px solid var(--brass); border-radius: 10px; min-width: 0; }
 #app .RunnerTop { align-items: flex-start; gap: 10px; }
@@ -107,10 +111,13 @@ html, body { margin: 0; background: #08070f; }
 #app .Book .Price { overflow: visible; text-overflow: clip; }
 #app .PaysFrom { color: var(--amber); font-size: 0.95rem; }
 #app .Stakes { color: var(--teal); font-size: 0.9rem; }
-#app .Strip { gap: 3px; }
-#app .StripCell { min-width: 1.6rem; height: 1.6rem; padding: 0 4px; border-radius: 4px; display: inline-grid; place-items: center; font-size: 0.8rem; font-weight: 700; overflow: visible; }
+/* the form strip: six equal squares sharing the card's width, never wider than it, however narrow the card */
+#app .Strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px; max-width: 13rem; }
+#app .StripCell { min-width: 0; height: 1.6rem; padding: 0; border-radius: 4px; display: grid; place-items: center; font-size: 0.8rem; font-weight: 700; overflow: hidden; text-overflow: clip; }
 #app .Unshaded { background: var(--chime-lit); color: var(--chime-ink); }
 #app .BetButton { justify-content: center; }
+/* each card's Bet at its foot, so a row's buttons line up however long its names */
+#app .Runner .BetButton { margin-top: auto; }
 
 /* the bet pop-up */
 #app .chime-sheet { background: var(--chime-raised); border: 2px solid var(--brass); width: min(100%, 34rem); }
