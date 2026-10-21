@@ -1,7 +1,7 @@
 // The i on every page: what can be done on it, and what its figures,
 // colours and marks mean. One pop-up, opened with the page it explains.
 
-import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=4b687445d506";
+import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=3c28468398f2";
 
 export const OPENS_HELP = "explains_this_page";
 
@@ -32,7 +32,8 @@ export const HELP = {
   ],
   race: [
     ["The standings", "On the left: every lizard in its current position, with its number and name. Yours are framed in white; a tick means it has finished. Tap one to follow it."],
-    ["As they run", "Top right: what your bets would pay if the race finished in the current order, against what you staked."],
+    ["Returns", "Top right: what your bets would win, less what you staked, if the race finished in the current order. Green is a profit; red, with a minus sign, a loss."],
+    ["The line along the top", "The whole course, start to finish, with every lizard's numbered square at how far along it is - so you can see how far ahead the leaders are. The pale box is the part the picture is showing. Yours are framed in white."],
     ["The marks", "A white frame and marker: your bet. Flashing: sprinting. Flattened: knocked down. Blue: swimming."],
     ["The stripes", "The background is striped every 25 m, so you can see how fast the field is going."],
     ["Follow", "Who the camera follows: the leader, or any lizard. It starts on the lizard you staked most on."],

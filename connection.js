@@ -20,8 +20,8 @@
 // the game welcomes us again. Every intent waiting when a socket goes fails:
 // the connection was lost.
 
-import * as Wire from "./wire.js?v=4b687445d506";
-import { Malformed } from "./bytes.js?v=4b687445d506";
+import * as Wire from "./wire.js?v=3c28468398f2";
+import { Malformed } from "./bytes.js?v=3c28468398f2";
 
 export const MOST_WAITING = 8;
 export const LOST = "the connection was lost";

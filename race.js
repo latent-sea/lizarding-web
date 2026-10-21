@@ -14,12 +14,12 @@
 // field and the player's bets - since the game lets go of races older than
 // the last.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=4b687445d506";
-import { readTelemetry, secondsAt } from "./telemetry.js?v=4b687445d506";
-import { paid, ordinal } from "./rules.js?v=4b687445d506";
-import { credits, square } from "./parts.js?v=4b687445d506";
-import { sprintMap } from "./lizard.js?v=4b687445d506";
-import { CARD } from "./card.js?v=4b687445d506";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=3c28468398f2";
+import { readTelemetry, secondsAt } from "./telemetry.js?v=3c28468398f2";
+import { paid, ordinal } from "./rules.js?v=3c28468398f2";
+import { credits, square } from "./parts.js?v=3c28468398f2";
+import { sprintMap } from "./lizard.js?v=3c28468398f2";
+import { CARD } from "./card.js?v=3c28468398f2";
 
 export const RACE = "race";
 export const RESULT = "result";
@@ -269,12 +269,12 @@ export function describeResult(ui, play, watching) {
     }), "Small Quiet").hidesEmpty(),
   ]);
   return ui.screen(RESULT, [
-    ui.text(Phrase.of("Race finished"), "Title"),
+    // Continue at the top, beside the title: back to the card without scrolling past the field
+    ui.row([ui.text(Phrase.of("Race finished"), "Title").grow(), ui.button(CONTINUES, { goes_to: CARD })], "ResultHead"),
     ui.text(watched.map((w) => w?.field?.course.name || (w ? Phrase.with("Race %d", [w.race]) : "")), "Words"),
     ui.text(winner.map((w) => (w?.time != null ? Phrase.with("Won in %s seconds", [w.time.toFixed(2)]) : "")), "Quiet").hidesEmpty(),
     ui.text(play.game.map((g) => (g ? Phrase.with("Your balance is %s", [credits(g.balance)]) : "")), "Price").hidesEmpty(),
     ui.each(rows, row, (r) => r.lizard, "ResultRows"),
-    ui.button(CONTINUES, { goes_to: CARD }),
   ]);
 }
 

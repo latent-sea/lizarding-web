@@ -246,10 +246,10 @@ html, body { margin: 0; background: #08070f; }
 #app .RaceStage { display: flex; align-items: stretch; }
 #app .RacePicture { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; position: relative; }
 /* what the bets would pay as they run, over the picture's top right */
-#app .LiveWinnings { position: absolute; top: 8px; right: 8px; padding: 4px 10px; border-radius: 8px; background: rgb(8 7 15 / 0.8); color: var(--amber); font-weight: 700; font-size: 0.9rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
-#app .LiveWinnings.Up { color: var(--teal); }
-#app .LiveWinnings.Down { color: var(--neon); }
-@media (max-width: 40rem) { #app .LiveWinnings { font-size: 0.72rem; padding: 2px 6px; top: 4px; right: 4px; } }
+#app .LiveWinnings { position: absolute; top: 36px; right: 8px; padding: 4px 12px; border-radius: 8px; background: rgb(8 7 15 / 0.85); color: var(--amber); font-weight: 800; font-size: 1.6rem; line-height: 1.2; font-variant-numeric: tabular-nums; white-space: nowrap; }
+#app .LiveWinnings.Up { color: #4ade80; }
+#app .LiveWinnings.Down { color: #ff5c5c; }
+@media (max-width: 40rem) { #app .LiveWinnings { font-size: 1.15rem; padding: 2px 8px; top: 34px; right: 4px; } }
 #app .Standings { list-style: none; margin: 0; padding: 6px; flex: 0 0 11rem; display: flex; flex-direction: column; gap: 3px; background: var(--enamel-dark); border-right: 1px solid var(--chime-lit); overflow: hidden; }
 #app .StandingRow { all: unset; box-sizing: border-box; width: 100%; display: flex; align-items: center; gap: 6px; padding: 2px 4px; border: 2px solid transparent; border-radius: 6px; cursor: pointer; color: var(--chime-ink); }
 #app .StandingRow:focus-visible { outline: 2px solid var(--teal); }
@@ -287,3 +287,64 @@ html, body { margin: 0; background: #08070f; }
 #app .HelpSheet { gap: 10px; max-width: 34rem; }
 #app .HelpParts { gap: 10px; }
 #app .HelpPart { gap: 2px; }
+
+/* a phone held sideways: little height, so every screen gives its height to what matters - the nav on one
+   short line, the race with its controls in view, the bet in two columns */
+@media (orientation: landscape) and (max-height: 32rem) {
+  #app .chime-app { padding-top: 6px; gap: 6px; }
+  #app .chime-screen { gap: 8px; }
+  #app .chime-text.Title { font-size: 1.3rem; }
+  /* the nav: Back and Home as their arrows alone, no instruction, the credits without their bar */
+  #app .Nav { padding: 4px 6px; }
+  #app .NavLine { gap: 6px; }
+  #app .chime-pressable.NavLink { min-height: 34px; padding: 2px 8px; }
+  #app .BackWords { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  #app .NavLine .Instruction.Wide { display: none; }
+  #app .StageButton { flex: 0 1 auto !important; }
+  #app .StageName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #app .NavLine .CreditsLine { flex: 0 0 auto; margin-left: auto; }
+  #app .NavLine .CreditsBar { display: none; }
+  #app .Countdown { font-size: 1.2rem; min-width: 2.8em; }
+  #app .chime-pressable.InfoButton { min-width: 34px; min-height: 34px; }
+  /* the door: the wordmark smaller and nearer the top */
+  #app .Door { margin-top: 0; gap: 8px; }
+  #app .Wordmark { font-size: 2rem; }
+  /* the lizard: a shorter head */
+  #app .chime-surface.LizardStrip { padding: 8px; gap: 6px; }
+  #app .LizardNameLarge { font-size: 1.25rem; }
+  #app .Square.Large { width: 2.4rem; height: 2.4rem; font-size: 1.3rem; }
+  /* the race: the picture fills what the window has left; the key is in the i, and the standings choose who to follow */
+  #app .chime-screen:has(> .RaceTop) { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+  #app .chime-screen:has(> .RaceTop) > * { flex: 1 1 100%; }
+  #app .chime-screen:has(> .RaceTop) > .SpeedRow, #app .chime-screen:has(> .RaceTop) > .FollowRow { flex: 0 1 auto; flex-wrap: nowrap; gap: 6px; }
+  #app .RaceKey, #app .FollowList { display: none; }
+  #app .RaceTop .chime-pressable, #app .SpeedRow .chime-pressable, #app .FollowRow .chime-pressable { min-height: 34px; padding: 2px 10px; }
+  #app .RaceCanvas { height: max(140px, calc(100dvh - 10rem)); }
+  #app .RaceBar { padding: 4px 10px; }
+  #app .Standings { flex-basis: 9.5rem; padding: 3px; gap: 1px; overflow-y: auto; }
+  #app .StandingRow { gap: 4px; padding: 0 2px; }
+  #app .StandingPlace { flex-basis: 1rem; font-size: 0; }
+  #app .StandingPlace::before { content: attr(data-place); font-size: 0.75rem; }
+  #app .StandingRow.Home .StandingPlace::after { font-size: 0.7rem; }
+  #app .StandingRow .Square { width: 1.15rem; height: 1.15rem; font-size: 0.7rem; }
+  #app .StandingName { font-size: 0.75rem; }
+  #app .LiveWinnings { font-size: 1.3rem; padding: 2px 10px; top: 34px; right: 4px; }
+  /* the bet: who and the books across the top; the stake on the left, what it returns on the right */
+  #app .chime-sheet { width: min(100%, 46rem); padding: 10px 14px; }
+  #app .BetSheet { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px 16px; align-items: start;
+    grid-template-areas: "top top" "tabs tabs" "field heading" "shares returns" "said returns" "again returns" "actions returns"; }
+  #app .BetSheet > .BetTop { grid-area: top; }
+  #app .BetSheet > .BookTabs { grid-area: tabs; }
+  #app .BetSheet > .chime-field-holder { grid-area: field; }
+  #app .BetSheet > .Shares { grid-area: shares; }
+  #app .BetSheet > .Engraving { grid-area: heading; align-self: end; }
+  #app .BetSheet > .Returns { grid-area: returns; max-height: calc(100dvh - 11rem); }
+  #app .BetSheet > .Said { grid-area: said; }
+  #app .BetSheet > .chime-each { grid-area: again; }
+  #app .BetSheet > .BetActions { grid-area: actions; }
+  #app .chime-pressable.Share { min-height: 30px; padding: 2px 6px; }
+  #app .BookTabs .chime-pressable.BookTab { min-height: 36px; }
+}
+
+/* the result's head: the title, and Continue beside it */
+#app .ResultHead { gap: 10px; align-items: center; flex-wrap: wrap; }

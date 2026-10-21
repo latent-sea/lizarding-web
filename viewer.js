@@ -8,9 +8,9 @@
 // chooses, paused or played on, from anywhere they seek to; and says where
 // it has reached, and when the race has been watched to its end (or skipped to it).
 
-import { CHANNEL, EVENT, SECONDS_PER_TICK, STATE, at, secondsAt, stepAt } from "./telemetry.js?v=4b687445d506";
-import { surfaceOf } from "./stage.js?v=4b687445d506";
-import { inkOn, runnerColour } from "./colours.js?v=4b687445d506";
+import { CHANNEL, EVENT, SECONDS_PER_TICK, STATE, at, secondsAt, stepAt } from "./telemetry.js?v=3c28468398f2";
+import { surfaceOf } from "./stage.js?v=3c28468398f2";
+import { inkOn, runnerColour } from "./colours.js?v=3c28468398f2";
 
 const NARROWEST_M = 24; // the least of the course shown across
 const WIDEST_M = 90; // the most, so a runner is never too small to see
@@ -19,6 +19,8 @@ const HOLD_S = 1.2; // the finish held a moment before the race is over
 const FLASH_S = 0.35;
 const SPRINT_FLASHES = 3; // a sprinting lizard's flashes a second of watched time
 const BAND_M = 25; // the background's bands, each this long, to see the speed by
+const STRIP_PX = 30; // the overview line across the top: the whole course, every runner on it
+const STRIP_SQUARE_PX = 15;
 
 export class RaceView {
   /**
@@ -162,6 +164,51 @@ export class RaceView {
     return this._camera;
   }
 
+  /** The overview line across the top, as the desktop draws it: start to finish, the part the picture shows boxed, and each
+   * runner's numbered square at how far along it is - bunched squares stacked down so each number reads, the player's framed. */
+  _drawStrip(g, places, cam, width) {
+    const { start, finish } = this.course;
+    const length = finish.x - start.x || 1;
+    const [x0, w, lineY] = [width * 0.04, width * 0.92, STRIP_PX / 2];
+    const along = (m) => x0 + Math.min(1, Math.max(0, (m - start.x) / length)) * w;
+    g.fillStyle = "#08070f";
+    g.fillRect(0, 0, width, STRIP_PX);
+    // what of the course the picture shows
+    const [b0, b1] = [along(cam.left), along(cam.left + width / cam.along)].sort((a, b) => a - b);
+    g.fillStyle = "rgba(255, 255, 255, 0.12)";
+    g.fillRect(b0, lineY - 11, Math.max(3, b1 - b0), 22);
+    g.strokeStyle = "rgba(255, 255, 255, 0.4)"; g.lineWidth = 1;
+    g.strokeRect(b0, lineY - 11, Math.max(3, b1 - b0), 22);
+    // the line, with a tick at the start and the finish
+    g.strokeStyle = "rgba(158, 158, 179, 0.75)"; g.lineWidth = 2;
+    g.beginPath();
+    g.moveTo(x0, lineY); g.lineTo(x0 + w, lineY);
+    for (const end of [x0, x0 + w]) { g.moveTo(end, lineY - 7); g.lineTo(end, lineY + 7); }
+    g.stroke();
+    const sq = STRIP_SQUARE_PX;
+    const rowEnds = [];
+    g.font = "bold 10px system-ui, sans-serif"; g.textAlign = "center";
+    // each runner left to right along the line, into the first row its square doesn't overlap
+    for (const p of [...places].sort((a, b) => a.x - b.x)) {
+      const sx = along(p.x);
+      let row = rowEnds.findIndex((end) => sx - end >= 2);
+      if (row === -1) row = rowEnds.length;
+      rowEnds[row] = sx + sq;
+      const sy = lineY + row * (sq + 2);
+      const number = this.runners[p.index].number;
+      const own = runnerColour(number);
+      const colour = p.state === STATE.FALLEN || p.state === STATE.DNF ? darker(own, 0.55) : own;
+      if (this.backed.has(p.index)) {
+        g.fillStyle = "#000000"; g.fillRect(sx - sq / 2 - 6, sy - sq / 2 - 6, sq + 12, sq + 12);
+        g.fillStyle = "#ffffff"; g.fillRect(sx - sq / 2 - 4, sy - sq / 2 - 4, sq + 8, sq + 8);
+      }
+      g.fillStyle = colour; g.fillRect(sx - sq / 2, sy - sq / 2, sq, sq);
+      g.strokeStyle = "rgba(0, 0, 0, 0.75)"; g.lineWidth = 1; g.strokeRect(sx - sq / 2, sy - sq / 2, sq, sq);
+      g.fillStyle = inkOn(colour); g.fillText(String(number), sx, sy + 4);
+    }
+    g.textAlign = "start";
+  }
+
   draw(tick) {
     const canvas = this.canvas;
     const scale = globalThis.devicePixelRatio || 1;
@@ -175,16 +222,17 @@ export class RaceView {
     g.fillStyle = "#08070f";
     g.fillRect(0, 0, width, height);
     const places = this.placesAt(tick);
-    const cam = this._look(places, width, height, tick);
+    // the picture sits under the overview line
+    const cam = this._look(places, width, height - STRIP_PX, tick);
     const x = (m) => (m - cam.left) * cam.along;
-    const y = (m) => height * 0.55 - (m - cam.middleY) * cam.up;
+    const y = (m) => STRIP_PX + (height - STRIP_PX) * 0.55 - (m - cam.middleY) * cam.up;
     // bands every 25 m of the course, dark blue and black in turn, so the eye sees how fast the field goes;
     // a quiet label at each hundred metres
     const fromBand = Math.floor(cam.left / BAND_M);
     for (let band = fromBand; band * BAND_M < cam.left + width / cam.along; band++) {
       if (band % 2 === 0) continue;
       g.fillStyle = "#101634";
-      g.fillRect(x(band * BAND_M), 0, BAND_M * cam.along, height);
+      g.fillRect(x(band * BAND_M), STRIP_PX, BAND_M * cam.along, height - STRIP_PX);
     }
     g.fillStyle = "#4a4778";
     g.font = "10px system-ui, sans-serif";
@@ -248,6 +296,7 @@ export class RaceView {
       g.fillText(mark, fits ? left + 2 : left, fits ? bottom - tall / 2 + 4 : bottom - tall - 4);
       g.globalAlpha = 1;
     }
+    this._drawStrip(g, places, cam, width);
     // the running order: kept for the standings beside the picture (site.js), and said to a screen reader
     const order = this.orderAt(tick);
     this.standing = order.map((p) => ({ index: p.index, out: p.state === STATE.DNF, home: p.finishTick <= tick }));
@@ -256,6 +305,12 @@ export class RaceView {
     canvas.setAttribute("aria-label", `The race. Running order: ${order.map((p) => this.runners[p.index].number).join(", ")}`);
     this.shownOrder = order.map((p) => this.runners[p.index].number);
   }
+}
+
+/** A colour darkened towards black by a share: a knocked-down lizard's square on the overview line. */
+export function darker(colour, share) {
+  const [r, g, b] = [1, 3, 5].map((at) => parseInt(colour.slice(at, at + 2), 16));
+  return `#${[r, g, b].map((c) => Math.round(c * (1 - share)).toString(16).padStart(2, "0")).join("")}`;
 }
 
 /** A colour lightened halfway to white: a sprinting lizard's flash. */
