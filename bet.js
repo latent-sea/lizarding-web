@@ -6,11 +6,11 @@
 // tried again, on whichever card is open then. Accepted, the pop-up closes.
 // There is no taking a bet back.
 
-import { Controller, Phrase, Ui } from "./gd_chime/gd_chime.js?v=45f52efbed9c";
-import { ANSWERED, BOOK } from "./wire.js?v=45f52efbed9c";
-import { POINTS, SHARES, oddsSaid, ordinal, placeReturns, shareOf, winReturns } from "./rules.js?v=45f52efbed9c";
-import { credits, nameSaid, runnersOf, square } from "./parts.js?v=45f52efbed9c";
-import { OPENS_BET } from "./card.js?v=45f52efbed9c";
+import { Controller, Phrase, Ui } from "./gd_chime/gd_chime.js?v=67df6438600d";
+import { ANSWERED, BOOK } from "./wire.js?v=67df6438600d";
+import { POINTS, SHARES, oddsSaid, ordinal, placeReturns, shareOf, threeFigures, winReturns } from "./rules.js?v=67df6438600d";
+import { credits, nameSaid, runnersOf, square } from "./parts.js?v=67df6438600d";
+import { OPENS_BET } from "./card.js?v=67df6438600d";
 
 export const PICKS_BOOK = "picks_a_book";
 export const TYPES_STAKE = "types_a_stake";
@@ -140,7 +140,7 @@ export function describeBetPopUp(ui, play, betting) {
       const places = Math.min(play.openCard()?.runners.length ?? POINTS.length, POINTS.length);
       return Array.from({ length: places }, (_, at) => ({
         key: `p${at}`, place: ordinal(at + 1),
-        pays: s ? credits(placeReturns(s, r.rating, at + 1)) : Phrase.with("%s for 1", [(POINTS[at] * 100 / r.rating).toFixed(2)]),
+        pays: s ? credits(placeReturns(s, r.rating, at + 1)) : Phrase.with("%s for 1", [threeFigures(POINTS[at] * 100 / r.rating)]),
         profits: POINTS[at] * 100 > r.rating,
       }));
     });

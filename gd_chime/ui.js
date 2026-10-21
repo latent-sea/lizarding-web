@@ -24,17 +24,17 @@
 // is a function of the parameter it is entered with, handed in as a bound
 // value. Every pop-up owns its way out: CLOSES, which goes back.
 
-import { Bound } from "./bound.js?v=45f52efbed9c";
-import { Chimes } from "./chimes.js?v=45f52efbed9c";
-import { Desc } from "./desc.js?v=45f52efbed9c";
-import { Driver } from "./driver.js?v=45f52efbed9c";
-import { Frames } from "./frames.js?v=45f52efbed9c";
-import { Language } from "./language.js?v=45f52efbed9c";
-import { OwnBell } from "./own_bell.js?v=45f52efbed9c";
-import { Phrase } from "./phrase.js?v=45f52efbed9c";
-import { Place } from "./place.js?v=45f52efbed9c";
-import { Pressables, Themes } from "./themes.js?v=45f52efbed9c";
-import { Value } from "./value.js?v=45f52efbed9c";
+import { Bound } from "./bound.js?v=67df6438600d";
+import { Chimes } from "./chimes.js?v=67df6438600d";
+import { Desc } from "./desc.js?v=67df6438600d";
+import { Driver } from "./driver.js?v=67df6438600d";
+import { Frames } from "./frames.js?v=67df6438600d";
+import { Language } from "./language.js?v=67df6438600d";
+import { OwnBell } from "./own_bell.js?v=67df6438600d";
+import { Phrase } from "./phrase.js?v=67df6438600d";
+import { Place } from "./place.js?v=67df6438600d";
+import { Pressables, Themes } from "./themes.js?v=67df6438600d";
+import { Value } from "./value.js?v=67df6438600d";
 
 const DRAWN = "drawn";
 let fieldsMade = 0; // every field's own id, so its label names it

@@ -1,6 +1,7 @@
 // The race, then the result (the brief's section 8.4). As the countdown
 // reaches 0 the app gives way to the race viewer (viewer.js), which plays
-// the race as soon as the game shows it. THE RESULT IS HELD BACK: the batch
+// the race as soon as the game shows it - slower or faster, paused, or from
+// anywhere on its slider, following the lizard the player chooses. THE RESULT IS HELD BACK: the batch
 // carrying it may come while the race is still playing, and nothing of it is
 // shown before the playback ends or is skipped. Then Race finished: each
 // runner's place, time, how far behind, its knocks and sprint map, and the
@@ -13,22 +14,33 @@
 // field and the player's bets - since the game lets go of races older than
 // the last.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=45f52efbed9c";
-import { readTelemetry, secondsAt } from "./telemetry.js?v=45f52efbed9c";
-import { paid, ordinal } from "./rules.js?v=45f52efbed9c";
-import { credits, square } from "./parts.js?v=45f52efbed9c";
-import { sprintMap } from "./lizard.js?v=45f52efbed9c";
-import { CARD } from "./card.js?v=45f52efbed9c";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=67df6438600d";
+import { readTelemetry, secondsAt } from "./telemetry.js?v=67df6438600d";
+import { paid, ordinal } from "./rules.js?v=67df6438600d";
+import { credits, square } from "./parts.js?v=67df6438600d";
+import { sprintMap } from "./lizard.js?v=67df6438600d";
+import { CARD } from "./card.js?v=67df6438600d";
 
 export const RACE = "race";
 export const RESULT = "result";
 export const SKIPS = "skips_to_the_end";
 export const CONTINUES = "goes_back_to_the_card";
+export const FOLLOWS = "follows_a_lizard";
+export const SLOWER = "plays_the_race_slower";
+export const FASTER = "plays_the_race_faster";
+export const PAUSES = "pauses_or_plays_the_race";
 
 export const WORDS = {
   [SKIPS]: ["Skip to the end"],
   [CONTINUES]: ["Continue"],
+  [FOLLOWS]: ["Follow"],
+  [SLOWER]: ["Slower"],
+  [FASTER]: ["Faster"],
+  [PAUSES]: ["Pause"],
 };
+
+/** The speeds a race may be watched at, the first real speed's quarter, the last eight times it. */
+export const SPEEDS = Object.freeze([0.25, 0.5, 1, 2, 4, 8]);
 
 /** How long a race is waited for once its result is in, before the result is shown without it. */
 const UNSEEN_MS = 8000;
@@ -39,19 +51,33 @@ export class Watching extends Controller {
     this.play = play;
     this._timers = timers;
     this.watched = this.value(null); // { race, card, field, bets }: what the race and its result are drawn from
+    this.speed = this.value(1); // how many times real speed the race plays at
+    this.paused = this.value(false);
+    this.follow = this.value(null); // the runner the camera follows, by index on the card: null for the leader
     this.phase = this.value("off"); // "waiting" for the race, "playing" it, "over"
     this.played = null; // the telemetry, read
     this.view = null; // the viewer playing it
     this._unseen = null;
   }
 
-  answers() { return [SKIPS, CONTINUES]; }
+  answers() { return [SKIPS, CONTINUES, FOLLOWS, SLOWER, FASTER, PAUSES]; }
 
-  would(action) { return action === SKIPS && this.phase.read() === "over" ? Phrase.of("The race is over") : null; }
+  would(action) {
+    if (action === SKIPS && this.phase.read() === "over") return Phrase.of("The race is over");
+    if (action === SLOWER && this.speed.read() === SPEEDS[0]) return Phrase.of("This is the slowest");
+    if (action === FASTER && this.speed.read() === SPEEDS.at(-1)) return Phrase.of("This is the fastest");
+    return null;
+  }
 
-  told(action) {
+  told(action, payload = {}) {
     if (action === SKIPS) { if (this.view) this.view.skip(); else this.over(); }
     if (action === CONTINUES) this.done();
+    if (action === FOLLOWS) this.follow.setValue(payload.index ?? null);
+    if (action === SLOWER || action === FASTER) {
+      const at = SPEEDS.indexOf(this.speed._held);
+      this.speed.setValue(SPEEDS[Math.max(0, Math.min(SPEEDS.length - 1, at + (action === FASTER ? 1 : -1)))]);
+    }
+    if (action === PAUSES) this.paused.update((paused) => !paused);
     return null;
   }
 
@@ -61,7 +87,10 @@ export class Watching extends Controller {
     this.view?.stop();
     this.view = null;
     this.played = null;
-    this.watched.setValue({ race: card.race, card, field: this.play.fields._held.get(card.race) ?? null, bets: [...(game?.betsOn(card.race) ?? [])] });
+    const bets = [...(game?.betsOn(card.race) ?? [])];
+    this.watched.setValue({ race: card.race, card, field: this.play.fields._held.get(card.race) ?? null, bets });
+    this.follow.setValue(mostStakedOn(card, bets));
+    this.paused.setValue(false);
     this.phase.setValue("waiting");
   }
 
@@ -93,6 +122,13 @@ export class Watching extends Controller {
     this.view?.stop();
     this.view = null;
     this.phase.setValue("off");
+  }
+
+  /** The runners the player has bets on, by their index on the card. */
+  backed() {
+    const watched = this.watched._held;
+    if (!watched) return new Set();
+    return new Set(watched.bets.map((bet) => watched.card.runners.findIndex((r) => r.lizard === bet.lizard)).filter((at) => at >= 0));
   }
 
   /** The result's rows, 1st down, those that didn't finish last: [] until the result may be shown. */
@@ -133,6 +169,13 @@ export class Watching extends Controller {
   }
 }
 
+/** The runner (by index on the card) the player has staked most on, win and place together; null with no bets: the leader is followed. */
+export function mostStakedOn(card, bets) {
+  const staked = card.runners.map((r) => bets.filter((bet) => bet.lizard === r.lizard).reduce((sum, bet) => sum + bet.stake, 0));
+  const most = Math.max(0, ...staked);
+  return most > 0 ? staked.indexOf(most) : null;
+}
+
 export function describeRace(ui, play, watching) {
   const watched = watching.watched;
   const stageName = watched.map((w) => w?.field?.course.name || "");
@@ -144,6 +187,26 @@ export function describeRace(ui, play, watching) {
     ], "RaceTop"),
     ui.when(watching.phase.map((p) => p === "waiting"), ui.text(Phrase.of("The race is about to run…"), "Quiet Waiting")),
     ui.surface("RaceView", []).named("race-view"),
+    ui.text(Phrase.of("White frame and marker: your bet · flashing: sprinting · flattened: knocked down · blue: swimming"), "Small Quiet RaceKey").wraps(),
+    // how it plays: slower, paused or played on, faster; the slider under the picture is drawn with it (site.js)
+    ui.row([
+      ui.button(SLOWER, { style: "Pressable" }),
+      ui.pressable(PAUSES, {}, [ui.text(watching.paused.map((p) => Phrase.of(p ? "Play" : "Pause")), "Face")], "Pressable"),
+      ui.button(FASTER, { style: "Pressable" }),
+      ui.text(watching.speed.map((s) => `${s}×`), "Price SpeedSaid"),
+    ], "SpeedRow"),
+    // who the camera follows: the leader, or any runner - the player's own framed
+    ui.row([
+      ui.text(Phrase.of("Follow"), "Engraving"),
+      ui.pressable(FOLLOWS, { index: null }, [ui.text(Phrase.of("Leader"), "Small")], "Segment FollowLeader").currentWhile(watching.follow.map((f) => f === null)),
+      ui.eachAcross(ui.bound(() => {
+        const watched = watching.watched.read();
+        const backed = watched ? new Set(watched.bets.map((bet) => bet.lizard)) : new Set();
+        return (watched?.card.runners ?? []).map((r, index) => ({ index, number: index + 1, backed: backed.has(r.lizard) }));
+      }), (held) => ui.pressable(FOLLOWS, held.map((r) => ({ index: r?.index ?? null })), [
+        ui.text(held.map((r) => String(r?.number ?? "")), held.map((r) => `Square Runner${r?.number ?? 0}`)),
+      ], held.map((r) => `FollowRunner${r?.backed ? " Backed" : ""}`)).currentWhile(ui.bound(() => watching.follow.read() === held.read()?.index)), (r) => r.index, "FollowList"),
+    ], "FollowRow"),
   ]);
 }
 

@@ -37,7 +37,17 @@ export function paysFrom(rating, runners = POINTS.length) {
 }
 
 export const ordinal = (place) => ORDINALS[place - 1] ?? `${place}th`;
-export const oddsSaid = (odds) => (odds / 100).toFixed(2);
+/** A figure to three significant figures, as prices are shown: 3.50, 51.1, 125, 2,200. */
+export function threeFigures(value) {
+  if (!(value > 0)) return "0";
+  // rounded first, so 999.6 is 1,000 and never 1.00e+3
+  const unit = 10 ** (Math.floor(Math.log10(value)) - 2);
+  const rounded = Math.round(value / unit) * unit;
+  return rounded < 1000 ? rounded.toPrecision(3) : Math.round(rounded).toLocaleString("en-GB");
+}
+
+/** Decimal odds, from the card's hundredths, to three significant figures. */
+export const oddsSaid = (odds) => threeFigures(odds / 100);
 
 /** A share of the balance as a stake: whole credits, never under 1. */
 export const shareOf = (balance, percent) => Math.max(1, Math.round((balance * percent) / 100));

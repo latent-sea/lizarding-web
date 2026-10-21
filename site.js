@@ -14,30 +14,32 @@
 // platform and the game (tests/standin.js), never the real ones; opened with
 // ?standin it plays against the stand-in, for a person to try.
 
-import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=45f52efbed9c";
-import { CONFIG } from "./config.js?v=45f52efbed9c";
-import { SignIn } from "./auth.js?v=45f52efbed9c";
-import { Connection } from "./connection.js?v=45f52efbed9c";
-import { localParts, openLine } from "./hub.js?v=45f52efbed9c";
-import * as Session from "./play.js?v=45f52efbed9c";
-import * as Card from "./card.js?v=45f52efbed9c";
-import * as Bet from "./bet.js?v=45f52efbed9c";
-import * as Lizard from "./lizard.js?v=45f52efbed9c";
-import * as League from "./leagues.js?v=45f52efbed9c";
-import * as Race from "./race.js?v=45f52efbed9c";
-import * as Nav from "./nav.js?v=45f52efbed9c";
-import * as Course from "./course.js?v=45f52efbed9c";
-import * as Prefs from "./settings.js?v=45f52efbed9c";
-import * as Join from "./joining.js?v=45f52efbed9c";
-import { RaceView } from "./viewer.js?v=45f52efbed9c";
-import { drawStageMap } from "./stage.js?v=45f52efbed9c";
-import { secondsLeft } from "./rules.js?v=45f52efbed9c";
-import { drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=45f52efbed9c";
+import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=67df6438600d";
+import { CONFIG } from "./config.js?v=67df6438600d";
+import { SignIn } from "./auth.js?v=67df6438600d";
+import { Connection } from "./connection.js?v=67df6438600d";
+import { localParts, openLine } from "./hub.js?v=67df6438600d";
+import * as Session from "./play.js?v=67df6438600d";
+import * as Card from "./card.js?v=67df6438600d";
+import * as Bet from "./bet.js?v=67df6438600d";
+import * as Lizard from "./lizard.js?v=67df6438600d";
+import * as League from "./leagues.js?v=67df6438600d";
+import * as Race from "./race.js?v=67df6438600d";
+import * as Nav from "./nav.js?v=67df6438600d";
+import * as Course from "./course.js?v=67df6438600d";
+import * as Prefs from "./settings.js?v=67df6438600d";
+import * as Join from "./joining.js?v=67df6438600d";
+import { RaceView } from "./viewer.js?v=67df6438600d";
+import { drawStageMap } from "./stage.js?v=67df6438600d";
+import { ordinal, paid, secondsLeft } from "./rules.js?v=67df6438600d";
+import { credits } from "./parts.js?v=67df6438600d";
+import { secondsAt } from "./telemetry.js?v=67df6438600d";
+import { drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=67df6438600d";
 
 // ?probe walks the page against the stand-in; ?standin only plays against it, for a person to try
 const asked = new URLSearchParams(location.search);
 const probing = asked.has("probe") || asked.has("standin");
-const STANDIN = probing ? new (await import("./tests/standin.js?v=45f52efbed9c")).StandIn() : null;
+const STANDIN = probing ? new (await import("./tests/standin.js?v=67df6438600d")).StandIn() : null;
 // Google's own button, or the stand-in's; and Google's answer, if the page has just come back from it on a phone
 const drawGoogle = STANDIN?.drawGoogle ?? drawSignIn;
 const GOOGLE_MODE = "lizarding_google_mode";
@@ -79,7 +81,7 @@ class Lizarding extends ChimeApp {
     betting.close = () => Frames.defer(() => this.lower(betPopUp.getPlace()));
     const instruction = ui.bound(() => this.instruction());
     const top = ui.bound(() => this.driver.getTop());
-    const nav = Nav.describeNav(ui, play, { screens: { stage: Course.STAGE, leagues: League.LEAGUES, settings: Prefs.SETTINGS }, instruction });
+    const nav = Nav.describeNav(ui, play, { screens: { card: Card.CARD, stage: Course.STAGE, leagues: League.LEAGUES, settings: Prefs.SETTINGS }, instruction });
     const status = play.connection;
     const lost = ui.bound(() => {
       const s = status.read();
@@ -239,11 +241,97 @@ class Lizarding extends ChimeApp {
         });
         const canvas = document.createElement("canvas");
         canvas.className = "RaceCanvas";
-        place.replaceChildren(canvas);
+        // the slider: where the race has reached, dragged to anywhere in it; and the time so far and in all
+        const slider = document.createElement("input");
+        slider.type = "range";
+        slider.className = "RaceSlider";
+        slider.min = "0";
+        slider.max = String(Math.max(0, telemetry.ticks - 1));
+        slider.step = "1";
+        slider.value = "0";
+        slider.setAttribute("aria-label", "Where in the race");
+        const clock = document.createElement("p");
+        clock.className = "chime-text RaceClock";
+        const said = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+        const total = said(secondsAt(Math.max(0, telemetry.ticks - 1)));
+        let dragging = false;
+        slider.addEventListener("pointerdown", () => { dragging = true; });
+        slider.addEventListener("pointerup", () => { dragging = false; });
+        slider.addEventListener("input", () => watching.view?.seek(Number(slider.value)));
+        const bar = document.createElement("div");
+        bar.className = "RaceBar";
+        bar.append(slider, clock);
+        // the standings, beside the picture: position, number and name, in race order; pressed, followed
+        const standings = document.createElement("ol");
+        standings.className = "Standings";
+        standings.setAttribute("aria-label", "Positions");
+        const backed = watching.backed();
+        const rows = runners.map((runner, index) => {
+          const row = document.createElement("li");
+          const press = document.createElement("button");
+          press.type = "button";
+          press.className = `StandingRow${backed.has(index) ? " Backed" : ""}`;
+          press.innerHTML = `<span class="StandingPlace"></span><span class="Square Runner${runner.number}">${runner.number}</span><span class="StandingName"></span>`;
+          press.querySelector(".StandingName").textContent = runner.name;
+          press.addEventListener("click", () => this.commands.dispatch(Race.RACE, Race.FOLLOWS, { index }));
+          row.append(press);
+          return row;
+        });
+        // what the player's bets would pay were they to finish as they run now: top right of the picture
+        const bets = watched.bets;
+        const staked = bets.reduce((sum, bet) => sum + bet.stake, 0);
+        const winnings = document.createElement("p");
+        winnings.className = "chime-text LiveWinnings";
+        winnings.hidden = bets.length === 0;
+        const payNow = (standing) => {
+          if (!bets.length) return;
+          const placeOf = new Map(standing.map((s, at) => [s.index, at + 1]));
+          const paying = bets.reduce((sum, bet) => {
+            const index = watched.card.runners.findIndex((r) => r.lizard === bet.lizard);
+            const runner = watched.card.runners[index];
+            return sum + paid(bet, runner.odds, runner.rating, placeOf.get(index) ?? 0);
+          }, 0);
+          winnings.textContent = `As they run: ${credits(paying)} of ${credits(staked)} staked`;
+          winnings.classList.toggle("Up", paying > staked);
+          winnings.classList.toggle("Down", paying < staked);
+        };
+        let standingShown = "";
+        const stand = (standing) => {
+          const now = standing.map((s) => `${s.index}${s.out ? "x" : s.home ? "h" : ""}`).join(",") + `|${watching.follow._held}`;
+          if (now === standingShown) return;
+          standingShown = now;
+          payNow(standing);
+          let place = 0;
+          standings.replaceChildren(...standing.map((s) => {
+            const row = rows[s.index];
+            const at = row.querySelector(".StandingPlace");
+            at.textContent = s.out ? "DNF" : ordinal(++place);
+            at.dataset.place = s.out ? "–" : String(place);
+            row.firstChild.classList.toggle("Home", s.home);
+            row.firstChild.classList.toggle("Out", s.out);
+            row.firstChild.classList.toggle("Followed", watching.follow._held === s.index);
+            return row;
+          }));
+        };
+        const stage = document.createElement("div");
+        stage.className = "RaceStage";
+        const picture = document.createElement("div");
+        picture.className = "RacePicture";
+        picture.append(canvas, bar, winnings);
+        stage.append(standings, picture);
+        place.replaceChildren(stage);
         const course = watched.field?.course ?? { surfaces: [], obstacles: [], start: { x: 0, y: 0 }, finish: { x: 0, y: 0 }, bounds: { left: 0, right: 1, low: 0, high: 1 } };
         watching.view = new RaceView(canvas, {
           race: telemetry, course, runners, marks: settings.marks._held, still: settings.reducedMotion._held,
           ended: () => watching.over(), clock: STANDIN?.frameClock,
+          backed: watching.backed(), following: () => watching.follow._held,
+          speed: () => watching.speed._held, paused: () => watching.paused._held,
+          moved: (tick) => {
+            if (watching.view?.standing) stand(watching.view.standing);
+            if (!dragging) slider.value = String(Math.round(tick));
+            const now = `${said(secondsAt(tick))} / ${total}`;
+            if (clock.textContent !== now) clock.textContent = now;
+          },
         });
         watching.playing();
         watching.view.start();
@@ -336,7 +424,7 @@ class Lizarding extends ChimeApp {
     });
   }
 
-  probe() { return import("./probe.js?v=45f52efbed9c").then((made) => new made.Probe(this, STANDIN)); }
+  probe() { return import("./probe.js?v=67df6438600d").then((made) => new made.Probe(this, STANDIN)); }
 }
 
 ChimeApp.start(Lizarding, document.getElementById("app")).then((app) => { if (probing) Object.assign(globalThis, { lizarding: app, standin: STANDIN }); });

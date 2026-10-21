@@ -1,14 +1,15 @@
 // The nav bar, on every screen but the race (the brief's section 8.1):
-// Back; the stage's name, which opens its map; Leagues and Settings - behind
+// Back, and Home to the race card; the stage's name, which opens its map; Leagues and Settings - behind
 // a Menu on an upright phone; a line saying what to do now; the countdown to
 // the race; and the credits, a bar against the next power of ten and the
 // amount. On a wide screen it is one line, on an upright phone three.
 
-import { Driver, Phrase } from "./gd_chime/gd_chime.js?v=45f52efbed9c";
-import { countdownSaid, creditsFill, secondsLeft } from "./rules.js?v=45f52efbed9c";
-import { credits } from "./parts.js?v=45f52efbed9c";
+import { Driver, Phrase } from "./gd_chime/gd_chime.js?v=67df6438600d";
+import { countdownSaid, creditsFill, secondsLeft } from "./rules.js?v=67df6438600d";
+import { credits } from "./parts.js?v=67df6438600d";
 
 export const GOES_BACK = "goes_back";
+export const GOES_HOME = "goes_to_the_card";
 export const GOES_STAGE = "goes_to_the_stage";
 export const GOES_LEAGUES = "goes_to_the_leagues";
 export const GOES_SETTINGS = "goes_to_the_settings";
@@ -16,6 +17,7 @@ export const OPENS_MENU = "opens_the_menu";
 
 export const WORDS = {
   [GOES_BACK]: ["Back"],
+  [GOES_HOME]: ["Home"],
   [GOES_STAGE]: ["The stage"],
   [GOES_LEAGUES]: ["Leagues"],
   [GOES_SETTINGS]: ["Settings"],
@@ -53,6 +55,8 @@ export function describeNav(ui, play, { screens, instruction }) {
   return ui.surface("Nav", [
     ui.row([
       ui.pressable(GOES_BACK, {}, [ui.text("‹", "Arrow"), ui.text(ui.words(GOES_BACK), "Face BackWords")], "Pressable NavLink BackButton").goesTo(Driver.BACK).absentWhenRefused(),
+      // straight to the race card from anywhere; gone while already there
+      ui.pressable(GOES_HOME, {}, [ui.text("⌂", "Arrow"), ui.text(ui.words(GOES_HOME), "Face BackWords")], "Pressable NavLink BackButton").goesTo(screens.card).absentWhenRefused(),
       ui.when(stage, ui.pressable(GOES_STAGE, {}, [ui.text(stage.map((s) => s?.name || Phrase.of("The course")), "StageName")], "Pressable NavLink StageButton").goesTo(screens.stage)),
       ui.text(instruction, "Instruction Wide").grow(),
       go(GOES_LEAGUES, screens.leagues, "Wide"),

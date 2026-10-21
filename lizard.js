@@ -4,10 +4,10 @@
 // races, newest first, its percentiles shaded, its sprint map drawn, and its
 // career under it. Results only: never its genes or its body.
 
-import { Phrase } from "./gd_chime/gd_chime.js?v=45f52efbed9c";
-import { OPENS_BET } from "./card.js?v=45f52efbed9c";
-import { ageSaid, bandStyle, credits, nameSaid, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=45f52efbed9c";
-import { ordinal } from "./rules.js?v=45f52efbed9c";
+import { Phrase } from "./gd_chime/gd_chime.js?v=67df6438600d";
+import { OPENS_BET } from "./card.js?v=67df6438600d";
+import { ageSaid, bandStyle, credits, nameSaid, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=67df6438600d";
+import { ordinal } from "./rules.js?v=67df6438600d";
 
 export const LIZARD = "lizard";
 export const GOES_EARLIER = "goes_to_the_runner_before";
@@ -80,6 +80,8 @@ export function describeLizard(ui, play, { betPopUp }) {
     ui.text(Phrase.of("Form"), "Tab FormTab"),
     ui.when(form, ui.column([
       ui.text(form.map((f) => careerSaid(f?.career)), "Career").wraps(),
+      // the table holds its latest races only (FORM_MOST): said, so a long career isn't taken for a short one
+      ui.text(form.map((f) => shownSaid(f)), "Small Quiet").hidesEmpty(),
       ui.when(starts.map((s) => s.length === 0), ui.text(Phrase.of("No races yet."), "Quiet")),
       ui.when(starts.map((s) => s.length > 0), ui.column([
         ui.surface("FormRow FormHead", [
@@ -101,4 +103,12 @@ export function careerSaid(career) {
   ];
   if (career.averageBand != null) parts.push(Phrase.with("percentile %d on average", [career.averageBand]));
   return Phrase.joined(parts.flatMap((part, at) => (at ? [" · ", part] : [part])));
+}
+
+/** How much of its history the table shows: all of it, or its latest so many of its career. */
+export function shownSaid(form) {
+  if (!form || !form.starts.length) return "";
+  const shown = form.starts.length;
+  const all = form.career.races;
+  return shown < all ? Phrase.with("Its latest %d of %d races", [shown, all]) : Phrase.counted("Its only race", "All %d of its races", shown, "");
 }
