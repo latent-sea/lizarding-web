@@ -267,3 +267,8 @@ html, body { margin: 0; background: #08070f; }
 /* the door's other way in: Google, under choosing a name */
 #app .DoorOr { margin-top: 10px; text-align: center; }
 #app .Naming .chime-surface.GoogleButton { justify-content: center; }
+
+/* the last race, if it had the player's bets: what they paid, and its result to see */
+#app .chime-surface.LastRace { padding: 10px 12px; border: 2px solid var(--chime-lit); border-radius: 10px; background: var(--chime-raised); }
+#app .chime-surface.LastRace.Up { border-color: var(--teal); }
+#app .LastRaceLine { gap: 10px; flex-wrap: wrap; }

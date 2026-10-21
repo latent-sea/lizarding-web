@@ -14,18 +14,19 @@
 // field and the player's bets - since the game lets go of races older than
 // the last.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=32817456008e";
-import { readTelemetry, secondsAt } from "./telemetry.js?v=32817456008e";
-import { paid, ordinal } from "./rules.js?v=32817456008e";
-import { credits, square } from "./parts.js?v=32817456008e";
-import { sprintMap } from "./lizard.js?v=32817456008e";
-import { CARD } from "./card.js?v=32817456008e";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=cd465bc182b0";
+import { readTelemetry, secondsAt } from "./telemetry.js?v=cd465bc182b0";
+import { paid, ordinal } from "./rules.js?v=cd465bc182b0";
+import { credits, square } from "./parts.js?v=cd465bc182b0";
+import { sprintMap } from "./lizard.js?v=cd465bc182b0";
+import { CARD } from "./card.js?v=cd465bc182b0";
 
 export const RACE = "race";
 export const RESULT = "result";
 export const SKIPS = "skips_to_the_end";
 export const CONTINUES = "goes_back_to_the_card";
 export const FOLLOWS = "follows_a_lizard";
+export const REVIEWS = "shows_the_last_race";
 export const SLOWER = "plays_the_race_slower";
 export const FASTER = "plays_the_race_faster";
 export const PAUSES = "pauses_or_plays_the_race";
@@ -34,6 +35,7 @@ export const WORDS = {
   [SKIPS]: ["Skip to the end"],
   [CONTINUES]: ["Continue"],
   [FOLLOWS]: ["Follow"],
+  [REVIEWS]: ["See the result"],
   [SLOWER]: ["Slower"],
   [FASTER]: ["Faster"],
   [PAUSES]: ["Pause"],
@@ -60,7 +62,7 @@ export class Watching extends Controller {
     this._unseen = null;
   }
 
-  answers() { return [SKIPS, CONTINUES, FOLLOWS, SLOWER, FASTER, PAUSES]; }
+  answers() { return [SKIPS, CONTINUES, FOLLOWS, SLOWER, FASTER, PAUSES, REVIEWS]; }
 
   would(action) {
     if (action === SKIPS && this.phase.read() === "over") return Phrase.of("The race is over");
@@ -73,6 +75,7 @@ export class Watching extends Controller {
     if (action === SKIPS) { if (this.view) this.view.skip(); else this.over(); }
     if (action === CONTINUES) this.done();
     if (action === FOLLOWS) this.follow.setValue(payload.index ?? null);
+    if (action === REVIEWS) this.review(payload.race);
     if (action === SLOWER || action === FASTER) {
       const at = SPEEDS.indexOf(this.speed._held);
       this.speed.setValue(SPEEDS[Math.max(0, Math.min(SPEEDS.length - 1, at + (action === FASTER ? 1 : -1)))]);
@@ -92,6 +95,23 @@ export class Watching extends Controller {
     this.follow.setValue(mostStakedOn(card, bets));
     this.paused.setValue(false);
     this.phase.setValue("waiting");
+  }
+
+  /**
+   * A race that has run, its result shown without the race itself: a race
+   * missed while away. The game shows a race only as it runs, so there is
+   * nothing to play; names come from the field, or from form asked for.
+   */
+  review(race) {
+    const game = this.play.game._held;
+    const card = game?.cards.get(race);
+    if (!card) return;
+    this.view?.stop();
+    this.view = null;
+    this.played = null;
+    this.watched.setValue({ race, card, field: this.play.fields._held.get(race) ?? null, bets: [...game.betsOn(race)] });
+    for (const runner of card.runners) this.play.askForm(runner.lizard);
+    this.phase.setValue("over");
   }
 
   /** The race the game showed, read, if it is the one watched; null for another, or one that can't be read. */
@@ -153,7 +173,7 @@ export class Watching extends Controller {
       const index = indexOf(lizard);
       const runner = runners[index];
       const outcome = outcomes?.[index] ?? null;
-      const shown = watched.field?.runners.find((r) => r.lizard === lizard) ?? null;
+      const shown = watched.field?.runners.find((r) => r.lizard === lizard) ?? this.play.forms.read().get(lizard) ?? null;
       const place = order.indexOf(lizard) + 1;
       const done = finished(index);
       const time = done && outcome ? secondsAt(outcome.finishTick) : null;
@@ -255,4 +275,20 @@ export function describeResult(ui, play, watching) {
     ui.each(rows, row, (r) => r.lizard, "ResultRows"),
     ui.button(CONTINUES, { goes_to: CARD }),
   ]);
+}
+
+/** The last race that ran, if the player had bets on it: { race, staked, paid }, else null. */
+export function lastRaceOf(game) {
+  const race = game?.lastRace();
+  if (race === null || race === undefined) return null;
+  const bets = game.betsOn(race);
+  if (!bets.length) return null;
+  const card = game.cards.get(race);
+  const order = game.results.get(race)?.order ?? [];
+  const staked = bets.reduce((sum, bet) => sum + bet.stake, 0);
+  const won = bets.reduce((sum, bet) => {
+    const runner = card.runners.find((r) => r.lizard === bet.lizard);
+    return sum + paid(bet, runner.odds, runner.rating, order.indexOf(bet.lizard) + 1);
+  }, 0);
+  return { race, staked, paid: won };
 }
