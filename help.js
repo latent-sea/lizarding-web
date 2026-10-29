@@ -1,7 +1,7 @@
 // The i on every page: what can be done on it, and what its figures,
 // colours and marks mean. One pop-up, opened with the page it explains.
 
-import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=3c28468398f2";
+import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=4a2c3c9acc21";
 
 export const OPENS_HELP = "explains_this_page";
 
@@ -22,6 +22,7 @@ export const HELP = {
     ["Your stakes", "What you have bet on each lizard in this race."],
     ["Credits", "Your balance, top right. The bar fills towards the next power of ten. Under 50 after a race, you are topped up to 50."],
     ["A lizard's form", "Tap a lizard's name to see its races, its percentiles and its career."],
+    ["The full game", "The betting here is free. The full game, on Steam and Google Play, adds Battle Ladder, the races as they really run and a whole world to browse, with Breeding Challenge and Dynasty coming."],
   ],
   lizard: [
     ["The lizard", "Its number, name, age and stable, its prices in this race, and your stakes on it. The arrows go to the runner before or after it on the card."],

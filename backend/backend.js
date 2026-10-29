@@ -5,7 +5,7 @@
 // a game and a site. The platform is Supabase; this speaks its sign-in
 // (GoTrue), data (PostgREST) and live (Realtime, Phoenix channels) protocols.
 //
-//     import { Backend } from "./backend/backend.js?v=3c28468398f2";
+//     import { Backend } from "./backend/backend.js?v=4a2c3c9acc21";
 //
 //     const backend = new Backend(URL, PUBLISHABLE_KEY);
 //     await backend.restore();                       // whoever signed in last time, if anyone

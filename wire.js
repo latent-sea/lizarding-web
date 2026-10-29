@@ -9,7 +9,7 @@
 // client does not read is handed back as { ignored } rather than refused:
 // other game modes share the socket.
 
-import { Malformed, Reader, Writer } from "./bytes.js?v=3c28468398f2";
+import { Malformed, Reader, Writer } from "./bytes.js?v=4a2c3c9acc21";
 
 export { Malformed };
 

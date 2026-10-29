@@ -348,3 +348,69 @@ html, body { margin: 0; background: #08070f; }
 
 /* the result's head: the title, and Continue beside it */
 #app .ResultHead { gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* selling the full game: its stores over every page but the race, larger than anything else on it */
+#app .BuyBar { gap: 8px; align-items: stretch; flex-wrap: wrap; padding: 8px; border-radius: 10px; border: 2px solid var(--neon);
+  background: linear-gradient(90deg, rgb(255 128 184 / 0.2), rgb(255 199 82 / 0.2)); box-shadow: 0 0 16px rgb(255 128 184 / 0.25); }
+#app .BuyHeading { flex: 1 1 auto; align-self: center; color: var(--neon); font-weight: 800; font-size: 1.15rem; letter-spacing: 0.04em; text-transform: uppercase; }
+#app .Store { flex: 1 1 11rem; display: flex; flex-direction: column; justify-content: center; gap: 0; min-height: 48px; padding: 4px 14px; border-radius: 8px; text-decoration: none; color: #ffffff; }
+#app .Store-steam { background: linear-gradient(180deg, #2a475e, #1b2838); border: 2px solid #66c0f4; }
+#app .Store-play { background: linear-gradient(180deg, #0f9d58, #01734a); border: 2px solid #5ee0a0; }
+#app a.Store:hover { filter: brightness(1.15); }
+#app a.Store:focus-visible, #app a.Social:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+#app .StoreCall { color: #ffffff; font-weight: 800; font-size: 1.05rem; white-space: normal; line-height: 1.15; }
+#app .StoreSub { white-space: normal; }
+#app .StoreSub { color: rgb(255 255 255 / 0.78); font-size: 0.75rem; }
+#app .Store.Large { min-height: 64px; }
+#app .Store.Large .StoreCall { font-size: 1.25rem; }
+@media (max-width: 40rem) and (orientation: portrait) {
+  #app .BuyHeading { flex-basis: 100%; text-align: center; font-size: 1rem; }
+  #app .Store { flex-basis: 0; padding: 4px 10px; }
+  #app .StoreCall { font-size: 0.95rem; }
+}
+
+/* the socials: a row of named buttons, under every page but the race */
+#app .Socials { flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; padding: 10px 0; }
+#app .Social { padding: 8px 16px; border-radius: 999px; border: 2px solid var(--teal); background: rgb(71 235 199 / 0.12); color: var(--chime-ink); font-weight: 700; text-decoration: none; }
+#app .Social:hover { background: rgb(71 235 199 / 0.28); }
+
+/* the advert: one side of the game, its clip or picture, the stores, the socials */
+#app .AdvertSheet { gap: 10px; }
+#app .chime-sheet:has(.AdvertSheet) { width: min(100%, 40rem); border-color: var(--neon); }
+#app .chime-surface.AdvertPicture { position: relative; padding: 0; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 10px; border: 2px solid var(--brass); background: var(--enamel-dark); }
+#app .AdvertArt { display: block; width: 100%; height: 100%; object-fit: cover; }
+#app .ClipSoon { position: absolute; left: 8px; bottom: 8px; padding: 2px 8px; border-radius: 6px; background: rgb(8 7 15 / 0.8); color: var(--chime-ink-soft); font-size: 0.75rem; }
+#app .AdvertHeading { margin: 0; }
+#app .AdvertStores { gap: 8px; flex-wrap: wrap; }
+#app .AdvertSheet .Socials { padding: 0; justify-content: flex-start; }
+#app .AdvertSheet .Social { padding: 6px 12px; font-size: 0.9rem; }
+#app .chime-pressable.AdvertClose { align-self: flex-end; }
+@media (orientation: landscape) and (max-height: 32rem) {
+  #app .BuyBar { padding: 4px 6px; gap: 6px; flex-wrap: nowrap; }
+  #app .BuyHeading { font-size: 0.9rem; }
+  #app .Store { min-height: 38px; padding: 2px 10px; }
+  #app .StoreCall { font-size: 0.9rem; }
+  #app .chime-sheet:has(.AdvertSheet) { width: min(100%, 52rem); padding: 10px 12px; }
+  /* the picture down the left, beside everything else (the clip's holder lays nothing out of its own) */
+  #app .AdvertSheet { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 6px 14px; align-items: start;
+    grid-template-areas: "picture heading" "picture words" "picture stores" "picture socials" "picture close"; }
+  #app .AdvertSheet .AdvertPicture, #app .AdvertSheet .chime-embed { grid-area: picture; align-self: center; }
+  #app .AdvertSheet > .AdvertHeading { grid-area: heading; }
+  #app .AdvertSheet > .Words { grid-area: words; }
+  #app .AdvertSheet > .AdvertStores { grid-area: stores; }
+  #app .AdvertSheet > .Socials { grid-area: socials; }
+  #app .AdvertSheet > .AdvertClose { grid-area: close; }
+  #app .AdvertSheet > .Engraving { display: none; }
+  #app .AdvertSheet .Store.Large { min-height: 44px; padding: 3px 10px; }
+  #app .AdvertSheet .Store.Large { flex: 1 1 0; min-width: 0; }
+  #app .AdvertSheet .Store.Large .StoreCall { font-size: 0.95rem; }
+  #app .AdvertSheet .Store.Large .StoreSub { font-size: 0.68rem; }
+  #app .AdvertSheet .Words { font-size: 0.85rem; line-height: 1.3; }
+  #app .AdvertSheet .chime-pressable.AdvertClose { min-height: 34px; padding: 2px 12px; }
+  #app .AdvertSheet .AdvertHeading { font-size: 1.2rem; }
+  #app .AdvertStores { flex-wrap: nowrap; }
+  #app .AdvertSheet .Social { padding: 2px 9px; font-size: 0.78rem; border-width: 1px; }
+  #app .AdvertSheet .Socials { gap: 5px; }
+  #app .Store.Large { min-height: 48px; }
+  #app .Store.Large .StoreCall { font-size: 1.05rem; }
+}

@@ -14,33 +14,34 @@
 // platform and the game (tests/standin.js), never the real ones; opened with
 // ?standin it plays against the stand-in, for a person to try.
 
-import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=3c28468398f2";
-import { CONFIG } from "./config.js?v=3c28468398f2";
-import { SignIn } from "./auth.js?v=3c28468398f2";
-import { Connection } from "./connection.js?v=3c28468398f2";
-import { localParts, openLine } from "./hub.js?v=3c28468398f2";
-import * as Session from "./play.js?v=3c28468398f2";
-import * as Card from "./card.js?v=3c28468398f2";
-import * as Bet from "./bet.js?v=3c28468398f2";
-import * as Lizard from "./lizard.js?v=3c28468398f2";
-import * as League from "./leagues.js?v=3c28468398f2";
-import * as Race from "./race.js?v=3c28468398f2";
-import * as Nav from "./nav.js?v=3c28468398f2";
-import * as Course from "./course.js?v=3c28468398f2";
-import * as Prefs from "./settings.js?v=3c28468398f2";
-import * as Join from "./joining.js?v=3c28468398f2";
-import * as Help from "./help.js?v=3c28468398f2";
-import { RaceView } from "./viewer.js?v=3c28468398f2";
-import { drawStageMap } from "./stage.js?v=3c28468398f2";
-import { ordinal, paid, secondsLeft } from "./rules.js?v=3c28468398f2";
-import { credits } from "./parts.js?v=3c28468398f2";
-import { secondsAt } from "./telemetry.js?v=3c28468398f2";
-import { drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=3c28468398f2";
+import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=4a2c3c9acc21";
+import { CONFIG } from "./config.js?v=4a2c3c9acc21";
+import { SignIn } from "./auth.js?v=4a2c3c9acc21";
+import { Connection } from "./connection.js?v=4a2c3c9acc21";
+import { localParts, openLine } from "./hub.js?v=4a2c3c9acc21";
+import * as Session from "./play.js?v=4a2c3c9acc21";
+import * as Card from "./card.js?v=4a2c3c9acc21";
+import * as Bet from "./bet.js?v=4a2c3c9acc21";
+import * as Lizard from "./lizard.js?v=4a2c3c9acc21";
+import * as League from "./leagues.js?v=4a2c3c9acc21";
+import * as Race from "./race.js?v=4a2c3c9acc21";
+import * as Nav from "./nav.js?v=4a2c3c9acc21";
+import * as Course from "./course.js?v=4a2c3c9acc21";
+import * as Prefs from "./settings.js?v=4a2c3c9acc21";
+import * as Join from "./joining.js?v=4a2c3c9acc21";
+import * as Help from "./help.js?v=4a2c3c9acc21";
+import * as Promo from "./promo.js?v=4a2c3c9acc21";
+import { RaceView } from "./viewer.js?v=4a2c3c9acc21";
+import { drawStageMap } from "./stage.js?v=4a2c3c9acc21";
+import { ordinal, paid, secondsLeft } from "./rules.js?v=4a2c3c9acc21";
+import { credits } from "./parts.js?v=4a2c3c9acc21";
+import { secondsAt } from "./telemetry.js?v=4a2c3c9acc21";
+import { drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=4a2c3c9acc21";
 
 // ?probe walks the page against the stand-in; ?standin only plays against it, for a person to try
 const asked = new URLSearchParams(location.search);
 const probing = asked.has("probe") || asked.has("standin");
-const STANDIN = probing ? new (await import("./tests/standin.js?v=3c28468398f2")).StandIn() : null;
+const STANDIN = probing ? new (await import("./tests/standin.js?v=4a2c3c9acc21")).StandIn() : null;
 // Google's own button, or the stand-in's; and Google's answer, if the page has just come back from it on a phone
 const drawGoogle = STANDIN?.drawGoogle ?? drawSignIn;
 const GOOGLE_MODE = "lizarding_google_mode";
@@ -60,7 +61,7 @@ class Lizarding extends ChimeApp {
 
   declare(register) {
     register.declareAll(Object.fromEntries(Object.entries({
-      ...Session.WORDS, ...Card.WORDS, ...Bet.WORDS, ...Lizard.WORDS, ...League.WORDS, ...Race.WORDS, ...Nav.WORDS, ...Prefs.WORDS, ...Join.WORDS, ...Help.WORDS,
+      ...Session.WORDS, ...Card.WORDS, ...Bet.WORDS, ...Lizard.WORDS, ...League.WORDS, ...Race.WORDS, ...Nav.WORDS, ...Prefs.WORDS, ...Join.WORDS, ...Help.WORDS, ...Promo.WORDS,
     })));
   }
 
@@ -75,11 +76,15 @@ class Lizarding extends ChimeApp {
     const leagues = this.leagues = this.model(new League.Leagues(this.chimes, play, { clipboard: STANDIN?.clipboard, clock: STANDIN?.clock }));
     const watching = this.watching = this.model(new Race.Watching(this.chimes, play));
     const joining = this.joining = this.model(new Join.Joining(this.chimes, play));
+    // walked by the probe, the advert holds a second, not five
+    const advert = this.advert = this.model(new Promo.Advert(this.chimes, STANDIN ? { hold: 1 } : {}));
     this.mapScale = ui.local(1);
     this.hadGame = false;
 
     const betPopUp = this.betPopUp = Bet.describeBetPopUp(ui, play, betting);
     betting.close = () => Frames.defer(() => this.lower(betPopUp.getPlace()));
+    const advertPopUp = this.advertPopUp = Promo.describeAdvert(ui, advert);
+    advert.close = () => Frames.defer(() => this.lower(advertPopUp.getPlace()));
     const instruction = ui.bound(() => this.instruction());
     // the i: the page the player is on, explained
     const help = this.helpPopUp = Help.describeHelp(ui);
@@ -93,7 +98,10 @@ class Lizarding extends ChimeApp {
       if (s.status === "lost") return Phrase.of("The connection was lost: joining the game again…");
       return Phrase.of("Joining the game again…");
     });
+    // the full game's buying links over every page but the race, and its socials under it
+    const besideTheRace = top.map((path) => !path.includes(Race.RACE));
     return ui.app("lizarding", [
+      ui.when(besideTheRace, Promo.describeBuyBar(ui)),
       ui.when(top.map((path) => !path.includes(DOOR) && !path.includes(Race.RACE)), nav),
       ui.text(lost, "Banner").wraps().hidesEmpty(),
       ui.each(play.notices, (held) => ui.text(held.map((n) => n?.words ?? ""), "Notice Toast").wraps(), (n) => n.id, "Notices"),
@@ -107,6 +115,8 @@ class Lizarding extends ChimeApp {
         Race.describeRace(ui, play, watching, Help.infoButton(ui, help, Race.RACE)),
         Race.describeResult(ui, play, watching),
       ]),
+      ui.when(besideTheRace, Promo.describeSocials(ui)),
+      advertPopUp,
     ]);
   }
 
@@ -203,6 +213,29 @@ class Lizarding extends ChimeApp {
     const sheet = document.createElement("style");
     document.head.appendChild(sheet);
     follow("colours", () => { sheet.textContent = Prefs.colourSheet(settings.scale.read()); });
+
+    // the advert: as the card is first shown, and as each race's result is left, a different side of the game each time
+    let advertised = false;
+    let afterRace = null; // the last race whose result was left with the advert: a result looked at again is not a race between
+    let was = null;
+    follow("advert", () => {
+      const path = this.screen();
+      const on = path[path.length - 1] ?? null;
+      const left = was;
+      was = on;
+      const race = watching.watched._held?.race ?? null;
+      const first = !advertised && on === Card.CARD;
+      const between = left === Race.RESULT && on !== Race.RESULT && on !== Race.RACE && race !== afterRace;
+      if (!first && !between) return;
+      advertised = true;
+      if (between) afterRace = race;
+      Frames.defer(() => {
+        // the race left behind first: Back leads nowhere into it, the advert up or not
+        if (between) this.forget();
+        this.advert.shown();
+        this.go(this.advertPopUp.getPlace());
+      });
+    });
 
     // the door, as the connection stands
     follow("door", () => {
@@ -438,7 +471,7 @@ class Lizarding extends ChimeApp {
     });
   }
 
-  probe() { return import("./probe.js?v=3c28468398f2").then((made) => new made.Probe(this, STANDIN)); }
+  probe() { return import("./probe.js?v=4a2c3c9acc21").then((made) => new made.Probe(this, STANDIN)); }
 }
 
 ChimeApp.start(Lizarding, document.getElementById("app")).then((app) => { if (probing) Object.assign(globalThis, { lizarding: app, standin: STANDIN }); });
