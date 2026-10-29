@@ -5,8 +5,8 @@
 // Until the store pages and the clips are public, each is a placeholder that
 // says so (STORES, CLIPS): filling in an address is all it takes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=532e313549a4";
-import { safeStorage } from "./auth.js?v=532e313549a4";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=d36c354bf1f6";
+import { safeStorage } from "./auth.js?v=d36c354bf1f6";
 
 export const BUYS = "buys_the_full_game";
 export const KEEPS_PLAYING = "goes_back_to_the_races";

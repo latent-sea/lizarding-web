@@ -371,7 +371,7 @@ html, body { margin: 0; background: #08070f; }
 
 /* the socials: a row of named buttons, under every page but the race */
 #app .Socials { flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; padding: 10px 0; }
-#app .Social { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; border: 2px solid var(--teal); background: rgb(71 235 199 / 0.12); color: var(--chime-ink); font-weight: 700; text-decoration: none; }
+#app .Social { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 8.5rem; box-sizing: border-box; padding: 8px 10px; border-radius: 999px; border: 2px solid var(--teal); background: rgb(71 235 199 / 0.12); color: var(--chime-ink); font-weight: 700; text-decoration: none; }
 #app .Social:hover { background: rgb(71 235 199 / 0.28); }
 #app .SocialIcon { width: 1.3rem; height: 1.3rem; flex: 0 0 auto; }
 #app .AdvertSheet .SocialIcon { width: 1.1rem; height: 1.1rem; }
@@ -385,7 +385,14 @@ html, body { margin: 0; background: #08070f; }
 #app .AdvertHeading { margin: 0; }
 #app .AdvertStores { gap: 8px; flex-wrap: wrap; }
 #app .AdvertSheet .Socials { padding: 0; justify-content: flex-start; }
-#app .AdvertSheet .Social { padding: 6px 12px; font-size: 0.9rem; }
+/* five equal tiles in one row, each its logo over its name: on an upright phone, and in the advert */
+@media (max-width: 40rem) and (orientation: portrait) {
+  #app .Socials { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+  #app .Socials > .Engraving { grid-column: 1 / -1; text-align: center; }
+}
+#app .AdvertSheet .Socials { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+@media (max-width: 40rem) and (orientation: portrait) { #app .Socials .Social { width: auto; flex-direction: column; gap: 4px; padding: 8px 2px; border-radius: 12px; font-size: 0.78rem; } }
+#app .AdvertSheet .Socials .Social { width: auto; flex-direction: column; gap: 3px; padding: 6px 2px; border-radius: 12px; font-size: 0.78rem; }
 #app .chime-pressable.AdvertClose { align-self: flex-end; }
 @media (orientation: landscape) and (max-height: 32rem) {
   #app .BuyBar { padding: 4px 6px; gap: 6px; flex-wrap: nowrap; }
@@ -411,8 +418,14 @@ html, body { margin: 0; background: #08070f; }
   #app .AdvertSheet .chime-pressable.AdvertClose { min-height: 34px; padding: 2px 12px; }
   #app .AdvertSheet .AdvertHeading { font-size: 1.2rem; }
   #app .AdvertStores { flex-wrap: nowrap; }
-  #app .AdvertSheet .Social { padding: 2px 9px; font-size: 0.78rem; border-width: 1px; }
+  #app .AdvertSheet .Socials .Social { padding: 3px 2px; font-size: 0.68rem; border-width: 1px; gap: 2px; }
+  #app .AdvertSheet .SocialIcon { width: 1rem; height: 1rem; }
   #app .AdvertSheet .Socials { gap: 5px; }
   #app .Store.Large { min-height: 48px; }
   #app .Store.Large .StoreCall { font-size: 1.05rem; }
 }
+/* a tile's name fits inside it however narrow the row */
+#app .AdvertSheet .Socials .Social, #app .Socials .Social { min-width: 0; overflow: hidden; }
+#app .AdvertSheet .Socials .Social .Face { font-size: 0.74rem; }
+@media (max-width: 40rem) and (orientation: portrait) { #app .Socials .Social .Face { font-size: 0.74rem; } }
+@media (orientation: landscape) and (max-height: 32rem) { #app .AdvertSheet .Socials .Social .Face { font-size: 0.62rem; } }
