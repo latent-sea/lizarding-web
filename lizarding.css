@@ -371,8 +371,10 @@ html, body { margin: 0; background: #08070f; }
 
 /* the socials: a row of named buttons, under every page but the race */
 #app .Socials { flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; padding: 10px 0; }
-#app .Social { padding: 8px 16px; border-radius: 999px; border: 2px solid var(--teal); background: rgb(71 235 199 / 0.12); color: var(--chime-ink); font-weight: 700; text-decoration: none; }
+#app .Social { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; border: 2px solid var(--teal); background: rgb(71 235 199 / 0.12); color: var(--chime-ink); font-weight: 700; text-decoration: none; }
 #app .Social:hover { background: rgb(71 235 199 / 0.28); }
+#app .SocialIcon { width: 1.3rem; height: 1.3rem; flex: 0 0 auto; }
+#app .AdvertSheet .SocialIcon { width: 1.1rem; height: 1.1rem; }
 
 /* the advert: one side of the game, its clip or picture, the stores, the socials */
 #app .AdvertSheet { gap: 10px; }

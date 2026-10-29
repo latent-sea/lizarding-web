@@ -5,8 +5,8 @@
 // Until the store pages and the clips are public, each is a placeholder that
 // says so (STORES, CLIPS): filling in an address is all it takes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=4a2c3c9acc21";
-import { safeStorage } from "./auth.js?v=4a2c3c9acc21";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=532e313549a4";
+import { safeStorage } from "./auth.js?v=532e313549a4";
 
 export const BUYS = "buys_the_full_game";
 export const KEEPS_PLAYING = "goes_back_to_the_races";
@@ -19,13 +19,13 @@ export const STORES = [
   { key: "play", name: "Google Play", call: "Get it on Google Play", href: null },
 ];
 
-// the socials (marketing/social-handle-sweep.md, all @LizardingGame)
+// the socials (marketing/social-handle-sweep.md, all @LizardingGame), each with its logo (Simple Icons, CC0) in its own colour
 export const SOCIALS = [
-  { name: "YouTube", href: "https://www.youtube.com/@LizardingGame" },
-  { name: "TikTok", href: "https://www.tiktok.com/@LizardingGame" },
-  { name: "X", href: "https://x.com/LizardingGame" },
-  { name: "Bluesky", href: "https://bsky.app/profile/lizardinggame.bsky.social" },
-  { name: "Reddit", href: "https://www.reddit.com/r/Lizarding" },
+  { name: "YouTube", icon: "promo/icons/youtube.svg", href: "https://www.youtube.com/@LizardingGame" },
+  { name: "TikTok", icon: "promo/icons/tiktok.svg", href: "https://www.tiktok.com/@LizardingGame" },
+  { name: "X", icon: "promo/icons/x.svg", href: "https://x.com/LizardingGame" },
+  { name: "Bluesky", icon: "promo/icons/bluesky.svg", href: "https://bsky.app/profile/lizardinggame.bsky.social" },
+  { name: "Reddit", icon: "promo/icons/reddit.svg", href: "https://www.reddit.com/r/Lizarding" },
 ];
 
 // a gameplay clip for a side of the game, by its key: an embed's address (a YouTube /embed/ link) once there is one
@@ -103,7 +103,7 @@ export function describeBuyBar(ui) {
 export function describeSocials(ui, heading = true) {
   return ui.row([
     ...(heading ? [ui.text(Phrase.of("Follow Lizarding"), "Engraving")] : []),
-    ...SOCIALS.map((social) => ui.hyperlink(social.href, [ui.text(social.name, "Face")], `Social Social-${social.name}`, { label: Phrase.with("Lizarding on %s", [social.name]) })),
+    ...SOCIALS.map((social) => ui.hyperlink(social.href, [ui.image(social.icon, "SocialIcon"), ui.text(social.name, "Face")], `Social Social-${social.name}`, { label: Phrase.with("Lizarding on %s", [social.name]) })),
   ], "Socials");
 }
 
