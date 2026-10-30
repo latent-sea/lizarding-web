@@ -3,8 +3,8 @@
 //
 // gd-chime for the web. MIT licensed; see LICENCE beside this file.
 
-import { Frames } from "./frames.js?v=d36c354bf1f6";
-import { Reads } from "./reads.js?v=d36c354bf1f6";
+import { Frames } from "./frames.js?v=59fdb775ff50";
+import { Reads } from "./reads.js?v=59fdb775ff50";
 
 let made = 0;
 
