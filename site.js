@@ -14,34 +14,34 @@
 // platform and the game (tests/standin.js), never the real ones; opened with
 // ?standin it plays against the stand-in, for a person to try.
 
-import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=59fdb775ff50";
-import { CONFIG } from "./config.js?v=59fdb775ff50";
-import { SignIn } from "./auth.js?v=59fdb775ff50";
-import { Connection } from "./connection.js?v=59fdb775ff50";
-import { localParts, openLine } from "./hub.js?v=59fdb775ff50";
-import * as Session from "./play.js?v=59fdb775ff50";
-import * as Card from "./card.js?v=59fdb775ff50";
-import * as Bet from "./bet.js?v=59fdb775ff50";
-import * as Lizard from "./lizard.js?v=59fdb775ff50";
-import * as League from "./leagues.js?v=59fdb775ff50";
-import * as Race from "./race.js?v=59fdb775ff50";
-import * as Nav from "./nav.js?v=59fdb775ff50";
-import * as Course from "./course.js?v=59fdb775ff50";
-import * as Prefs from "./settings.js?v=59fdb775ff50";
-import * as Join from "./joining.js?v=59fdb775ff50";
-import * as Help from "./help.js?v=59fdb775ff50";
-import * as Promo from "./promo.js?v=59fdb775ff50";
-import { RaceView } from "./viewer.js?v=59fdb775ff50";
-import { drawStageMap } from "./stage.js?v=59fdb775ff50";
-import { ordinal, paid, secondsLeft } from "./rules.js?v=59fdb775ff50";
-import { credits } from "./parts.js?v=59fdb775ff50";
-import { secondsAt } from "./telemetry.js?v=59fdb775ff50";
-import { drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=59fdb775ff50";
+import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=99f8a2d57bfd";
+import { CONFIG } from "./config.js?v=99f8a2d57bfd";
+import { SignIn } from "./auth.js?v=99f8a2d57bfd";
+import { Connection } from "./connection.js?v=99f8a2d57bfd";
+import { localParts, openLine } from "./hub.js?v=99f8a2d57bfd";
+import * as Session from "./play.js?v=99f8a2d57bfd";
+import * as Card from "./card.js?v=99f8a2d57bfd";
+import * as Bet from "./bet.js?v=99f8a2d57bfd";
+import * as Lizard from "./lizard.js?v=99f8a2d57bfd";
+import * as League from "./leagues.js?v=99f8a2d57bfd";
+import * as Race from "./race.js?v=99f8a2d57bfd";
+import * as Nav from "./nav.js?v=99f8a2d57bfd";
+import * as Course from "./course.js?v=99f8a2d57bfd";
+import * as Prefs from "./settings.js?v=99f8a2d57bfd";
+import * as Join from "./joining.js?v=99f8a2d57bfd";
+import * as Help from "./help.js?v=99f8a2d57bfd";
+import * as Promo from "./promo.js?v=99f8a2d57bfd";
+import { RaceView } from "./viewer.js?v=99f8a2d57bfd";
+import { drawStageMap } from "./stage.js?v=99f8a2d57bfd";
+import { ordinal, paid, secondsLeft } from "./rules.js?v=99f8a2d57bfd";
+import { credits } from "./parts.js?v=99f8a2d57bfd";
+import { secondsAt } from "./telemetry.js?v=99f8a2d57bfd";
+import { drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=99f8a2d57bfd";
 
 // ?probe walks the page against the stand-in; ?standin only plays against it, for a person to try
 const asked = new URLSearchParams(location.search);
 const probing = asked.has("probe") || asked.has("standin");
-const STANDIN = probing ? new (await import("./tests/standin.js?v=59fdb775ff50")).StandIn() : null;
+const STANDIN = probing ? new (await import("./tests/standin.js?v=99f8a2d57bfd")).StandIn() : null;
 // Google's own button, or the stand-in's; and Google's answer, if the page has just come back from it on a phone
 const drawGoogle = STANDIN?.drawGoogle ?? drawSignIn;
 const GOOGLE_MODE = "lizarding_google_mode";
@@ -471,7 +471,7 @@ class Lizarding extends ChimeApp {
     });
   }
 
-  probe() { return import("./probe.js?v=59fdb775ff50").then((made) => new made.Probe(this, STANDIN)); }
+  probe() { return import("./probe.js?v=99f8a2d57bfd").then((made) => new made.Probe(this, STANDIN)); }
 }
 
 ChimeApp.start(Lizarding, document.getElementById("app")).then((app) => { if (probing) Object.assign(globalThis, { lizarding: app, standin: STANDIN }); });

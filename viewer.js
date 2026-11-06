@@ -8,9 +8,9 @@
 // chooses, paused or played on, from anywhere they seek to; and says where
 // it has reached, and when the race has been watched to its end (or skipped to it).
 
-import { CHANNEL, EVENT, SECONDS_PER_TICK, STATE, at, secondsAt, stepAt } from "./telemetry.js?v=59fdb775ff50";
-import { surfaceOf } from "./stage.js?v=59fdb775ff50";
-import { inkOn, runnerColour } from "./colours.js?v=59fdb775ff50";
+import { CHANNEL, EVENT, SECONDS_PER_TICK, STATE, at, secondsAt, stepAt } from "./telemetry.js?v=99f8a2d57bfd";
+import { surfaceOf } from "./stage.js?v=99f8a2d57bfd";
+import { inkOn, runnerColour } from "./colours.js?v=99f8a2d57bfd";
 
 const NARROWEST_M = 24; // the least of the course shown across
 const WIDEST_M = 90; // the most, so a runner is never too small to see
