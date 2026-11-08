@@ -10,7 +10,7 @@
 // A device whose account was the one let go is signed in again at once,
 // which makes it the kept account, and rejoins the game.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=b6ae7d09bd28";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=da0868842557";
 
 export const ASKS_CODE = "asks_for_a_join_code";
 export const CANCELS_CODE = "stops_showing_the_code";
