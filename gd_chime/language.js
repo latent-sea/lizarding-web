@@ -14,11 +14,11 @@
 // as [one, other]. The language on to begin with is the nearest the browser
 // asks for, else English.
 
-import { Chimes } from "./chimes.js?v=eba879f1c129";
-import { Controller } from "./controller.js?v=eba879f1c129";
-import { OwnBell } from "./own_bell.js?v=eba879f1c129";
-import { Phrase } from "./phrase.js?v=eba879f1c129";
-import { Reads } from "./reads.js?v=eba879f1c129";
+import { Chimes } from "./chimes.js?v=1d170ce4814b";
+import { Controller } from "./controller.js?v=1d170ce4814b";
+import { OwnBell } from "./own_bell.js?v=1d170ce4814b";
+import { Phrase } from "./phrase.js?v=1d170ce4814b";
+import { Reads } from "./reads.js?v=1d170ce4814b";
 
 const ON = "language_on";
 const catalogues = new Map(); // language -> {english: words}

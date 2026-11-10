@@ -14,12 +14,12 @@
 // field and the player's bets - since the game lets go of races older than
 // the last.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=eba879f1c129";
-import { readTelemetry, secondsAt } from "./telemetry.js?v=eba879f1c129";
-import { paid, ordinal } from "./rules.js?v=eba879f1c129";
-import { credits, square } from "./parts.js?v=eba879f1c129";
-import { sprintMap } from "./lizard.js?v=eba879f1c129";
-import { CARD } from "./card.js?v=eba879f1c129";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=1d170ce4814b";
+import { readTelemetry, secondsAt } from "./telemetry.js?v=1d170ce4814b";
+import { paid, ordinal } from "./rules.js?v=1d170ce4814b";
+import { credits, square } from "./parts.js?v=1d170ce4814b";
+import { sprintMap } from "./lizard.js?v=1d170ce4814b";
+import { CARD } from "./card.js?v=1d170ce4814b";
 
 export const RACE = "race";
 export const RESULT = "result";

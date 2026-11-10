@@ -4,9 +4,9 @@
 // the race; and the credits, a bar against the next power of ten and the
 // amount. On a wide screen it is one line, on an upright phone three.
 
-import { Driver, Phrase } from "./gd_chime/gd_chime.js?v=eba879f1c129";
-import { countdownSaid, creditsFill, secondsLeft } from "./rules.js?v=eba879f1c129";
-import { credits } from "./parts.js?v=eba879f1c129";
+import { Driver, Phrase } from "./gd_chime/gd_chime.js?v=1d170ce4814b";
+import { countdownSaid, creditsFill, secondsLeft } from "./rules.js?v=1d170ce4814b";
+import { credits } from "./parts.js?v=1d170ce4814b";
 
 export const GOES_BACK = "goes_back";
 export const GOES_HOME = "goes_to_the_card";

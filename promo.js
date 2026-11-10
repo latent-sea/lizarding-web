@@ -5,8 +5,8 @@
 // Until the store pages and the clips are public, each is a placeholder that
 // says so (STORES, CLIPS): filling in an address is all it takes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=eba879f1c129";
-import { safeStorage } from "./auth.js?v=eba879f1c129";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=1d170ce4814b";
+import { safeStorage } from "./auth.js?v=1d170ce4814b";
 
 export const BUYS = "buys_the_full_game";
 export const KEEPS_PLAYING = "goes_back_to_the_races";
@@ -40,6 +40,12 @@ export const ASPECTS = [
   { key: "breeding", heading: "Coming: Breeding Challenge", said: "Start with a population of lizards and a race to breed for. Breed through the generations, then enter your best five against another player.", art: "promo/card-lower.jpg" },
   { key: "dynasty", heading: "Coming: Dynasty", said: "Run your own stable in a battle league. Buy, sell and breed lizards, and build a dynasty.", art: "promo/capsule.jpg" },
 ];
+
+// Inside another site's frame (itch.io, Newgrounds, Game Jolt), a portal's
+// rules: no advert that has to be closed before playing on (itch's quality
+// guidelines). There the buying links and the socials stay, and the pop-up
+// advert is never raised.
+export const FRAMED = (() => { try { return globalThis.self !== undefined && globalThis.self !== globalThis.top; } catch { return true; } })();
 
 const NEXT = "lizarding_advert";
 export const HOLD_S = 5; // the advert stays this long before it can be closed
