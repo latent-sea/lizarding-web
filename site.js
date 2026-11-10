@@ -14,34 +14,34 @@
 // platform and the game (tests/standin.js), never the real ones; opened with
 // ?standin it plays against the stand-in, for a person to try.
 
-import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=1d170ce4814b";
-import { CONFIG } from "./config.js?v=1d170ce4814b";
-import { SignIn } from "./auth.js?v=1d170ce4814b";
-import { Connection } from "./connection.js?v=1d170ce4814b";
-import { localParts, openLine } from "./hub.js?v=1d170ce4814b";
-import * as Session from "./play.js?v=1d170ce4814b";
-import * as Card from "./card.js?v=1d170ce4814b";
-import * as Bet from "./bet.js?v=1d170ce4814b";
-import * as Lizard from "./lizard.js?v=1d170ce4814b";
-import * as League from "./leagues.js?v=1d170ce4814b";
-import * as Race from "./race.js?v=1d170ce4814b";
-import * as Nav from "./nav.js?v=1d170ce4814b";
-import * as Course from "./course.js?v=1d170ce4814b";
-import * as Prefs from "./settings.js?v=1d170ce4814b";
-import * as Join from "./joining.js?v=1d170ce4814b";
-import * as Help from "./help.js?v=1d170ce4814b";
-import * as Promo from "./promo.js?v=1d170ce4814b";
-import { RaceView } from "./viewer.js?v=1d170ce4814b";
-import { drawStageMap } from "./stage.js?v=1d170ce4814b";
-import { ordinal, paid, secondsLeft } from "./rules.js?v=1d170ce4814b";
-import { credits } from "./parts.js?v=1d170ce4814b";
-import { secondsAt } from "./telemetry.js?v=1d170ce4814b";
-import { drawGoogleButton, drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=1d170ce4814b";
+import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=b1222a51bec4";
+import { CONFIG } from "./config.js?v=b1222a51bec4";
+import { SignIn } from "./auth.js?v=b1222a51bec4";
+import { Connection } from "./connection.js?v=b1222a51bec4";
+import { localParts, openLine } from "./hub.js?v=b1222a51bec4";
+import * as Session from "./play.js?v=b1222a51bec4";
+import * as Card from "./card.js?v=b1222a51bec4";
+import * as Bet from "./bet.js?v=b1222a51bec4";
+import * as Lizard from "./lizard.js?v=b1222a51bec4";
+import * as League from "./leagues.js?v=b1222a51bec4";
+import * as Race from "./race.js?v=b1222a51bec4";
+import * as Nav from "./nav.js?v=b1222a51bec4";
+import * as Course from "./course.js?v=b1222a51bec4";
+import * as Prefs from "./settings.js?v=b1222a51bec4";
+import * as Join from "./joining.js?v=b1222a51bec4";
+import * as Help from "./help.js?v=b1222a51bec4";
+import * as Promo from "./promo.js?v=b1222a51bec4";
+import { RaceView } from "./viewer.js?v=b1222a51bec4";
+import { drawStageMap } from "./stage.js?v=b1222a51bec4";
+import { ordinal, paid, secondsLeft } from "./rules.js?v=b1222a51bec4";
+import { credits } from "./parts.js?v=b1222a51bec4";
+import { secondsAt } from "./telemetry.js?v=b1222a51bec4";
+import { drawGoogleButton, drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=b1222a51bec4";
 
 // ?probe walks the page against the stand-in; ?standin only plays against it, for a person to try
 const asked = new URLSearchParams(location.search);
 const probing = asked.has("probe") || asked.has("standin");
-const STANDIN = probing ? new (await import("./tests/standin.js?v=1d170ce4814b")).StandIn() : null;
+const STANDIN = probing ? new (await import("./tests/standin.js?v=b1222a51bec4")).StandIn() : null;
 // Google's own button, or the stand-in's; and Google's answer, if the page has just come back from it on a phone.
 // Inside a portal's frame, Google's own button (its pop-up) even on a phone: Google won't open inside a frame, so going there and back can't work
 const drawGoogle = STANDIN?.drawGoogle ?? (Promo.FRAMED ? (place, id, signedIn, look) => drawGoogleButton(place, id, signedIn, look) : drawSignIn);
@@ -473,7 +473,7 @@ class Lizarding extends ChimeApp {
     });
   }
 
-  probe() { return import("./probe.js?v=1d170ce4814b").then((made) => new made.Probe(this, STANDIN)); }
+  probe() { return import("./probe.js?v=b1222a51bec4").then((made) => new made.Probe(this, STANDIN)); }
 }
 
 ChimeApp.start(Lizarding, document.getElementById("app")).then((app) => { if (probing) Object.assign(globalThis, { lizarding: app, standin: STANDIN }); });
