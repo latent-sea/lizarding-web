@@ -8,11 +8,11 @@
 // The door's actions here are the connection's: choosing the name, taking
 // the game back from another device, starting again as a new guest.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=381c029650f9";
-import { Game, OutOfOrder } from "./game.js?v=381c029650f9";
-import { ANSWERED, Malformed, SHOWN, followAnswered, frame } from "./wire.js?v=381c029650f9";
-import { nameProblem } from "./rules.js?v=381c029650f9";
-import { readStage } from "./stage.js?v=381c029650f9";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=0042a87f9e01";
+import { Game, OutOfOrder } from "./game.js?v=0042a87f9e01";
+import { ANSWERED, Malformed, SHOWN, followAnswered, frame } from "./wire.js?v=0042a87f9e01";
+import { nameProblem } from "./rules.js?v=0042a87f9e01";
+import { readStage } from "./stage.js?v=0042a87f9e01";
 
 export const TYPES_NAME = "types_a_name";
 export const CHOOSES_NAME = "chooses_this_name";

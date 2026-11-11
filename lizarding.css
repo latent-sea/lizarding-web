@@ -435,3 +435,12 @@ html, body { margin: 0; background: #08070f; }
 #app .chime-pressable.Choice { justify-content: center; text-align: center; border-color: var(--chime-lit); background: rgb(46 42 82 / 0.4); color: var(--chime-ink); }
 #app .NewsAtTheDoor { gap: 10px; text-align: left; }
 #app .NewsWords { font-size: 0.98rem; }
+
+/* the player's place in each league, at the top of a race's result (T-686): teal presses of one width, a line centred,
+   wrapping on a phone; the title in the engraving's brass, the place in cream, both in capitals */
+#app .LeaguePlaces { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+#app .chime-pressable.LeaguePress { width: 10.5rem; flex: 0 0 10.5rem; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  border-color: var(--teal); background: rgb(71 235 199 / 0.12); text-transform: uppercase; text-align: center; padding: 6px 8px; }
+#app .chime-pressable.LeaguePress:hover { background: rgb(71 235 199 / 0.24); }
+#app .LeagueTitle { color: var(--engraved); font-size: 0.75rem; letter-spacing: 0.08em; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#app .LeaguePlace { color: var(--chime-ink); font-weight: 700; font-size: 0.9rem; font-variant-numeric: tabular-nums; }

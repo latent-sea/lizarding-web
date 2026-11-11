@@ -36,7 +36,16 @@ export function paysFrom(rating, runners = POINTS.length) {
   return last;
 }
 
-export const ordinal = (place) => ORDINALS[place - 1] ?? `${place}th`;
+/** 1st, 2nd, 3rd, 4th … 11th, 12th, 13th … 21st, 22nd, 101st, 112th: any place. */
+export function ordinal(place) {
+  if (ORDINALS[place - 1]) return ORDINALS[place - 1];
+  const [tens, units] = [place % 100, place % 10];
+  if (tens >= 11 && tens <= 13) return `${place}th`;
+  return `${place}${units === 1 ? "st" : units === 2 ? "nd" : units === 3 ? "rd" : "th"}`;
+}
+
+/** The player's place in a league's table, as the race result says it (T-686): "12th of 85", or none yet. */
+export const leaguePlaceSaid = (table) => (table && table.ownPlace > 0 ? `${ordinal(table.ownPlace)} of ${table.places}` : "No standing yet");
 /** A figure to three significant figures, as prices are shown: 3.50, 51.1, 125, 2,200. */
 export function threeFigures(value) {
   if (!(value > 0)) return "0";

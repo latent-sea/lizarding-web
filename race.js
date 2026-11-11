@@ -14,12 +14,13 @@
 // field and the player's bets - since the game lets go of races older than
 // the last.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=381c029650f9";
-import { readTelemetry, secondsAt } from "./telemetry.js?v=381c029650f9";
-import { paid, ordinal } from "./rules.js?v=381c029650f9";
-import { credits, square } from "./parts.js?v=381c029650f9";
-import { sprintMap } from "./lizard.js?v=381c029650f9";
-import { CARD } from "./card.js?v=381c029650f9";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=0042a87f9e01";
+import { readTelemetry, secondsAt } from "./telemetry.js?v=0042a87f9e01";
+import { paid, ordinal, leagueOrder, leagueTitle, leaguePlaceSaid } from "./rules.js?v=0042a87f9e01";
+import { LEAGUES, SELECTS } from "./leagues.js?v=0042a87f9e01";
+import { credits, square } from "./parts.js?v=0042a87f9e01";
+import { sprintMap } from "./lizard.js?v=0042a87f9e01";
+import { CARD } from "./card.js?v=0042a87f9e01";
 
 export const RACE = "race";
 export const RESULT = "result";
@@ -231,6 +232,19 @@ export function describeRace(ui, play, watching, info = null) {
   ]);
 }
 
+/**
+ * The player's place in each league, at the top of the result (T-686, as the app has it): one press a league - the
+ * game's own four, then friends' leagues by name - its title over its place; each opens the league page at that
+ * league. From the tables the client already holds, asked for afresh as each result shows; no row until they come.
+ */
+export function describeLeaguePlaces(ui, play) {
+  const list = ui.bound(() => [...(play.tables.read() ?? [])].sort((a, b) => leagueOrder(a.league, b.league)));
+  return ui.when(list.map((l) => l.length > 0), ui.eachAcross(list, (held) => ui.pressable(SELECTS, held.map((t) => ({ league: t?.league.id ?? null })), [
+    ui.text(held.map((t) => (t ? leagueTitle(t.league) : "")), "LeagueTitle"),
+    ui.text(held.map((t) => leaguePlaceSaid(t)), "LeaguePlace"),
+  ], "Pressable LeaguePress").goesTo(LEAGUES), (t) => t.league.id, "LeaguePlaces"));
+}
+
 export function describeResult(ui, play, watching) {
   const rows = ui.bound(() => watching.rows());
   const watched = watching.watched;
@@ -271,6 +285,7 @@ export function describeResult(ui, play, watching) {
   return ui.screen(RESULT, [
     // Continue at the top, beside the title: back to the card without scrolling past the field
     ui.row([ui.text(Phrase.of("Race finished"), "Title").grow(), ui.button(CONTINUES, { goes_to: CARD })], "ResultHead"),
+    describeLeaguePlaces(ui, play),
     ui.text(watched.map((w) => w?.field?.course.name || (w ? Phrase.with("Race %d", [w.race]) : "")), "Words"),
     ui.text(winner.map((w) => (w?.time != null ? Phrase.with("Won in %s seconds", [w.time.toFixed(2)]) : "")), "Quiet").hidesEmpty(),
     ui.text(play.game.map((g) => (g ? Phrase.with("Your balance is %s", [credits(g.balance)]) : "")), "Price").hidesEmpty(),
