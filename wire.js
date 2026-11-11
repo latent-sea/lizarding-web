@@ -9,13 +9,20 @@
 // client does not read is handed back as { ignored } rather than refused:
 // other game modes share the socket.
 
-import { Malformed, Reader, Writer } from "./bytes.js?v=8d0559367b98";
+import { Malformed, Reader, Writer } from "./bytes.js?v=f5551195576f";
 
 export { Malformed };
 
 export const KIND = Object.freeze({ BATCH: 4, INTENT: 5, ANSWER: 6, TO_SHOW: 7 });
 export const WIRE_VERSION = 1;
-export const STRUCTURE_VERSION = 3;
+// The structure version of the facts this client reads: latent-productions'
+// product/authority/record_bytes.h, current_structure_version. 4 since T-657
+// (e8820464, 2026-11-08), which added one byte to a world's race Entry (its
+// team). No fact this client decodes changed: entries aren't among them, and a
+// kind it doesn't know is passed over by its length. The game refuses a follow
+// whose structure version isn't its own, so this has to follow every bump,
+// published at the same time as the game server that bumps it.
+export const STRUCTURE_VERSION = 4;
 export const FOLLOW_ASKED_VERSION = 2; // "a machine with no world"
 export const TO_SHOW_LAYOUTS = 2; // the version of ToShow kinds 0 to 4 this client reads
 export const OWNER = "betting";

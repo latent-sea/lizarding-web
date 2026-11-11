@@ -17,15 +17,15 @@
 // first, to every place on top that declares an action on that key, and
 // dispatched there; a key typed into a field is the field's, except Escape.
 
-import { Actions } from "./actions.js?v=8d0559367b98";
-import { Chimes } from "./chimes.js?v=8d0559367b98";
-import { Commands } from "./commands.js?v=8d0559367b98";
-import { Driver } from "./driver.js?v=8d0559367b98";
-import { Frames } from "./frames.js?v=8d0559367b98";
-import { Language } from "./language.js?v=8d0559367b98";
-import { Look } from "./look.js?v=8d0559367b98";
-import { Ui } from "./ui.js?v=8d0559367b98";
-import { Walk } from "./walk.js?v=8d0559367b98";
+import { Actions } from "./actions.js?v=f5551195576f";
+import { Chimes } from "./chimes.js?v=f5551195576f";
+import { Commands } from "./commands.js?v=f5551195576f";
+import { Driver } from "./driver.js?v=f5551195576f";
+import { Frames } from "./frames.js?v=f5551195576f";
+import { Language } from "./language.js?v=f5551195576f";
+import { Look } from "./look.js?v=f5551195576f";
+import { Ui } from "./ui.js?v=f5551195576f";
+import { Walk } from "./walk.js?v=f5551195576f";
 
 export class ChimeApp {
   constructor() {
@@ -85,7 +85,7 @@ export class ChimeApp {
       this.ui.start(this.describe(), (faults) => { this.broken(faults); resolve(false); }, () => resolve(true));
     });
     if (Walk.asked()) {
-      // a probe may be loaded only when walked - import("./probe.js?v=8d0559367b98") - so an export leaves it out
+      // a probe may be loaded only when walked - import("./probe.js?v=f5551195576f") - so an export leaves it out
       this.started.then(async (stood) => {
         const walk = stood ? await this.probe() : null;
         if (walk) await Walk.run(walk);
