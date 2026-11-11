@@ -1,0 +1,4 @@
+[
+  { "every_minutes": 2, "fetch": "https://api.latent-sea.com/functions/v1/streamers/twitch", "call": "lizarding_twitch_seen" },
+  { "every_minutes": 2, "fetch": "https://api.latent-sea.com/functions/v1/streamers/youtube", "call": "lizarding_youtube_seen" }
+]
