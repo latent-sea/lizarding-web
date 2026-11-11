@@ -148,6 +148,30 @@ export class SignIn {
     return this._ask(`/rpc/${name}`, body, this.access, this.config.rest);
   }
 
+  /**
+   * The platform's newsletter function (T-682) called as the player: GET me, POST answer and leave.
+   * { ok, body }, where a function not set up - or not there yet - is { ok: true, body: { configured: false } };
+   * or { ok: false, status, error }.
+   */
+  async newsletter(route, body = {}) {
+    await this.ready();
+    const get = route === "me";
+    const headers = { apikey: this.config.key, Authorization: `Bearer ${this.access}`, "Content-Type": "application/json" };
+    const url = `${this.config.functions}/newsletter/${route}${get ? `?app=${encodeURIComponent(this.config.app)}` : ""}`;
+    try {
+      const response = await this._fetch(url, get ? { method: "GET", headers } : { method: "POST", headers, body: JSON.stringify({ app: this.config.app, ...body }) });
+      const read = await response.json().catch(() => null);
+      if (response.status === 404 || read?.configured === false) return { ok: true, body: { configured: false } };
+      if (response.ok) return { ok: true, body: read };
+      return { ok: false, status: response.status, error: wordsOf(read) || `The platform answered ${response.status}` };
+    } catch {
+      return { ok: false, status: 0, error: "The platform couldn't be reached. Try again in a moment." };
+    }
+  }
+
+  /** The account's own email, as its token says (a Google account's; a guest has none): read, never logged. */
+  get email() { return emailOf(this.access); }
+
   /** The account joined to Lizarding, then renewed once so its token carries the mark; tried once a session. */
   async _join() {
     this._joined = true;
@@ -205,6 +229,15 @@ export function appsOf(token) {
     const claims = JSON.parse(atob(part + "=".repeat((4 - (part.length % 4)) % 4)));
     return Array.isArray(claims?.app_metadata?.apps) ? claims.app_metadata.apps : [];
   } catch { return []; }
+}
+
+/** The email an access token names, or "" (a guest's names none). */
+export function emailOf(token) {
+  try {
+    const part = String(token).split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    const claims = JSON.parse(atob(part + "=".repeat((4 - (part.length % 4)) % 4)));
+    return typeof claims?.email === "string" ? claims.email : "";
+  } catch { return ""; }
 }
 
 /** localStorage, or this visit's memory where the browser refuses it (a private window). */

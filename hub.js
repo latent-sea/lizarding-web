@@ -16,8 +16,8 @@
 // over the channel, as an intent does; the platform's own tokens never do. Without locks or channels (an old browser), a tab leads
 // on its own.
 
-import { ANSWERED } from "./wire.js?v=88b0ee0c1120";
-import { LOST } from "./connection.js?v=88b0ee0c1120";
+import { ANSWERED } from "./wire.js?v=8d0559367b98";
+import { LOST } from "./connection.js?v=8d0559367b98";
 
 const LOCK = "lizarding";
 
@@ -48,7 +48,11 @@ export class Led {
   signInAgain() { this.signIn.retryNow().then(() => this.connection.takeBack(), () => {}); }
 
   /** One of the platform's functions, called as the player: { ok, body } or { ok: false, error }. */
-  platform(name, body) { return this.signIn.rpc(name, body).catch(() => ({ ok: false, error: "this browser's guest has gone" })); }
+  platform(name, body) {
+    // "newsletter/<route>" is the platform's newsletter function (T-682); any other name, one of its database functions
+    const asked = name.startsWith("newsletter/") ? this.signIn.newsletter(name.slice("newsletter/".length), body) : this.signIn.rpc(name, body);
+    return asked.catch(() => ({ ok: false, error: "this browser's guest has gone" }));
+  }
 
   /** Signed in again and rejoined: as the account this one was joined into, after a join. */
   renew() { this.signIn.renewNow().then(() => this.connection.takeBack(), () => {}); }
@@ -196,7 +200,7 @@ export function localParts({ config, fetch, storage, WebSocket, timers, SignIn, 
   const tell = (event) => { for (const listener of listeners) listener(event); };
   // what the sign-in says, for every tab: whether it is a guest above all; gone and limited are the door's
   const signIn = new SignIn({ config, fetch, storage, timers, told: (state) => {
-    tell({ account: { state, guest: signIn.guest, user: signIn.user } });
+    tell({ account: { state, guest: signIn.guest, user: signIn.user, email: signIn.email } });
     if (state === "gone" || state === "limited") tell({ status: state });
   } });
   const connection = new Connection({ url: config.game, signIn, WebSocket, timers, told: tell });

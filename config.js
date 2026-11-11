@@ -9,6 +9,8 @@ export const CONFIG = Object.freeze({
   key: "sb_publishable_BqVtSYE4ysOb2sHMuFSwMk_HrTAUgLx",
   // the platform's functions: platform_join_app, as the account joins Lizarding
   rest: "https://api.latent-sea.com/rest/v1",
+  // the platform's functions: the newsletter (platform/functions/newsletter, T-682)
+  functions: "https://api.latent-sea.com/functions/v1",
   game: "wss://play.latent-sea.com",
   app: "lizarding",
   // an account without Lizarding's mark joins it (platform_join_app, live since 21 Oct 2026)

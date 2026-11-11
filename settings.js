@@ -4,11 +4,12 @@
 // colours the shaded figures wear: a class per band of the scale chosen,
 // and per runner's number, written again whenever the scale changes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=88b0ee0c1120";
-import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=88b0ee0c1120";
-import { safeStorage } from "./auth.js?v=88b0ee0c1120";
-import { KEEPS_GUEST, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=88b0ee0c1120";
-import { describeJoining } from "./joining.js?v=88b0ee0c1120";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=8d0559367b98";
+import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=8d0559367b98";
+import { safeStorage } from "./auth.js?v=8d0559367b98";
+import { KEEPS_GUEST, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=8d0559367b98";
+import { describeJoining } from "./joining.js?v=8d0559367b98";
+import { describeNewsSettings } from "./news.js?v=8d0559367b98";
 
 export const SETTINGS = "settings";
 export const PICKS_SCALE = "picks_a_colour_scale";
@@ -48,7 +49,7 @@ export class Settings extends Controller {
 }
 
 /** The settings screen: the account, then each choice shown as what it does. */
-export function describeSettings(ui, settings, play, joining) {
+export function describeSettings(ui, settings, play, joining, news) {
   const guest = play.account.map((a) => a.guest);
   const signingIn = play.googleMode.map((m) => m === "sign in");
   return ui.screen(SETTINGS, [
@@ -69,6 +70,7 @@ export function describeSettings(ui, settings, play, joining) {
       ui.text(play.googleSaid, "Said").wraps().hidesEmpty(),
     ], "Part"),
     describeJoining(ui, joining),
+    describeNewsSettings(ui, news),
     ui.column([
       ui.text(Phrase.of("Colour scale"), "PartHeading"),
       ui.text(Phrase.of("Every shaded figure - percentiles above all - runs from bad to good on this scale."), "Hint").wraps(),

@@ -429,3 +429,9 @@ html, body { margin: 0; background: #08070f; }
 #app .AdvertSheet .Socials .Social .Face { font-size: 0.74rem; }
 @media (max-width: 40rem) and (orientation: portrait) { #app .Socials .Social .Face { font-size: 0.74rem; } }
 @media (orientation: landscape) and (max-height: 32rem) { #app .AdvertSheet .Socials .Social .Face { font-size: 0.62rem; } }
+
+/* Lizarding news (T-682): the two answers the same size and weight, neither one picked out */
+#app .Choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 28rem; }
+#app .chime-pressable.Choice { justify-content: center; text-align: center; border-color: var(--chime-lit); background: rgb(46 42 82 / 0.4); color: var(--chime-ink); }
+#app .NewsAtTheDoor { gap: 10px; text-align: left; }
+#app .NewsWords { font-size: 0.98rem; }
