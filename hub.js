@@ -16,8 +16,8 @@
 // over the channel, as an intent does; the platform's own tokens never do. Without locks or channels (an old browser), a tab leads
 // on its own.
 
-import { ANSWERED } from "./wire.js?v=f5551195576f";
-import { LOST } from "./connection.js?v=f5551195576f";
+import { ANSWERED } from "./wire.js?v=381c029650f9";
+import { LOST } from "./connection.js?v=381c029650f9";
 
 const LOCK = "lizarding";
 

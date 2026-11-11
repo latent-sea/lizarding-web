@@ -8,9 +8,9 @@
 // chooses, paused or played on, from anywhere they seek to; and says where
 // it has reached, and when the race has been watched to its end (or skipped to it).
 
-import { CHANNEL, EVENT, SECONDS_PER_TICK, STATE, at, secondsAt, stepAt } from "./telemetry.js?v=f5551195576f";
-import { surfaceOf } from "./stage.js?v=f5551195576f";
-import { inkOn, runnerColour } from "./colours.js?v=f5551195576f";
+import { CHANNEL, EVENT, SECONDS_PER_TICK, STATE, at, secondsAt, stepAt } from "./telemetry.js?v=381c029650f9";
+import { surfaceOf } from "./stage.js?v=381c029650f9";
+import { inkOn, runnerColour } from "./colours.js?v=381c029650f9";
 
 const NARROWEST_M = 24; // the least of the course shown across
 const WIDEST_M = 90; // the most, so a runner is never too small to see
@@ -21,12 +21,18 @@ const SPRINT_FLASHES = 3; // a sprinting lizard's flashes a second of watched ti
 const BAND_M = 25; // the background's bands, each this long, to see the speed by
 const STRIP_PX = 30; // the overview line across the top: the whole course, every runner on it
 const STRIP_SQUARE_PX = 15;
+// each runner's name under it as it runs (Ian, 2026-11-11): in up to this many rows, never one name over another
+const NAME_ROWS = 3;
+const NAME_ROW_PX = 13;
+const NAME_GAP_PX = 4; // the least room left between two names in a row
+const NAME_FONT = "600 11px system-ui, sans-serif";
 
 export class RaceView {
   /**
    * canvas; race: telemetry read (telemetry.js); course: a stage (stage.js);
    * runners: [{ number, name, halfWidth, halfHeight }] in card order;
-   * marks: "number" or "name"; still: reduced motion; ended(): watched to the end;
+   * marks: "number" (the number on each, the name under it) or "name" (the name under it alone);
+   * still: reduced motion; ended(): watched to the end;
    * backed: the runners (by index) the player has bets on, marked out;
    * following(): the runner (by index) the camera follows, or null for the leader;
    * speed(): how many times real speed it plays at; paused(): whether it stands still;
@@ -209,6 +215,33 @@ export class RaceView {
     g.textAlign = "start";
   }
 
+  /** Each runner's name under it: the player's runners placed first, then from the leader back (placeNames). */
+  _drawNames(g, under, leadersFirst, width) {
+    const byIndex = new Map(under.map((u) => [u.index, u]));
+    const ranked = [...under].sort((a, b) => {
+      const backed = Number(this.backed.has(b.index)) - Number(this.backed.has(a.index));
+      return backed || leadersFirst.indexOf(a.index) - leadersFirst.indexOf(b.index);
+    });
+    g.font = NAME_FONT;
+    const placed = placeNames(ranked.map((u) => ({ index: u.index, centre: u.centre, name: this.runners[u.index].name })),
+      (words) => g.measureText(words).width, { rows: NAME_ROWS, gap: NAME_GAP_PX, width });
+    g.textAlign = "left";
+    g.lineJoin = "round";
+    for (const label of placed) {
+      const u = byIndex.get(label.index);
+      const y = u.top + label.row * NAME_ROW_PX;
+      g.globalAlpha = u.out ? 0.35 : 1;
+      // a dark edge round light letters, in the runner's own colour lightened: it reads on any ground
+      g.strokeStyle = "rgba(8, 7, 15, 0.9)"; g.lineWidth = 3;
+      g.strokeText(label.words, label.left, y);
+      g.fillStyle = lighter(u.colour);
+      g.fillText(label.words, label.left, y);
+    }
+    g.globalAlpha = 1;
+    g.lineWidth = 1;
+    this.namesShown = placed;
+  }
+
   draw(tick) {
     const canvas = this.canvas;
     const scale = globalThis.devicePixelRatio || 1;
@@ -261,7 +294,9 @@ export class RaceView {
       g.beginPath(); g.moveTo(fx, fy - 34); g.lineTo(fx + 14, fy - 29); g.lineTo(fx, fy - 24); g.fill();
       g.fillStyle = "#e9e3d2"; g.font = "11px system-ui, sans-serif"; g.fillText(words, fx + 4, fy - 38);
     }
-    // the runners, the one nearest the finish drawn last, so on top
+    // the runners, the one nearest the finish drawn last, so on top; then the name under each
+    const under = [];
+    const order0 = [...places].sort((a, b) => a.toGo - b.toGo).map((p) => p.index);
     const flashing = new Set(this.still ? [] : this.knockoffs.filter((e) => tick >= e.tick && tick - e.tick < FLASH_S / SECONDS_PER_TICK).flatMap((e) => [e.lizard, e.other]));
     for (const p of [...places].sort((a, b) => b.toGo - a.toGo)) {
       const runner = this.runners[p.index];
@@ -289,13 +324,18 @@ export class RaceView {
         g.beginPath(); g.moveTo(cx - 6, bottom - tall - 24); g.lineTo(cx + 6, bottom - tall - 24); g.lineTo(cx, bottom - tall - 16); g.fill();
       }
       g.lineWidth = 1;
-      const mark = this.marks === "name" ? runner.name : String(runner.number);
-      g.font = "bold 12px system-ui, sans-serif";
-      const fits = g.measureText(mark).width + 4 <= wide && tall >= 13;
-      g.fillStyle = fits ? inkOn(colour) : "#e9e3d2";
-      g.fillText(mark, fits ? left + 2 : left, fits ? bottom - tall / 2 + 4 : bottom - tall - 4);
+      // the number on it, as the settings have it; with "Their name" the name under it says who it is
+      if (this.marks !== "name") {
+        const mark = String(runner.number);
+        g.font = "bold 12px system-ui, sans-serif";
+        const fits = g.measureText(mark).width + 4 <= wide && tall >= 13;
+        g.fillStyle = fits ? inkOn(colour) : "#e9e3d2";
+        g.fillText(mark, fits ? left + 2 : left, fits ? bottom - tall / 2 + 4 : bottom - tall - 4);
+      }
       g.globalAlpha = 1;
+      under.push({ index: p.index, centre: left + wide / 2, top: bottom + 15, colour, out: p.state === STATE.DNF });
     }
+    this._drawNames(g, under, order0, width);
     this._drawStrip(g, places, cam, width);
     // the running order: kept for the standings beside the picture (site.js), and said to a screen reader
     const order = this.orderAt(tick);
@@ -305,6 +345,38 @@ export class RaceView {
     canvas.setAttribute("aria-label", `The race. Running order: ${order.map((p) => this.runners[p.index].number).join(", ")}`);
     this.shownOrder = order.map((p) => this.runners[p.index].number);
   }
+}
+
+/**
+ * Where each runner's name goes under it, in the order given (most wanted first): in the first of `rows` rows where it
+ * overlaps no name already placed, kept inside the picture; if the whole name fits nowhere, its first letters and "…";
+ * if not even those, no name - the runner's number still says who it is. Never one name over another.
+ * items: [{ index, centre, name }]; measure(words) -> px; returns [{ index, words, left, row, short }].
+ */
+export function placeNames(items, measure, { rows = 3, gap = 4, width = Infinity } = {}) {
+  const taken = Array.from({ length: rows }, () => []);
+  const free = (row, left, right) => taken[row].every(([l, r]) => right + gap <= l || left >= r + gap);
+  const placed = [];
+  for (const item of items) {
+    const name = String(item.name ?? "").trim();
+    if (!name) continue;
+    const tries = [name];
+    for (const keep of [5, 3]) if (name.length > keep + 1) tries.push(`${name.slice(0, keep)}…`);
+    let done = null;
+    for (const words of tries) {
+      const w = measure(words);
+      const left = Math.max(2, Math.min(item.centre - w / 2, width - w - 2));
+      for (let row = 0; row < rows && !done; row++) {
+        if (free(row, left, left + w)) done = { index: item.index, words, left, row, short: words !== name, right: left + w };
+      }
+      if (done) break;
+    }
+    if (!done) continue;
+    taken[done.row].push([done.left, done.right]);
+    delete done.right;
+    placed.push(done);
+  }
+  return placed;
 }
 
 /** A colour darkened towards black by a share: a knocked-down lizard's square on the overview line. */
