@@ -1,5 +1,7 @@
 // Where the game is (the brief's section 1): kept here, the one place to
-// change when the game moves to play.lizarding.com.
+// change. The page itself is at play.lizarding.com (site.json); the game's
+// socket stays on the platform's own domain, as play.lizarding.com is the
+// page's (README, "Not yet").
 
 export const CONFIG = Object.freeze({
   auth: "https://api.latent-sea.com/auth/v1",

@@ -2,8 +2,8 @@
 // runners as rows - number, name, prices, the player's stakes, the form -
 // and the small words they're said in.
 
-import { Phrase } from "./gd_chime/gd_chime.js?v=b1222a51bec4";
-import { oddsSaid, ordinal, paysFrom } from "./rules.js?v=b1222a51bec4";
+import { Phrase } from "./gd_chime/gd_chime.js?v=7a70c1ec94d2";
+import { oddsSaid, ordinal, paysFrom } from "./rules.js?v=7a70c1ec94d2";
 
 export const CREDITS = "¤";
 export const credits = (n) => `${CREDITS}${Number(n).toLocaleString("en-GB")}`;
