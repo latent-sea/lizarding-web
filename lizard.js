@@ -4,10 +4,10 @@
 // races, newest first, its percentiles shaded, its sprint map drawn, and its
 // career under it. Results only: never its genes or its body.
 
-import { Phrase } from "./gd_chime/gd_chime.js?v=85ff3c7c2e59";
-import { OPENS_BET } from "./card.js?v=85ff3c7c2e59";
-import { ageSaid, bandStyle, credits, nameSaid, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=85ff3c7c2e59";
-import { ordinal } from "./rules.js?v=85ff3c7c2e59";
+import { Phrase } from "./gd_chime/gd_chime.js?v=a978f762e875";
+import { OPENS_BET } from "./card.js?v=a978f762e875";
+import { ageSaid, bandStyle, credits, nameSaid, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=a978f762e875";
+import { ordinal } from "./rules.js?v=a978f762e875";
 
 export const LIZARD = "lizard";
 export const GOES_EARLIER = "goes_to_the_runner_before";

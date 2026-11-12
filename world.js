@@ -13,7 +13,7 @@
 //   lizarding_live that lizarding.com draws), asked every two minutes while
 //   playing. Nothing is shown while nobody is live.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=85ff3c7c2e59";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=a978f762e875";
 
 export const AIMS_MAKE = "aims_to_make_a_league";
 export const AIMS_ENTER = "aims_to_enter_a_league";
