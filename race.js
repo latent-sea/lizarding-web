@@ -14,13 +14,13 @@
 // field and the player's bets - since the game lets go of races older than
 // the last.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=0042a87f9e01";
-import { readTelemetry, secondsAt } from "./telemetry.js?v=0042a87f9e01";
-import { paid, ordinal, leagueOrder, leagueTitle, leaguePlaceSaid } from "./rules.js?v=0042a87f9e01";
-import { LEAGUES, SELECTS } from "./leagues.js?v=0042a87f9e01";
-import { credits, square } from "./parts.js?v=0042a87f9e01";
-import { sprintMap } from "./lizard.js?v=0042a87f9e01";
-import { CARD } from "./card.js?v=0042a87f9e01";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=7246652d0662";
+import { readTelemetry, secondsAt } from "./telemetry.js?v=7246652d0662";
+import { paid, ordinal, leagueOrder, leagueTitle, leaguePlaceSaid } from "./rules.js?v=7246652d0662";
+import { LEAGUES, SELECTS } from "./leagues.js?v=7246652d0662";
+import { credits, square } from "./parts.js?v=7246652d0662";
+import { sprintMap } from "./lizard.js?v=7246652d0662";
+import { CARD } from "./card.js?v=7246652d0662";
 
 export const RACE = "race";
 export const RESULT = "result";
@@ -239,10 +239,14 @@ export function describeRace(ui, play, watching, info = null) {
  */
 export function describeLeaguePlaces(ui, play) {
   const list = ui.bound(() => [...(play.tables.read() ?? [])].sort((a, b) => leagueOrder(a.league, b.league)));
-  return ui.when(list.map((l) => l.length > 0), ui.eachAcross(list, (held) => ui.pressable(SELECTS, held.map((t) => ({ league: t?.league.id ?? null })), [
-    ui.text(held.map((t) => (t ? leagueTitle(t.league) : "")), "LeagueTitle"),
-    ui.text(held.map((t) => leaguePlaceSaid(t)), "LeaguePlace"),
-  ], "Pressable LeaguePress").goesTo(LEAGUES), (t) => t.league.id, "LeaguePlaces"));
+  return ui.when(list.map((l) => l.length > 0), ui.column([
+    // Ian, 12 Nov: a title above them, "Your position in leagues", in the app's heading style (capitals)
+    ui.text(Phrase.of("Your position in leagues"), "Engraving LeaguePlacesHeading"),
+    ui.eachAcross(list, (held) => ui.pressable(SELECTS, held.map((t) => ({ league: t?.league.id ?? null })), [
+      ui.text(held.map((t) => (t ? leagueTitle(t.league) : "")), "LeagueTitle"),
+      ui.text(held.map((t) => leaguePlaceSaid(t)), "LeaguePlace"),
+    ], "Pressable LeaguePress").goesTo(LEAGUES), (t) => t.league.id, "LeaguePlaces"),
+  ], "LeaguePlacesBlock"));
 }
 
 export function describeResult(ui, play, watching) {

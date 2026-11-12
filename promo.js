@@ -5,8 +5,8 @@
 // Until the store pages and the clips are public, each is a placeholder that
 // says so (STORES, CLIPS): filling in an address is all it takes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=0042a87f9e01";
-import { safeStorage } from "./auth.js?v=0042a87f9e01";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=7246652d0662";
+import { safeStorage } from "./auth.js?v=7246652d0662";
 
 export const BUYS = "buys_the_full_game";
 export const KEEPS_PLAYING = "goes_back_to_the_races";
@@ -33,12 +33,12 @@ export const CLIPS = {};
 
 // the sides of the game the advert takes in turn, in the store listing's words (marketing/play-listing/listing.md)
 export const ASPECTS = [
-  { key: "races", heading: "Every race, in full", said: "The full game shows each race as it really runs: every lizard with its own body, its own form and its own family, on stages of every kind.", art: "promo/race-close.jpg" },
-  { key: "ladder", heading: "Battle Ladder", said: "Pick five of your lizards for each of six races against another player or the computer. The most points wins the battle and moves you up the ladder.", art: "promo/race.jpg" },
-  { key: "field", heading: "Know every runner", said: "Read the form of the ten lizards in each race, see each one as it is, and back them to win or to place.", art: "promo/card.jpg" },
-  { key: "browse", heading: "A whole world to read", said: "Every lizard, stage and race of the world, open to read: families, records and past races played again.", art: "promo/capsule.jpg" },
-  { key: "breeding", heading: "Coming: Breeding Challenge", said: "Start with a population of lizards and a race to breed for. Breed through the generations, then enter your best five against another player.", art: "promo/card-lower.jpg" },
-  { key: "dynasty", heading: "Coming: Dynasty", said: "Run your own stable in a battle league. Buy, sell and breed lizards, and build a dynasty.", art: "promo/capsule.jpg" },
+  { key: "races", heading: "Every race, in full", said: "The full game shows each race as it really runs: every lizard with its own body, its own form and its own family, on stages of every kind.", art: "promo/canyon-sun.jpg" },
+  { key: "ladder", heading: "Battle Ladder", said: "Pick five of your lizards for each of six races against another player or the computer. The most points wins the battle and moves you up the ladder.", art: "promo/wales-finish.jpg" },
+  { key: "field", heading: "Know every runner", said: "Read the form of the ten lizards in each race, see each one as it is, and back them to win or to place.", art: "promo/race-card.jpg" },
+  { key: "browse", heading: "A whole world to read", said: "Every lizard, stage and race of the world, open to read: families, records and past races played again.", art: "promo/jungle-canopy.jpg" },
+  { key: "breeding", heading: "Coming: Breeding Challenge", said: "Start with a population of lizards and a race to breed for. Breed through the generations, then enter your best five against another player.", art: "promo/sprint.jpg" },
+  { key: "dynasty", heading: "Coming: Dynasty", said: "Run your own stable in a battle league. Buy, sell and breed lizards, and build a dynasty.", art: "promo/big-dive.jpg" },
 ];
 
 // Inside another site's frame (itch.io, Newgrounds, Game Jolt), a portal's
@@ -122,7 +122,6 @@ export function describeAdvert(ui, advert) {
     ui.when(clip, ui.embed(clip.map((c) => c ?? ""), { title: aspect.map((a) => Phrase.of(a.heading)) }),
       ui.surface("AdvertPicture", [
         ui.image(aspect.map((a) => a.art), "AdvertArt", aspect.map((a) => Phrase.of(a.heading))),
-        ui.text(Phrase.of("Gameplay clip coming"), "ClipSoon"),
       ])),
     ui.text(aspect.map((a) => Phrase.of(a.heading)), "Title AdvertHeading"),
     ui.text(aspect.map((a) => Phrase.of(a.said)), "Words").wraps(),

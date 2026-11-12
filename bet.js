@@ -6,11 +6,12 @@
 // tried again, on whichever card is open then. Accepted, the pop-up closes.
 // There is no taking a bet back.
 
-import { Controller, Phrase, Ui } from "./gd_chime/gd_chime.js?v=0042a87f9e01";
-import { ANSWERED, BOOK } from "./wire.js?v=0042a87f9e01";
-import { POINTS, SHARES, oddsSaid, ordinal, placeReturns, shareOf, threeFigures, winReturns } from "./rules.js?v=0042a87f9e01";
-import { credits, nameSaid, runnersOf, square } from "./parts.js?v=0042a87f9e01";
-import { OPENS_BET } from "./card.js?v=0042a87f9e01";
+import { Controller, Phrase, Ui } from "./gd_chime/gd_chime.js?v=7246652d0662";
+import { ANSWERED, BOOK } from "./wire.js?v=7246652d0662";
+import { POINTS, SHARES, countdownSaid, oddsSaid, ordinal, placeReturns, shareOf, threeFigures, winReturns } from "./rules.js?v=7246652d0662";
+import { countdown } from "./nav.js?v=7246652d0662";
+import { credits, nameSaid, runnersOf, square } from "./parts.js?v=7246652d0662";
+import { OPENS_BET } from "./card.js?v=7246652d0662";
 
 export const PICKS_BOOK = "picks_a_book";
 export const TYPES_STAKE = "types_a_stake";
@@ -144,6 +145,7 @@ export function describeBetPopUp(ui, play, betting) {
         profits: POINTS[at] * 100 > r.rating,
       }));
     });
+    const left = ui.bound(() => countdown(play));
     const tab = (book, words) => ui.pressable(PICKS_BOOK, { book }, [
       ui.text(Phrase.of(words), "Face"),
       ui.text(stakeOf(book).map((s) => (s.trim() ? credits(s.trim()) : "")), "TabStake").hidesEmpty(),
@@ -154,6 +156,11 @@ export function describeBetPopUp(ui, play, betting) {
         ui.text(row.map(nameSaid), "LizardName").grow(),
         ui.text(play.game.map((g) => (g ? credits(g.balance) : Phrase.of("Connecting…"))), "Price"),
       ], "BetTop"),
+      // the race clock, in the pop-up too (Ian, 12 Nov: "I can't see the timer when betting"): the nav's is under the shade
+      ui.row([
+        ui.text(left.map((s) => (s === 0 ? Phrase.of("Betting has closed") : Phrase.of("Betting closes in"))), "Small Quiet BetClockWords"),
+        ui.text(left.map((s) => (s === null || s === 0 ? "" : countdownSaid(s))), left.map((s) => `Countdown BetClock${s !== null && s <= 30 ? " Soon" : ""}`)).hidesEmpty(),
+      ], "BetClockRow"),
       ui.row([tab("win", "Win"), tab("place", "Place")], "BookTabs"),
       ui.field(PLACES_BETS, "StakeField", { label: Phrase.of("Stake, in credits"), changes: TYPES_STAKE, shows: typed, placeholder: Phrase.of("Credits"), autocomplete: "off" }),
       ui.row(SHARES.map((percent) => ui.pressable(PICKS_SHARE, { percent }, [ui.text(`${percent}%`, "Small")], "Segment Share")), "Shares"),

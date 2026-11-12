@@ -73,7 +73,11 @@ html, body { margin: 0; background: #08070f; }
   #app .chime-row.Narrow { display: flex !important; }
   #app .BackWords { display: none; }
   #app .NavLine .Countdown { margin-left: auto; }
+  /* the timer stays on the screen whatever else is in the line: the stage's name gives way, cut short */
+  #app .StageButton { flex: 0 1 auto !important; min-width: 3.4rem; padding-left: 6px !important; padding-right: 6px !important; }
+  #app .StageName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
+#app .NavLine .Countdown { flex: 0 0 auto; }
 #app .chime-pressable.MenuItem { width: 100%; min-width: 12rem; }
 #app .Menu { gap: 8px; }
 
@@ -381,7 +385,6 @@ html, body { margin: 0; background: #08070f; }
 #app .chime-sheet:has(.AdvertSheet) { width: min(100%, 40rem); border-color: var(--neon); }
 #app .chime-surface.AdvertPicture { position: relative; padding: 0; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 10px; border: 2px solid var(--brass); background: var(--enamel-dark); }
 #app .AdvertArt { display: block; width: 100%; height: 100%; object-fit: cover; }
-#app .ClipSoon { position: absolute; left: 8px; bottom: 8px; padding: 2px 8px; border-radius: 6px; background: rgb(8 7 15 / 0.8); color: var(--chime-ink-soft); font-size: 0.75rem; }
 #app .AdvertHeading { margin: 0; }
 #app .AdvertStores { gap: 8px; flex-wrap: wrap; }
 #app .AdvertSheet .Socials { padding: 0; justify-content: flex-start; }
@@ -444,3 +447,17 @@ html, body { margin: 0; background: #08070f; }
 #app .chime-pressable.LeaguePress:hover { background: rgb(71 235 199 / 0.24); }
 #app .LeagueTitle { color: var(--engraved); font-size: 0.75rem; letter-spacing: 0.08em; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #app .LeaguePlace { color: var(--chime-ink); font-weight: 700; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+
+/* the race clock in the bet pop-up (Ian, 12 Nov) */
+#app .BetClockRow { align-items: baseline; justify-content: space-between; gap: 8px; }
+#app .Countdown.BetClock { min-width: 0; }
+#app .Countdown.BetClock.Soon { color: var(--neon); }
+/* an upright phone: the nav's buttons closer and tighter, so the stage's name and the timer both fit, down to 360 px */
+@media (max-width: 40rem) and (orientation: portrait) {
+  #app .NavLine { gap: 4px; }
+  #app .chime-pressable.NavLink { padding-left: 6px; padding-right: 6px; }
+  #app .chime-pressable.InfoButton { min-width: 30px; }
+  #app .Countdown { font-size: 1.1rem; min-width: 0; }
+}
+#app .LeaguePlacesBlock { align-items: center; gap: 6px; }
+#app .LeaguePlacesHeading { text-align: center; }
