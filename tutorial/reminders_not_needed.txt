@@ -1,0 +1,24 @@
+# The controls that need no reminder of never having been used (T-668; Ian, 2026-11-12:
+# "Yes reminders for controls that have not been used but ability to state which ones don't need them").
+# Every other control is reminded of until the player first uses it (reminding.gd).
+# One action a line, as the game declares it; a short note after the #. Strike or add a line to change it.
+
+goes_back_a_screen          # BACK: every screen has it, and a player finds it
+closes_the_overlay          # closing a list or a pop-up: its own way out
+closes_the_past_race        # leaving a race watched again: the only way back from it
+dismisses_notice            # putting a notice away: the notice's own way out
+goes_to_the_choice_of_game  # PLAY on the title: the way into the game
+quits_the_game              # QUIT on the title
+goes_to_the_tests           # TEST on the title: a tester's, never a player's
+asks_for_a_new_game         # NEW GAME: not something to nudge a player towards
+moves_on_from_the_race      # CONTINUE after a race: the only way on
+moves_on_from_the_race_shown # CONTINUE after a race shown: the only way on
+cancels_the_betting         # CANCEL on the bet: its own way out
+goes_back_from_the_battle   # BACK from a battle: every screen has one
+begins_another_battle       # ANOTHER BATTLE at a battle's end: the only way on
+makes_a_new_game            # YES, BEGIN A NEW GAME: never something to nudge a player towards
+starts_the_game_again       # START THE GAME AGAIN: only when the game has stopped
+leaves_a_league             # LEAVE THIS LEAGUE: never something to nudge a player towards
+stops_the_news              # STOP THE EMAILS: never something to nudge a player towards
+says_yes_to_the_news_in_settings # the newsletter's own question asks this
+says_no_to_the_news_in_settings  # the newsletter's own question asks this

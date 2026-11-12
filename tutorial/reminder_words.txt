@@ -1,0 +1,105 @@
+# What a reminder says about each control a player has not used yet (T-668; Ian, 2026-11-12: "Glowing with no
+# explanation is insane"). Edit the words here without touching code (reminding.gd reads this file).
+#
+# One line each:   action = what it does, and why a player would press it
+#   action @ LABEL = the same, for the one control of a shared action whose own words are LABEL
+#   prefix*        = the same, for every action that begins with prefix (each screen's menu, each screen's i)
+# A control whose action has no line here is never reminded of. Controls that need no reminder at all are listed in
+# reminders_not_needed.txt.
+
+# The title
+chooses_the_game_to_play @ SAVED RACES = Races you have kept, to watch again whenever you like.
+chooses_the_game_to_play @ BROWSE = Every lizard, stable, stage and season of the world, to look through at your own pace.
+chooses_the_game_to_play @ ACHIEVEMENTS = What you have achieved so far, and what is still to win.
+chooses_the_game_to_play @ ONLINE BETTING = Bet on the next race against everyone else playing.
+chooses_the_game_to_play @ BATTLE LADDER = Race a rival over six races: thirty lizards each, five entered in every race.
+shows_the_breeding_challenge_to_come = A look at the Breeding Challenge, coming soon.
+shows_dynasty_to_come = A look at Dynasty, coming soon: a stable of your own whose form changes as it races.
+goes_to_the_settings = Sound, size, colours, motion, and these hints and tips.
+
+# Every screen's bar
+shows_the_bar_s_menu_on_* = More of this screen's presses, kept here where the bar has no room for them.
+shows_what_has_left_the_bar_on_* = What this screen is for, and anything the bar had no room to show.
+
+# Betting: the card and the bet
+opens_the_betting = Back a lizard to win: choose your stake and see what it would pay.
+shows_a_bet = Look again at a bet you have placed.
+types_the_stake = How much to stake on this lizard.
+places_the_bets = Place every bet on the slip at once.
+takes_a_share_of_the_balance = Stake a share of what you have, without typing it.
+watches_the_last_race = Watch the last race again, to see how your lizards ran.
+turns_the_form_strips_back = Every lizard's strip back to the figure before: P-Num, place, prize, falls, knock-downs or sprints.
+turns_the_form_strips_on = Every lizard's strip on to the next figure: P-Num, place, prize, falls, knock-downs or sprints.
+shows_a_lizards_races_on_stages_this_alike = Count only races on stages as alike as this to the next race's: the higher, the more like it.
+turns_grown_form_only = Count only the races each lizard ran grown, not as a youngster.
+
+# Other ways of reading the field's form
+goes_to_the_lizards_shown_as @ CARD = The race card: each lizard's block, its picture, its form strip and its price.
+goes_to_the_lizards_shown_as @ FORM GRID = The field's average P-Num on each stage, side by side.
+goes_to_the_lizards_shown_as @ FORM HISTORY = Each lizard's whole career, a bar a race.
+goes_to_the_lizards_shown_as @ LAST RACES = The field's newest races side by side: who is in form now.
+shows_the_lizards_left_as = The field shown another way: the card, the form grid, form history or last races.
+shows_a_press_s_list_* = The other ways of reading the field's form: the card, the form grid, form history, last races.
+shows_a_figure_of_the_last_races = Which figure the last races show: P-Num, place, time, prize, falls or knock-downs.
+orders_the_form_grids_stages = Put the grid's stages in another order: the most like the next race first, or by name.
+enters_the_five = Race these five in the battle.
+picks_a_lizard_for_the_race = Pick this lizard for your five.
+
+# A lizard, a stable, a stage
+opens_a_lizard = Open this lizard: its form, its stages, its family and its career.
+steps_to_another_lizard = The next or the one before, without going back to the card.
+shows_a_lizards_tab @ FORM = Every race it ran, newest first.
+shows_a_lizards_tab @ BY STAGE = Its average on each stage, season by season.
+shows_a_lizards_tab @ FAMILY = Its family, and how each of them raced.
+shows_a_lizards_tab @ SUMMARY = Its career at a glance.
+shows_a_lizards_tab @ LOOK = The lizard itself, turning, as it looks in a race.
+shows_a_lizards_tabs = Another of this lizard's tabs: its form, its stages, its family, its career.
+shows_the_tabs = Another of this screen's tabs.
+shows_a_lizards_races_in_a_season = Only its races in one season.
+opens_the_stages_to_pick_from = Only its races on one stage.
+narrows_the_stages_to_pick_from = Find a stage by typing part of its name.
+shows_races_at_the_stage_picked = Only its races on this stage.
+resets_the_look = Put the lizard back the way it first stood.
+goes_to_the_stable = The stable this lizard races for: its lizards and its record.
+goes_to_the_stage = This stage: its map, its record and the five fastest lizards on it.
+
+# Leagues
+goes_to_the_leagues = Leagues: how you stand against other players.
+shows_the_leagues_menu = The other leagues you are in.
+shows_a_league = Look at this league's table.
+asks_for_the_league_tables = Ask again for the league tables.
+makes_a_league = Make a league of your own to play your friends.
+types_a_league_name = Your league's name.
+types_how_long_a_league_runs = How long your league runs.
+sets_the_unit_a_league_runs_in = Whether the league runs for minutes, hours, days or weeks.
+enters_a_league = Join a friend's league with the code they sent you.
+types_a_league_code = The code a friend sent you.
+copies_a_league_code = Copy this league's code to send to a friend.
+
+# Browse
+shows_the_worlds_lizards = Every lizard of the world, living and retired.
+shows_the_worlds_stables = Every stable: its lizards, its money and its record.
+shows_the_worlds_stages = Every stage: its races, its usual winning time and who holds the record.
+shows_the_worlds_seasons = Every race of every season, to watch again.
+narrows_a_browse_list = Find one by typing part of its name.
+narrows_the_saved_races = Find a saved race by typing part of its name.
+narrows_the_achievements = Find an achievement by typing part of its name.
+
+# Settings
+sets_the_colour_scale = The colours every shaded figure is drawn in, including one for readers who cannot tell red from green.
+sets_the_marks_over_the_runners = Numbers or names over the lizards in a race.
+sets_the_scale = How large everything is drawn: smaller fits more, larger is easier to read.
+sets_the_lizard_windows_height = How tall each lizard's picture on the race card is: smaller draws them larger.
+sets_volume = How loud the buttons and screens are.
+sets_the_music_volume = How loud the music is.
+mutes_sound = Silence the buttons and screens.
+reduces_motion = Things arrive at once instead of sliding in.
+sets_whether_the_lizards_move = Turn the lizards on the race card still, which spares a phone.
+sets_whether_fast_legs_blur = Turn the leg blur in a race off, if a phone slows.
+sets_whether_a_hit_ripples = Turn the ripple where a hit lands off, if a phone slows.
+sets_whether_a_hit_bursts = Turn the star and word over a hit off, if a phone slows.
+sets_whether_the_finish_has_fireworks = Turn the fireworks at the finish off, if a phone slows.
+sets_whether_runners_throw_up_dust = Turn the dust and splashes off, if a phone slows.
+sets_whether_presses_dim_the_screen = Dim the screen after a press until it is done.
+sets_whether_hints_and_tips_show = Turn these hints and tips off, or back on.
+types_the_newsletter_address = Your email, for news of the game.

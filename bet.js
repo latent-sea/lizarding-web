@@ -6,12 +6,12 @@
 // tried again, on whichever card is open then. Accepted, the pop-up closes.
 // There is no taking a bet back.
 
-import { Controller, Phrase, Ui } from "./gd_chime/gd_chime.js?v=a978f762e875";
-import { ANSWERED, BOOK } from "./wire.js?v=a978f762e875";
-import { POINTS, SHARES, countdownSaid, oddsSaid, ordinal, placeReturns, shareOf, threeFigures, winReturns } from "./rules.js?v=a978f762e875";
-import { countdown } from "./nav.js?v=a978f762e875";
-import { credits, nameSaid, runnersOf, square } from "./parts.js?v=a978f762e875";
-import { OPENS_BET } from "./card.js?v=a978f762e875";
+import { Controller, Phrase, Ui } from "./gd_chime/gd_chime.js?v=50cf0252913e";
+import { ANSWERED, BOOK } from "./wire.js?v=50cf0252913e";
+import { POINTS, SHARES, countdownSaid, oddsSaid, ordinal, placeReturns, shareOf, threeFigures, winReturns } from "./rules.js?v=50cf0252913e";
+import { countdown } from "./nav.js?v=50cf0252913e";
+import { credits, nameSaid, runnersOf, square } from "./parts.js?v=50cf0252913e";
+import { OPENS_BET } from "./card.js?v=50cf0252913e";
 
 export const PICKS_BOOK = "picks_a_book";
 export const TYPES_STAKE = "types_a_stake";
@@ -75,6 +75,8 @@ export class Betting extends Controller {
   }
 
   would(action, payload) {
+    // the practice card (T-668): no betting while the first tips run over it
+    if (action === OPENS_BET && this.play.practising.read() !== null) return Phrase.of("Practice: betting opens once the tips are done");
     if (action === PLACES_BETS) {
       if (this.sending.read()) return Phrase.of("Placing the bet…");
       return this.problem(this.made());

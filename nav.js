@@ -4,9 +4,9 @@
 // the race; and the credits, a bar against the next power of ten and the
 // amount. On a wide screen it is one line, on an upright phone three.
 
-import { Driver, Phrase } from "./gd_chime/gd_chime.js?v=a978f762e875";
-import { countdownSaid, creditsFill, secondsLeft } from "./rules.js?v=a978f762e875";
-import { credits } from "./parts.js?v=a978f762e875";
+import { Driver, Phrase } from "./gd_chime/gd_chime.js?v=50cf0252913e";
+import { countdownSaid, creditsFill, secondsLeft } from "./rules.js?v=50cf0252913e";
+import { credits } from "./parts.js?v=50cf0252913e";
 
 export const GOES_BACK = "goes_back";
 export const GOES_HOME = "goes_to_the_card";
@@ -31,6 +31,11 @@ export function stageOf(play) {
   const race = game.openCard()?.race ?? game.lastRace();
   return race === null ? null : play.fieldOf(race)?.course ?? null;
 }
+
+/** The practice card's clock (T-668), stopped: the app's "PRACTICE m:ss" (its practice_card.gd's MARKED, as copied). */
+export let PRACTICE = "PRACTICE";
+export const markPractice = (word) => { PRACTICE = word || PRACTICE; };
+export const practiceSaid = (held) => (typeof held === "number" ? `${PRACTICE} ${countdownSaid(held)}` : PRACTICE);
 
 /** The countdown to the open card's race, in whole seconds, or null with none open. */
 export function countdown(play) {
@@ -63,7 +68,8 @@ export function describeNav(ui, play, { screens, instruction, info }) {
       go(GOES_LEAGUES, screens.leagues, "Wide"),
       go(GOES_SETTINGS, screens.settings, "Wide"),
       ui.pressable(OPENS_MENU, {}, [ui.text(ui.words(OPENS_MENU), "Face")], "Pressable NavLink Narrow").opens(menu),
-      ui.text(left.map((s) => (s === null ? "" : countdownSaid(s))), left.map((s) => `Countdown${s === 0 ? " Closed" : ""}`)).hidesEmpty(),
+      ui.text(ui.bound(() => { const held = play.practising.read(); return held !== null ? practiceSaid(held) : left.read() === null ? "" : countdownSaid(left.read()); }),
+        ui.bound(() => (play.practising.read() !== null ? "Countdown Practice" : `Countdown${left.read() === 0 ? " Closed" : ""}`))).hidesEmpty(),
       purse("Wide"),
     ], "NavLine"),
     purse("Narrow"),

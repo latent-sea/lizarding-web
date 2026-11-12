@@ -8,11 +8,11 @@
 // The door's actions here are the connection's: choosing the name, taking
 // the game back from another device, starting again as a new guest.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=a978f762e875";
-import { Game, OutOfOrder } from "./game.js?v=a978f762e875";
-import { ANSWERED, Malformed, SHOWN, followAnswered, frame } from "./wire.js?v=a978f762e875";
-import { nameProblem } from "./rules.js?v=a978f762e875";
-import { readStage } from "./stage.js?v=a978f762e875";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=50cf0252913e";
+import { Game, OutOfOrder } from "./game.js?v=50cf0252913e";
+import { ANSWERED, Malformed, SHOWN, followAnswered, frame } from "./wire.js?v=50cf0252913e";
+import { nameProblem } from "./rules.js?v=50cf0252913e";
+import { readStage } from "./stage.js?v=50cf0252913e";
 
 export const TYPES_NAME = "types_a_name";
 export const CHOOSES_NAME = "chooses_this_name";
@@ -56,6 +56,8 @@ export class Play extends Controller {
     this.tables = this.value(null); // the latest league tables (ToShow 3)
     this.stakes = this.value(null); // the latest stakes (ToShow 4)
     this.forms = this.value(new Map()); // lizard -> its form (ToShow 8)
+    // the practice card (T-668): while the first tips run over the race card, its clock stopped and betting off
+    this.practising = this.value(null); // while practising, the seconds left when it began (or true, with none open)
     this.now = this.value(clock()); // the time, moved on as each whole second turns
     this.notices = this.value([]); // words shown for a while: a bet declined, above all
     this.account = this.value({ state: "signing in", guest: true }); // the sign-in, as the leading tab's says

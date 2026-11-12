@@ -480,3 +480,19 @@ html, body { margin: 0; background: #08070f; }
   #app .LeagueAims { width: 100%; }
   #app .chime-pressable.LeagueAim { flex: 1 1 0; justify-content: center; }
 }
+
+/* the tutorial (T-668 on the web): one dimmed pop-up for tips and reminders, the control concerned lit */
+.Dimmed { position: fixed; inset: 0; z-index: 1000; cursor: pointer; background: rgb(5 4 12 / 0.72); }
+.Dimmed.Lit { background: transparent; }
+.DimmedSpot { position: fixed; display: none; border-radius: 10px; box-shadow: 0 0 0 200vmax rgb(5 4 12 / 0.72), 0 0 0 3px #47ebc7, 0 0 18px 6px rgb(71 235 199 / 0.6); pointer-events: none; transition: all 0.2s ease; }
+.DimmedCard { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(92vw, 30rem); box-sizing: border-box; padding: 16px 18px;
+  border-radius: 14px; background: #1c1938; border: 2px solid #47ebc7; color: #f2ead7; box-shadow: 0 10px 40px rgb(0 0 0 / 0.6); }
+.DimmedCard.Low { top: auto; bottom: 16px; transform: translateX(-50%); }
+.DimmedHeading { color: #c9b277; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+.DimmedWords { margin: 0 0 10px; font-size: 1.05rem; line-height: 1.4; }
+.DimmedFaq { display: block; margin: 4px 0; padding: 4px 0; border: 0; background: none; color: #c9b277; font-family: inherit; font-size: 0.85rem; letter-spacing: 0.05em; cursor: pointer; text-align: left; }
+.DimmedAnswer { margin: 2px 0 8px 14px; color: #b9b2d6; font-size: 0.95rem; line-height: 1.4; }
+.DimmedFoot { display: flex; justify-content: flex-end; white-space: pre; align-items: center; margin-top: 8px; color: #8e88b5; font-size: 0.9rem; }
+.DimmedGo { color: #47ebc7; font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { .DimmedSpot { transition: none; } }
+#app .Countdown.Practice { color: #47ebc7; letter-spacing: 0.06em; font-size: 1.1rem; }

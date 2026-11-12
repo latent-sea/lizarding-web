@@ -1,0 +1,434 @@
+{
+ "tips": {
+  "tip_betting": [
+   [
+    "",
+    "Betting: a race every few minutes. Back the lizards you think will do well. The odds are wrong on purpose: read the form to find the value.",
+    [
+     "ODDS"
+    ]
+   ],
+   [
+    "",
+    "Time left to bet on this race.",
+    []
+   ],
+   [
+    "",
+    "Pays the odds if it comes first.",
+    []
+   ],
+   [
+    "",
+    "Pays more the higher it finishes. This is the lowest place that makes a profit.",
+    [
+     "PLACE_BET"
+    ]
+   ],
+   [
+    "",
+    "Your money. Run low and you're topped up after the race.",
+    [
+     "RUN_OUT"
+    ]
+   ],
+   [
+    "",
+    "Leagues rank how much you grow your money, every hour, day, week and month. Top-ups don't count. Make one for friends or join with a code.",
+    [
+     "LEAGUES"
+    ]
+   ]
+  ],
+  "tip_race_card": [
+   [
+    "",
+    "Press a lizard for its form, family and more.",
+    [
+     "AGE"
+    ]
+   ],
+   [
+    "",
+    "See it in 3D: drag to turn, pinch to zoom.",
+    []
+   ],
+   [
+    "",
+    "Its last ten races, newest at the right.",
+    []
+   ],
+   [
+    "",
+    "Change what every lizard's squares show: P-Num, finishing place, prize, falls, knock-downs or sprints.",
+    [
+     "FIGURES",
+     "FALLS"
+    ]
+   ],
+   [
+    "",
+    "Count only races on stages at least this alike to the next race's.",
+    [
+     "ALIKE"
+    ]
+   ],
+   [
+    "",
+    "Press the stage to see details of the stage and which types of lizards win it.",
+    []
+   ],
+   [
+    "",
+    "See the field's form other ways: form grid, last races and form history.",
+    []
+   ]
+  ],
+  "tip_battle": [
+   [
+    "",
+    "Battle: you and a rival each get thirty lizards for six races. Enter five in each race; every lizard runs once.",
+    []
+   ],
+   [
+    "",
+    "Every lizard scores by where it finishes. A win is 1,000 in the first race, rising to 2,000 in the last. Most total points wins.",
+    []
+   ],
+   [
+    "",
+    "This race's stage: press it for its details. You only see the next one when it comes, so think before using your best lizards.",
+    []
+   ],
+   [
+    "",
+    "Pick five for this race.",
+    []
+   ],
+   [
+    "",
+    "Enter them when you have five.",
+    []
+   ],
+   [
+    "",
+    "Press a lizard for its form, family and more.",
+    [
+     "AGE"
+    ]
+   ],
+   [
+    "",
+    "Its last ten races, newest at the right.",
+    []
+   ],
+   [
+    "",
+    "Change what every lizard's squares show: P-Num, finishing place, prize, falls, knock-downs or sprints.",
+    [
+     "FIGURES",
+     "FALLS"
+    ]
+   ],
+   [
+    "",
+    "Count only races on stages at least this alike to the next race's.",
+    [
+     "ALIKE"
+    ]
+   ],
+   [
+    "",
+    "See the field's form other ways: form grid, last races and form history.",
+    []
+   ]
+  ],
+  "tip_last_races": [
+   [
+    "",
+    "Each lizard's races counted back: row 1 is its last race, row 2 the one before.",
+    []
+   ],
+   [
+    "",
+    "Choose what the squares show: P-Num, finishing place, prize, falls, knock-downs or time.",
+    [
+     "FIGURES"
+    ]
+   ],
+   [
+    "",
+    "Bright squares were on stages like the next race's. Raise this to count only those.",
+    [
+     "ALIKE"
+    ]
+   ],
+   [
+    "",
+    "Each lizard's average over the races shown.",
+    []
+   ],
+   [
+    "",
+    "Press a square to watch that race again.",
+    []
+   ],
+   [
+    "",
+    "Type a stage's name to see only its races.",
+    []
+   ]
+  ],
+  "tip_form_grid": [
+   [
+    "",
+    "The next race's stage. Each square is a lizard's average P-Num on a stage; blank means it never ran there, DNF that it never finished.",
+    [
+     "P_NUM",
+     "DNF"
+    ]
+   ],
+   [
+    "",
+    "Stages most like the next race's come first. Reorder them by biome or distance.",
+    []
+   ],
+   [
+    "",
+    "Leave out races run before a lizard was four.",
+    []
+   ],
+   [
+    "",
+    "Press a stage for its details.",
+    []
+   ],
+   [
+    "",
+    "Press a lizard to open its details: its form, by stage, family and summary.",
+    []
+   ]
+  ],
+  "tip_form_tab": [
+   [
+    "",
+    "This lizard's details: its form, by stage, a 3D look, family and summary.",
+    []
+   ],
+   [
+    "",
+    "Step through the rest of the field.",
+    []
+   ],
+   [
+    "",
+    "Every race it ran, newest first. Press one to watch it again.",
+    [
+     "DNF"
+    ]
+   ],
+   [
+    "",
+    "Narrow it to one stage or one season.",
+    []
+   ],
+   [
+    "",
+    "Count only races on stages like the next race's.",
+    [
+     "ALIKE"
+    ]
+   ],
+   [
+    "",
+    "Press a stage for its details.",
+    []
+   ]
+  ],
+  "tip_by_stage": [
+   [
+    "",
+    "Its average on each stage, each season. The small number is how many races: one race tells you little.",
+    []
+   ],
+   [
+    "",
+    "Choose the figure: P-Num, P-Num for its age, position or falls.",
+    [
+     "P_NUM",
+     "FALLS"
+    ]
+   ],
+   [
+    "",
+    "Every season together.",
+    []
+   ],
+   [
+    "",
+    "Stages most like the next race's first, or A to Z.",
+    []
+   ]
+  ],
+  "tip_look": [
+   [
+    "",
+    "Drag to turn it; pinch or scroll to zoom. Look at its build: muscle, fat, legs and tail decide how it races.",
+    []
+   ],
+   [
+    "",
+    "Put it back as it first stood.",
+    []
+   ]
+  ],
+  "tip_form_history": [
+   [
+    "",
+    "Every race a lizard ran, ending on now. Taller and greener is faster.",
+    []
+   ],
+   [
+    "",
+    "Bright bars were on stages like the next race's; dark ones on stages unlike it.",
+    [
+     "ALIKE"
+    ]
+   ],
+   [
+    "",
+    "Raise it to keep only races on stages like this one. The rest leave gaps.",
+    [
+     "ALIKE"
+    ]
+   ],
+   [
+    "",
+    "Press a lizard to open its details: its form, by stage, family and summary.",
+    []
+   ]
+  ],
+  "tip_summary": [
+   [
+    "",
+    "Its career season by season: races, wins, top threes, prize and its best P-Num that season.",
+    [
+     "P_NUM"
+    ]
+   ],
+   [
+    "",
+    "A bar for every race. Teal ones were on stages like the next race's, violet ones unlike it.",
+    []
+   ],
+   [
+    "",
+    "Where it has raced for. Press a stable to see it.",
+    []
+   ]
+  ],
+  "tip_family": [
+   [
+    "A LIZARD'S FAMILY TAB",
+    "Its family, a card each, with their wins and best P-Num.",
+    []
+   ]
+  ],
+  "tip_stage": [
+   [
+    "",
+    "The stage from the side. Colours are the ground: dirt, wood, rock, mud, water. Heights are drawn larger so you can see them.",
+    []
+   ],
+   [
+    "",
+    "The fastest lizards here. Look at their bodies: that is the type that wins.",
+    []
+   ],
+   [
+    "",
+    "The lizards and stables that win here most. Press one to see it.",
+    []
+   ],
+   [
+    "",
+    "Stages that race most like this one. Form there counts here.",
+    []
+   ],
+   [
+    "",
+    "Press one to watch it.",
+    []
+   ]
+  ],
+  "tip_stable": [
+   [
+    "",
+    "This stable's wins, lizards, prize money and money in hand, each with its rank among all stables.",
+    []
+   ],
+   [
+    "",
+    "Its lizards, its record season by season, and its buying and selling.",
+    []
+   ],
+   [
+    "",
+    "Press a lizard to see it. P-Num here is its best, not its average.",
+    [
+     "P_NUM"
+    ]
+   ]
+  ]
+ },
+ "faqs": {
+  "P_NUM": [
+   "WHAT IS A P-NUM?",
+   "How fast it ran, against every lizard on that stage, from 0 to 99. 90 means faster than 90 lizards in a hundred. P-NUM AGE compares it only with lizards its age. No P-Num means it didn't finish."
+  ],
+  "FIGURES": [
+   "WHAT DO THESE MEAN?",
+   "P-NUM: how fast it ran, 0 to 99. PLACE: where it finished. PRIZE: what it won. FALLS: times it was knocked down. KOS: others it knocked down. SPRINTS: where in the race it sprinted, start at the left."
+  ],
+  "ALIKE": [
+   "WHAT DOES ALIKE MEAN?",
+   "Every two stages have a score for how alike they race: 1 the same, 0 unrelated, below 0 opposites. ALIKE AT LEAST counts only a lizard's races on stages at least that alike to the next race's."
+  ],
+  "ODDS": [
+   "WHY ARE THE ODDS WRONG?",
+   "Each race's odds are skewed on purpose, a little up or down for each lizard. Read the form and you'll find lizards priced too long."
+  ],
+  "PLACE_BET": [
+   "HOW DOES A PLACE BET PAY?",
+   "Your stake times the points for where it finished, divided by its rating. It pays more the higher it finishes, and makes a profit from the place shown."
+  ],
+  "RUN_OUT": [
+   "WHAT IF I RUN OUT OF MONEY?",
+   "After each race you're topped up so you can always bet. Top-ups don't count towards leagues."
+  ],
+  "LEAGUES": [
+   "HOW ARE LEAGUES SCORED?",
+   "By how much you've grown your money since the league began, not counting top-ups."
+  ],
+  "DNF": [
+   "WHAT IS DNF?",
+   "Did not finish. That race has no time, place or P-Num and isn't counted in averages."
+  ],
+  "AGE": [
+   "DOES AGE MATTER?",
+   "Young lizards are still growing; old ones slow a little each season but get more patient. Each ages at its own pace."
+  ],
+  "FALLS": [
+   "WHY DID IT FALL?",
+   "It was hit hard enough to go down. Up on a platform, it falls to the route below."
+  ]
+ },
+ "before": {
+  "RACE_CARD": "BETTING"
+ },
+ "plates": {
+  "onward": "NEXT",
+  "closing": "GOT IT",
+  "practice": "PRACTICE"
+ }
+}

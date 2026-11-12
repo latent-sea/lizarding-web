@@ -4,22 +4,25 @@
 // colours the shaded figures wear: a class per band of the scale chosen,
 // and per runner's number, written again whenever the scale changes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=a978f762e875";
-import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=a978f762e875";
-import { safeStorage } from "./auth.js?v=a978f762e875";
-import { KEEPS_GUEST, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=a978f762e875";
-import { describeJoining } from "./joining.js?v=a978f762e875";
-import { describeNewsSettings } from "./news.js?v=a978f762e875";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=50cf0252913e";
+import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=50cf0252913e";
+import { safeStorage } from "./auth.js?v=50cf0252913e";
+import { KEEPS_GUEST, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=50cf0252913e";
+import { describeJoining } from "./joining.js?v=50cf0252913e";
+import { describeNewsSettings } from "./news.js?v=50cf0252913e";
 
 export const SETTINGS = "settings";
 export const PICKS_SCALE = "picks_a_colour_scale";
 export const PICKS_MARKS = "picks_how_runners_are_marked";
 export const TURNS_MOTION = "turns_reduced_motion";
+// the app's own action (T-668), so both read the one table of reminder words
+export const SETS_TIPS = "sets_whether_hints_and_tips_show";
 
 export const WORDS = {
   [PICKS_SCALE]: ["Colour scale"],
   [PICKS_MARKS]: ["Runner marks"],
   [TURNS_MOTION]: ["Reduced motion"],
+  [SETS_TIPS]: ["Hints and tips"],
 };
 
 const KEPT = "lizarding_settings";
@@ -35,15 +38,18 @@ export class Settings extends Controller {
     this.scale = this.value(SCALES[kept.scale] ? kept.scale : DEFAULT_SCALE);
     this.marks = this.value(kept.marks === "name" ? "name" : "number");
     this.reducedMotion = this.value(typeof kept.reducedMotion === "boolean" ? kept.reducedMotion : askedForLess);
+    // hints and tips (T-668): on until the player turns them off
+    this.tips = this.value(kept.tips !== false);
   }
 
-  answers() { return [PICKS_SCALE, PICKS_MARKS, TURNS_MOTION]; }
+  answers() { return [PICKS_SCALE, PICKS_MARKS, TURNS_MOTION, SETS_TIPS]; }
 
   told(action, payload) {
     if (action === PICKS_SCALE && SCALES[payload.scale]) this.scale.setValue(payload.scale);
     else if (action === PICKS_MARKS && MARKS[payload.marks]) this.marks.setValue(payload.marks);
     else if (action === TURNS_MOTION) this.reducedMotion.update((on) => !on);
-    this._storage.set(KEPT, JSON.stringify({ scale: this.scale._held, marks: this.marks._held, reducedMotion: this.reducedMotion._held }));
+    else if (action === SETS_TIPS) this.tips.update((on) => !on);
+    this._storage.set(KEPT, JSON.stringify({ scale: this.scale._held, marks: this.marks._held, reducedMotion: this.reducedMotion._held, tips: this.tips._held }));
     return null;
   }
 }
@@ -89,6 +95,11 @@ export function describeSettings(ui, settings, play, joining, news) {
       ui.text(Phrase.of("Reduced motion"), "PartHeading"),
       ui.pressable(TURNS_MOTION, {}, [ui.text(settings.reducedMotion.map((on) => Phrase.of(on ? "On: the race has no flashes, and the camera moves without easing" : "Off")), "Face").wraps()],
         settings.reducedMotion.map((on) => (on ? "Segment ToggleOn" : "Segment"))),
+    ], "Part"),
+    ui.column([
+      ui.text(Phrase.of("Hints and tips"), "PartHeading"),
+      ui.pressable(SETS_TIPS, {}, [ui.text(settings.tips.map((on) => Phrase.of(on ? "On: a tip the first time you see each page, and a reminder of anything not yet tried" : "Off")), "Face").wraps()],
+        settings.tips.map((on) => (on ? "Segment ToggleOn" : "Segment"))),
     ], "Part"),
   ]);
 }
