@@ -5,9 +5,10 @@
 // they are further down; and making a friends' league, entering one by its
 // code, leaving one, and copying its code for a friend.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=50cf0252913e";
-import { ANSWERED } from "./wire.js?v=50cf0252913e";
-import { UNITS, leagueOrder, leagueTitle, scoreSaid, timeLeft } from "./rules.js?v=50cf0252913e";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=5611295dbce0";
+import { ANSWERED } from "./wire.js?v=5611295dbce0";
+import { UNITS, leagueOrder, leagueTitle, scoreSaid, timeLeft } from "./rules.js?v=5611295dbce0";
+import { SCORE_SAID } from "./world.js?v=5611295dbce0";
 
 export const LEAGUES = "leagues";
 export const REFRESHES = "refreshes_the_tables";
@@ -151,6 +152,8 @@ export function describeLeagues(ui, play, leagues) {
   const unitChoice = (name) => ui.pressable(PICKS_UNIT, { unit: name }, [ui.text(Phrase.of(name), "Small")], "Segment").currentWhile(leagues.unit.map((u) => u === name));
   return ui.screen(LEAGUES, [
     ui.text(Phrase.of("Leagues"), "Title"),
+    // how a league scores, in plain words (Ian, 12 Nov)
+    ui.text(Phrase.of(SCORE_SAID), "Quiet LeagueScoreSaid").wraps(),
     ui.when(ui.bound(() => leagues.asking.read() && !play.tables.read()), ui.text(Phrase.of("Fetching the tables…"), "Quiet")),
     ui.text(leagues.said, "Said").wraps().hidesEmpty(),
     ui.when(ui.bound(() => play.tables.read() !== null && list.read().length === 0), ui.text(Phrase.of("No league is running just now."), "Quiet")),

@@ -3,17 +3,15 @@
 // everybody globally needs to be made more apparent - also any live streams
 // need to be prominent too".
 //
-// - Everyone, worldwide: one line on the card and the result. Its number is a
-//   true one the game already sends: the places in the game's own hour league
-//   (ToShow 3), "85 players in this hour's league". With no tables yet, the
-//   words alone.
+// - Everyone, worldwide: one line on the card and the result, with no count of
+//   players (Ian, 12 Nov: "don't say how many other players").
 // - Leagues: "Make a league" and "Join with a code" where the player is, each
 //   opening the leagues page at its form.
 // - Live now: who is streaming Lizarding, from the platform's list (the same
 //   lizarding_live that lizarding.com draws), asked every two minutes while
 //   playing. Nothing is shown while nobody is live.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=50cf0252913e";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=5611295dbce0";
 
 export const AIMS_MAKE = "aims_to_make_a_league";
 export const AIMS_ENTER = "aims_to_enter_a_league";
@@ -22,22 +20,18 @@ export const WORDS = {
   [AIMS_ENTER]: ["Join with a code"],
 };
 
-const HOUR = 3600 * 1000;
 export const LIVE_EVERY_MS = 2 * 60 * 1000;
 export const ALL_STREAMS = "https://lizarding.com/#live";
 
-/** The players in the game's own hour league (its table's places), or null while no table is held. */
-export function playersThisHour(tables) {
-  const hour = (tables ?? []).filter((t) => t.league.everyone && t.league.endsAt - t.league.startsAt <= HOUR + 1000);
-  return hour.length ? Math.max(...hour.map((t) => t.places)) : null;
-}
+/** The worldwide line: no count of players in it (Ian, 12 Nov). */
+export const worldwideSaid = () => Phrase.of("You're racing everyone, worldwide, on this one race");
 
-/** The worldwide line: the words, and the true count when there is one. */
-export function worldwideSaid(tables) {
-  const players = playersThisHour(tables);
-  if (!players || players < 2) return Phrase.of("You're racing everyone, worldwide, on this one race");
-  return Phrase.with("You're racing everyone, worldwide, on this one race · %d players in this hour's league", [players]);
-}
+/**
+ * How a league scores, in plain words (Ian, 12 Nov: "Explain score is proportional to credits entered time period
+ * into"). As the server scores it (latent-productions betting/league_store.cpp, league_table): what a seat is worth
+ * now, less the top-ups since it entered, over what it was worth when it entered.
+ */
+export const SCORE_SAID = "Your league score is how much you've grown your credits since you entered that hour, day, week or month, not how many you have.";
 
 /** Only an https address from the platform is linked: a provider's words are never trusted as an address. */
 const safeUrl = (url) => (typeof url === "string" && /^https:\/\//.test(url) ? url : null);
@@ -89,7 +83,7 @@ export function describeLeagueAims(ui, leaguesScreen) {
 /** The worldwide line, with the leagues' two presses beside it. */
 export function describeWorldwide(ui, play, leaguesScreen) {
   return ui.surface("Worldwide", [
-    ui.text(ui.bound(() => worldwideSaid(play.tables.read())), "WorldwideWords").wraps(),
+    ui.text(worldwideSaid(), "WorldwideWords").wraps(),
     describeLeagueAims(ui, leaguesScreen),
   ]);
 }

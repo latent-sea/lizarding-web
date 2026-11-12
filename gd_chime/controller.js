@@ -9,9 +9,9 @@
 // global region when the app registers it (ChimeApp.model), and is dropped
 // with that region. Disposed, it stops hearing everything.
 
-import { Chimes } from "./chimes.js?v=50cf0252913e";
-import { OwnBell } from "./own_bell.js?v=50cf0252913e";
-import { Value } from "./value.js?v=50cf0252913e";
+import { Chimes } from "./chimes.js?v=5611295dbce0";
+import { OwnBell } from "./own_bell.js?v=5611295dbce0";
+import { Value } from "./value.js?v=5611295dbce0";
 
 let regions = 0;
 const owned = new Set();

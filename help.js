@@ -1,7 +1,7 @@
 // The i on every page: what can be done on it, and what its figures,
 // colours and marks mean. One pop-up, opened with the page it explains.
 
-import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=50cf0252913e";
+import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=5611295dbce0";
 
 export const OPENS_HELP = "explains_this_page";
 
@@ -49,7 +49,7 @@ export const HELP = {
   ],
   leagues: [
     ["Leagues", "Your score against other players over an hour, a day, a week or a month, and in friends' leagues."],
-    ["The score", "100% is level: what you have now, less any top-ups, against what you had when the league began (or when you joined it)."],
+    ["The score", "Your league score is how much you've grown your credits since you entered that hour, day, week or month, not how many you have. 100% is level, and top-ups don't count."],
     ["The table", "The top ten, and your own row framed - added below if you're further down."],
     ["Friends' leagues", "Make one with a name and a length, then copy its code to friends; they enter it to join. Leave takes you out of it."],
   ],

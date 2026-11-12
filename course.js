@@ -3,9 +3,9 @@
 // so - and under it a key to its colours, how high it rises, each surface's
 // share of the ground and how many obstacles there are.
 
-import { Phrase } from "./gd_chime/gd_chime.js?v=50cf0252913e";
-import { summary } from "./stage.js?v=50cf0252913e";
-import { stageOf } from "./nav.js?v=50cf0252913e";
+import { Phrase } from "./gd_chime/gd_chime.js?v=5611295dbce0";
+import { summary } from "./stage.js?v=5611295dbce0";
+import { stageOf } from "./nav.js?v=5611295dbce0";
 
 export const STAGE = "stage";
 
