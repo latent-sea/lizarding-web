@@ -3,9 +3,9 @@
 // price and where a place bet pays from; the player's stakes; BET; and its
 // form strip. Two rows of five on a wide screen, a column on an upright phone.
 
-import { Phrase } from "./gd_chime/gd_chime.js?v=7246652d0662";
-import { STRIP, ageSaid, bandStyle, credits, nameSaid, placeCell, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=7246652d0662";
-import { REVIEWS, lastRaceOf } from "./race.js?v=7246652d0662";
+import { Phrase } from "./gd_chime/gd_chime.js?v=85ff3c7c2e59";
+import { STRIP, ageSaid, bandStyle, credits, nameSaid, placeCell, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=85ff3c7c2e59";
+import { REVIEWS, lastRaceOf } from "./race.js?v=85ff3c7c2e59";
 
 export const CARD = "card";
 export const OPENS_LIZARD = "opens_the_lizard";
@@ -18,7 +18,7 @@ export const WORDS = {
   [GOES_ACCOUNT]: ["Keep your account with Google"],
 };
 
-export function describeCard(ui, play, { lizard, betPopUp, account, result }) {
+export function describeCard(ui, play, { lizard, betPopUp, account, result, worldwide = null }) {
   // the last race, if the player bet on it: a race run while they were away is otherwise seen nowhere
   const last = ui.bound(() => lastRaceOf(play.game.read()));
   const runners = ui.bound(() => (play.game.read() ? runnersOf(play) : []));
@@ -50,6 +50,8 @@ export function describeCard(ui, play, { lizard, betPopUp, account, result }) {
       ui.text(last.map((l) => (l ? Phrase.with("Race %d has run: your bets paid %s of %s staked", [l.race, credits(l.paid), credits(l.staked)]) : "")), "Words").wraps().grow(),
       ui.button(REVIEWS, { payload: last.map((l) => ({ race: l?.race ?? null })), goes_to: result, style: "Pressable" }),
     ], "LastRaceLine")])),
+    // everyone, worldwide, on this same race; and the leagues a press away (Ian, 12 Nov)
+    ...(worldwide ? [ui.when(state.map((s) => s !== "connecting"), worldwide)] : []),
     ui.when(state.map((s) => s === "connecting"), ui.text(Phrase.of("Connecting to the game…"), "Quiet Waiting")),
     ui.when(state.map((s) => s === "waiting"), ui.text(Phrase.of("Waiting for the next race"), "Words Waiting")),
     ui.each(runners, block, (row) => row.lizard, "Runners"),

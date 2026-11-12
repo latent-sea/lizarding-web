@@ -14,35 +14,36 @@
 // platform and the game (tests/standin.js), never the real ones; opened with
 // ?standin it plays against the stand-in, for a person to try.
 
-import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=7246652d0662";
-import { CONFIG } from "./config.js?v=7246652d0662";
-import { SignIn } from "./auth.js?v=7246652d0662";
-import { Connection } from "./connection.js?v=7246652d0662";
-import { localParts, openLine } from "./hub.js?v=7246652d0662";
-import * as Session from "./play.js?v=7246652d0662";
-import * as Card from "./card.js?v=7246652d0662";
-import * as Bet from "./bet.js?v=7246652d0662";
-import * as Lizard from "./lizard.js?v=7246652d0662";
-import * as League from "./leagues.js?v=7246652d0662";
-import * as Race from "./race.js?v=7246652d0662";
-import * as Nav from "./nav.js?v=7246652d0662";
-import * as Course from "./course.js?v=7246652d0662";
-import * as Prefs from "./settings.js?v=7246652d0662";
-import * as Join from "./joining.js?v=7246652d0662";
-import * as News from "./news.js?v=7246652d0662";
-import * as Help from "./help.js?v=7246652d0662";
-import * as Promo from "./promo.js?v=7246652d0662";
-import { RaceView } from "./viewer.js?v=7246652d0662";
-import { drawStageMap } from "./stage.js?v=7246652d0662";
-import { ordinal, paid, secondsLeft } from "./rules.js?v=7246652d0662";
-import { credits } from "./parts.js?v=7246652d0662";
-import { secondsAt } from "./telemetry.js?v=7246652d0662";
-import { drawGoogleButton, drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=7246652d0662";
+import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=85ff3c7c2e59";
+import { CONFIG } from "./config.js?v=85ff3c7c2e59";
+import { SignIn } from "./auth.js?v=85ff3c7c2e59";
+import { Connection } from "./connection.js?v=85ff3c7c2e59";
+import { localParts, openLine } from "./hub.js?v=85ff3c7c2e59";
+import * as Session from "./play.js?v=85ff3c7c2e59";
+import * as Card from "./card.js?v=85ff3c7c2e59";
+import * as Bet from "./bet.js?v=85ff3c7c2e59";
+import * as Lizard from "./lizard.js?v=85ff3c7c2e59";
+import * as League from "./leagues.js?v=85ff3c7c2e59";
+import * as World from "./world.js?v=85ff3c7c2e59";
+import * as Race from "./race.js?v=85ff3c7c2e59";
+import * as Nav from "./nav.js?v=85ff3c7c2e59";
+import * as Course from "./course.js?v=85ff3c7c2e59";
+import * as Prefs from "./settings.js?v=85ff3c7c2e59";
+import * as Join from "./joining.js?v=85ff3c7c2e59";
+import * as News from "./news.js?v=85ff3c7c2e59";
+import * as Help from "./help.js?v=85ff3c7c2e59";
+import * as Promo from "./promo.js?v=85ff3c7c2e59";
+import { RaceView } from "./viewer.js?v=85ff3c7c2e59";
+import { drawStageMap } from "./stage.js?v=85ff3c7c2e59";
+import { ordinal, paid, secondsLeft } from "./rules.js?v=85ff3c7c2e59";
+import { credits } from "./parts.js?v=85ff3c7c2e59";
+import { secondsAt } from "./telemetry.js?v=85ff3c7c2e59";
+import { drawGoogleButton, drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=85ff3c7c2e59";
 
 // ?probe walks the page against the stand-in; ?standin only plays against it, for a person to try
 const asked = new URLSearchParams(location.search);
 const probing = asked.has("probe") || asked.has("standin");
-const STANDIN = probing ? new (await import("./tests/standin.js?v=7246652d0662")).StandIn() : null;
+const STANDIN = probing ? new (await import("./tests/standin.js?v=85ff3c7c2e59")).StandIn() : null;
 // Google's own button, or the stand-in's; and Google's answer, if the page has just come back from it on a phone.
 // Inside a portal's frame, Google's own button (its pop-up) even on a phone: Google won't open inside a frame, so going there and back can't work
 const drawGoogle = STANDIN?.drawGoogle ?? (Promo.FRAMED ? (place, id, signedIn, look) => drawGoogleButton(place, id, signedIn, look) : drawSignIn);
@@ -63,7 +64,7 @@ class Lizarding extends ChimeApp {
 
   declare(register) {
     register.declareAll(Object.fromEntries(Object.entries({
-      ...Session.WORDS, ...Card.WORDS, ...Bet.WORDS, ...Lizard.WORDS, ...League.WORDS, ...Race.WORDS, ...Nav.WORDS, ...Prefs.WORDS, ...Join.WORDS, ...Help.WORDS, ...Promo.WORDS, ...News.WORDS,
+      ...Session.WORDS, ...Card.WORDS, ...Bet.WORDS, ...Lizard.WORDS, ...League.WORDS, ...World.WORDS, ...Race.WORDS, ...Nav.WORDS, ...Prefs.WORDS, ...Join.WORDS, ...Help.WORDS, ...Promo.WORDS, ...News.WORDS,
     })));
   }
 
@@ -80,6 +81,8 @@ class Lizarding extends ChimeApp {
     const joining = this.joining = this.model(new Join.Joining(this.chimes, play));
     // Lizarding news by email (T-682): asked once at the door after the name, and in Settings
     const news = this.news = this.model(new News.News(this.chimes, play));
+    // everyone worldwide, the leagues a press away, and who is live (Ian, 12 Nov)
+    const world = this.world = this.model(new World.World(this.chimes, play));
     // walked by the probe, the advert holds a second, not five
     const advert = this.advert = this.model(new Promo.Advert(this.chimes, STANDIN ? { hold: 1 } : {}));
     this.mapScale = ui.local(1);
@@ -108,16 +111,17 @@ class Lizarding extends ChimeApp {
       ui.when(besideTheRace, Promo.describeBuyBar(ui)),
       ui.when(top.map((path) => !path.includes(DOOR) && !path.includes(Race.RACE)), nav),
       ui.text(lost, "Banner").wraps().hidesEmpty(),
+      ui.when(besideTheRace, World.describeLiveNow(ui, world)),
       ui.each(play.notices, (held) => ui.text(held.map((n) => n?.words ?? ""), "Notice Toast").wraps(), (n) => n.id, "Notices"),
       ui.stack([
         this.door(),
-        Card.describeCard(ui, play, { lizard: Lizard.LIZARD, betPopUp, account: Prefs.SETTINGS, result: Race.RESULT }),
+        Card.describeCard(ui, play, { lizard: Lizard.LIZARD, betPopUp, account: Prefs.SETTINGS, result: Race.RESULT, worldwide: World.describeWorldwide(ui, play, League.LEAGUES) }),
         Lizard.describeLizard(ui, play, { betPopUp }),
         League.describeLeagues(ui, play, leagues),
         Course.describeStage(ui, play, this.mapScale),
         Prefs.describeSettings(ui, settings, play, joining, news),
         Race.describeRace(ui, play, watching, Help.infoButton(ui, help, Race.RACE)),
-        Race.describeResult(ui, play, watching),
+        Race.describeResult(ui, play, watching, { worldwide: World.describeWorldwide(ui, play, League.LEAGUES) }),
       ]),
       ui.when(besideTheRace, Promo.describeSocials(ui)),
       advertPopUp,
@@ -213,7 +217,7 @@ class Lizarding extends ChimeApp {
   }
 
   follows() {
-    const { play, watching, settings, leagues } = this;
+    const { play, watching, settings, leagues, world } = this;
     const follow = (key, work) => this.chimes.follow({ region: Chimes.GLOBAL }, key, work);
     const sheet = document.createElement("style");
     document.head.appendChild(sheet);
@@ -417,14 +421,33 @@ class Lizarding extends ChimeApp {
     // T-686); never in the background
     let atLeagues = false;
     let atResult = false;
+    let atCard = false;
     follow("leagues", () => {
       const path = this.screen();
       const now = path.includes(League.LEAGUES);
       const result = path.includes(Race.RESULT);
-      if ((now && !atLeagues) || (result && !atResult)) Frames.defer(() => leagues.fetch());
+      // the card's worldwide count is the hour league's places: the tables asked for as the card first shows, if none are held
+      const card = path.at(-1) === Card.CARD && play.game.read() !== null;
+      if ((now && !atLeagues) || (result && !atResult) || (card && !atCard && play.tables._held === null)) Frames.defer(() => leagues.fetch());
+      atCard = card;
       atLeagues = now;
       atResult = result;
     });
+
+    // "Make a league" or "Join with a code": the leagues page opened at that form, its line ready to type in
+    follow("league aim", () => {
+      const aim = world.aim.read();
+      if (!aim || !this.screen().includes(League.LEAGUES)) return;
+      Frames.defer(() => {
+        const line = document.querySelector(`#app input.chime-field[data-action="${aim === "make" ? League.MAKES : League.ENTERS}"]`);
+        line?.scrollIntoView({ block: "center" });
+        line?.focus({ preventScroll: true });
+        world.aim.setValue(null);
+      });
+    });
+
+    // who is live with Lizarding, asked while playing
+    follow("live", () => { if (play.connection.read().status === "playing") Frames.defer(() => world.follow()); });
 
     // form: each runner of the open card's, and the lizard looked at
     follow("form", () => {
@@ -487,7 +510,7 @@ class Lizarding extends ChimeApp {
     });
   }
 
-  probe() { return import("./probe.js?v=7246652d0662").then((made) => new made.Probe(this, STANDIN)); }
+  probe() { return import("./probe.js?v=85ff3c7c2e59").then((made) => new made.Probe(this, STANDIN)); }
 }
 
 ChimeApp.start(Lizarding, document.getElementById("app")).then((app) => { if (probing) Object.assign(globalThis, { lizarding: app, standin: STANDIN }); });

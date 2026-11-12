@@ -461,3 +461,22 @@ html, body { margin: 0; background: #08070f; }
 }
 #app .LeaguePlacesBlock { align-items: center; gap: 6px; }
 #app .LeaguePlacesHeading { text-align: center; }
+
+/* everyone, worldwide; the leagues a press away; who is live (Ian, 12 Nov) */
+#app .chime-surface.Worldwide { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 10px 12px; border-radius: 10px;
+  border: 1px solid rgb(71 235 199 / 0.45); background: rgb(71 235 199 / 0.07); }
+#app .WorldwideWords { color: var(--teal); font-weight: 600; flex: 1 1 18rem; min-width: 0; }
+#app .LeagueAims { gap: 8px; flex: 0 0 auto; flex-wrap: wrap; }
+#app .chime-pressable.LeagueAim { min-height: 36px; padding: 4px 12px; border-color: var(--teal); }
+#app .LiveNow { align-items: center; gap: 10px; flex-wrap: wrap; padding: 8px 12px; border-radius: 10px; border: 1px solid rgb(255 64 96 / 0.6); background: rgb(255 64 96 / 0.1); }
+#app .chime-hyperlink.LiveLink { display: inline-flex; align-items: center; gap: 10px; color: var(--chime-ink); text-decoration: none; flex: 1 1 auto; min-width: 0; }
+#app .LiveBadge { background: #ff4060; color: #fff; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; flex: 0 0 auto; }
+#app .LiveWho { font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#app .chime-hyperlink.LiveMore { color: var(--chime-ink-soft); }
+@media (max-width: 40rem) and (orientation: portrait) {
+  #app .chime-surface.Worldwide { padding: 8px 10px; }
+  #app .WorldwideWords { font-size: 0.85rem; flex-basis: 100%; }
+  #app .chime-pressable.LeagueAim { min-height: 32px; padding: 2px 8px; font-size: 0.9rem; }
+  #app .LeagueAims { width: 100%; }
+  #app .chime-pressable.LeagueAim { flex: 1 1 0; justify-content: center; }
+}

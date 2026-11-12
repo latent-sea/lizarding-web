@@ -4,12 +4,12 @@
 // colours the shaded figures wear: a class per band of the scale chosen,
 // and per runner's number, written again whenever the scale changes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=7246652d0662";
-import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=7246652d0662";
-import { safeStorage } from "./auth.js?v=7246652d0662";
-import { KEEPS_GUEST, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=7246652d0662";
-import { describeJoining } from "./joining.js?v=7246652d0662";
-import { describeNewsSettings } from "./news.js?v=7246652d0662";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=85ff3c7c2e59";
+import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=85ff3c7c2e59";
+import { safeStorage } from "./auth.js?v=85ff3c7c2e59";
+import { KEEPS_GUEST, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=85ff3c7c2e59";
+import { describeJoining } from "./joining.js?v=85ff3c7c2e59";
+import { describeNewsSettings } from "./news.js?v=85ff3c7c2e59";
 
 export const SETTINGS = "settings";
 export const PICKS_SCALE = "picks_a_colour_scale";

@@ -14,13 +14,13 @@
 // field and the player's bets - since the game lets go of races older than
 // the last.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=7246652d0662";
-import { readTelemetry, secondsAt } from "./telemetry.js?v=7246652d0662";
-import { paid, ordinal, leagueOrder, leagueTitle, leaguePlaceSaid } from "./rules.js?v=7246652d0662";
-import { LEAGUES, SELECTS } from "./leagues.js?v=7246652d0662";
-import { credits, square } from "./parts.js?v=7246652d0662";
-import { sprintMap } from "./lizard.js?v=7246652d0662";
-import { CARD } from "./card.js?v=7246652d0662";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=85ff3c7c2e59";
+import { readTelemetry, secondsAt } from "./telemetry.js?v=85ff3c7c2e59";
+import { paid, ordinal, leagueOrder, leagueTitle, leaguePlaceSaid } from "./rules.js?v=85ff3c7c2e59";
+import { LEAGUES, SELECTS } from "./leagues.js?v=85ff3c7c2e59";
+import { credits, square } from "./parts.js?v=85ff3c7c2e59";
+import { sprintMap } from "./lizard.js?v=85ff3c7c2e59";
+import { CARD } from "./card.js?v=85ff3c7c2e59";
 
 export const RACE = "race";
 export const RESULT = "result";
@@ -249,7 +249,7 @@ export function describeLeaguePlaces(ui, play) {
   ], "LeaguePlacesBlock"));
 }
 
-export function describeResult(ui, play, watching) {
+export function describeResult(ui, play, watching, { worldwide = null } = {}) {
   const rows = ui.bound(() => watching.rows());
   const watched = watching.watched;
   const winner = rows.map((list) => list[0] ?? null);
@@ -290,6 +290,7 @@ export function describeResult(ui, play, watching) {
     // Continue at the top, beside the title: back to the card without scrolling past the field
     ui.row([ui.text(Phrase.of("Race finished"), "Title").grow(), ui.button(CONTINUES, { goes_to: CARD })], "ResultHead"),
     describeLeaguePlaces(ui, play),
+    ...(worldwide ? [worldwide] : []),
     ui.text(watched.map((w) => w?.field?.course.name || (w ? Phrase.with("Race %d", [w.race]) : "")), "Words"),
     ui.text(winner.map((w) => (w?.time != null ? Phrase.with("Won in %s seconds", [w.time.toFixed(2)]) : "")), "Quiet").hidesEmpty(),
     ui.text(play.game.map((g) => (g ? Phrase.with("Your balance is %s", [credits(g.balance)]) : "")), "Price").hidesEmpty(),
