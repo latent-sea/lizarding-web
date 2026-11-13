@@ -54,16 +54,15 @@ export function reminderSaid(words, action, label = "") {
 // --- the web game's controls, by the app's names ---
 
 /** Each web action, as the app names the same control: its words come from the app's table. */
+// Left out, as their words promise what the web game hasn't got (Ian, 13 Nov: "still placeholders in the tutorial"): the
+// lizard ("its stages, its family"), the stage ("its record and the five fastest"), the settings ("Sound, size") and
+// the i ("anything the bar had no room to show"). Those controls get no reminder on the web.
 export const APP_ACTIONS = {
   opens_a_bet: "opens_the_betting",
-  opens_the_lizard: "opens_a_lizard",
   goes_to_the_runner_after: "steps_to_another_lizard",
   goes_to_the_runner_before: "steps_to_another_lizard",
-  goes_to_the_stage: "goes_to_the_stage",
   goes_to_the_leagues: "goes_to_the_leagues",
-  goes_to_the_settings: "goes_to_the_settings",
   opens_the_menu: "shows_the_bar_s_menu_on_card",
-  explains_this_page: "shows_what_has_left_the_bar_on_card",
   stakes_a_share: "takes_a_share_of_the_balance",
   types_a_stake: "types_the_stake",
   places_the_bets: "places_the_bets",
@@ -112,10 +111,9 @@ export const WEB_TIPS = {
       [4, (root) => firstShown(root, ".Nav .Credits")],
       [5, (root) => firstShown(root, '[data-action="goes_to_the_leagues"]') ?? firstShown(root, '[data-action="opens_the_menu"]')],
     ]],
-    ["tip_race_card", [
-      [0, (root) => firstShown(root, '[data-action="opens_the_lizard"]')],
-      [5, (root) => firstShown(root, ".StageButton")],
-    ]],
+    // the race card's steps all name what the web game hasn't got - a lizard's family, the stage's winners, the 3D
+    // look, the figure switch, "alike", the field's other views, ten races - so the web shows none of them (Ian, 13 Nov:
+    // "There are still placeholders in the tutorial")
   ],
   lizard: [
     ["tip_form_tab", [
