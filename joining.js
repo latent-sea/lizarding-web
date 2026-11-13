@@ -10,7 +10,7 @@
 // A device whose account was the one let go is signed in again at once,
 // which makes it the kept account, and rejoins the game.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=2a448ebaa662";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=67651939d402";
 
 export const ASKS_CODE = "asks_for_a_join_code";
 export const CANCELS_CODE = "stops_showing_the_code";
@@ -37,9 +37,10 @@ const REFUSED = {
 };
 
 export class Joining extends Controller {
-  constructor(chimes, play, { timers = globalThis, clock = () => Date.now() } = {}) {
+  constructor(chimes, play, { timers = globalThis, clock = () => Date.now(), poll = POLL_MS } = {}) {
     super(chimes);
     this.play = play;
+    this._pollMs = poll;
     this._timers = timers;
     this._clock = clock;
     this.code = this.value(null); // { code, expiresAt }: the code this device shows
@@ -98,7 +99,7 @@ export class Joining extends Controller {
         return;
       }
       this._watch();
-    }, POLL_MS);
+    }, this._pollMs);
   }
 
   /** A code from the other device handed in. */

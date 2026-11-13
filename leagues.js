@@ -5,10 +5,10 @@
 // they are further down; and making a friends' league, entering one by its
 // code, leaving one, and copying its code for a friend.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=2a448ebaa662";
-import { ANSWERED } from "./wire.js?v=2a448ebaa662";
-import { UNITS, leagueOrder, leagueTitle, scoreSaid, timeLeft } from "./rules.js?v=2a448ebaa662";
-import { SCORE_SAID } from "./world.js?v=2a448ebaa662";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=67651939d402";
+import { ANSWERED } from "./wire.js?v=67651939d402";
+import { UNITS, leagueOrder, leagueTitle, scoreSaid, timeLeft } from "./rules.js?v=67651939d402";
+import { SCORE_SAID } from "./world.js?v=67651939d402";
 
 export const LEAGUES = "leagues";
 export const REFRESHES = "refreshes_the_tables";
