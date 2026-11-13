@@ -1,0 +1,70 @@
+# Jungle-455 - roster baseline, band 400-500 (T-586 / D-203).
+# Sheet spec: "100% mud - 3 obstacles - no platforms", amended by Ian 2026-08-26:
+# "throw in some three 25m wood platforms, at P50 difficulty".
+# Crates: 1.2 x 0.5 (everyone-clears, under pooled p05) at 25/50/75% of the span.
+# Platforms: three 25 m wood at y = 3.2 = POOLED all-ages MOUNT-FROM-FLOOR p50
+# (corrected axis, sustained-stand detection, 10,400 samples) - half the field
+# can mount them for wood relief from the mud, half slogs the whole way.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "jungle_455"
+name = "Jungle 455 m"
+schema_version = 1
+biome_skin = "jungle"
+nominal_length_m = 445.4
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 445.4
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 455
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 40
+x_end = 65
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 160
+x_end = 185
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 280
+x_end = 305
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 114.0
+x_end = 114.5
+bottom_y = 0.0
+top_y = 1.2
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 228.0
+x_end = 228.5
+bottom_y = 0.0
+top_y = 1.2
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 341.0
+x_end = 341.5
+bottom_y = 0.0
+top_y = 1.2

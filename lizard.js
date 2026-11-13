@@ -4,10 +4,11 @@
 // races, newest first, its percentiles shaded, its sprint map drawn, and its
 // career under it. Results only: never its genes or its body.
 
-import { Phrase } from "./gd_chime/gd_chime.js?v=5fa37ac932e2";
-import { OPENS_BET } from "./card.js?v=5fa37ac932e2";
-import { ageSaid, bandStyle, credits, nameSaid, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=5fa37ac932e2";
-import { ordinal } from "./rules.js?v=5fa37ac932e2";
+import { Phrase } from "./gd_chime/gd_chime.js?v=c9eebf89955b";
+import { OPENS_BET } from "./card.js?v=c9eebf89955b";
+import { ageSaid, bandStyle, credits, nameSaid, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=c9eebf89955b";
+import { ordinal } from "./rules.js?v=c9eebf89955b";
+import { stageLink } from "./course.js?v=c9eebf89955b";
 
 export const LIZARD = "lizard";
 export const GOES_EARLIER = "goes_to_the_runner_before";
@@ -46,7 +47,8 @@ export function describeLizard(ui, play, { betPopUp }) {
   ]);
   const startRow = (held) => ui.surface("FormRow", [
     cell("", held.map((s) => (s ? Phrase.with("S%d R%d", [s.season, s.round]) : "")), "When"),
-    cell("", held.map((s) => s?.stageName ?? ""), "Stage"),
+    // the stage's name, a press to its screen (Ian, 13 Nov: "Should be able to click stages in the lizard view")
+    ui.surface("Cell Stage", [stageLink(ui, held.map((s) => s?.stageName ?? ""))]),
     cell("Place", held.map((s) => (!s ? "" : s.finished ? ordinal(s.place) : Phrase.of("DNF"))), "Place"),
     cell("Time", held.map((s) => (s?.finished ? seconds(s.time) : "–")), "Time"),
     cell("Behind", held.map((s) => (s?.finished && s.behind > 0 ? `+${seconds(s.behind)}` : "–")), "Behind"),

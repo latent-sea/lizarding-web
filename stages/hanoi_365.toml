@@ -1,0 +1,105 @@
+# Hanoi-365 - roster baseline, band 300-400 (T-586 / D-203).
+# REBALANCED FLAT (T-659, Ian 2026-10-25, "radically reduce the amount of jumping"). The
+# six towers and their escalating gaps are gone; the six wood roofs lie at grade with the
+# rock street showing between them where the gaps were, so the stage keeps its rhythm
+# (roof, street, roof). A mid flat where the surface is the sort: wood 73% / rock 27%, a
+# mix no other flat carries (hanoi_165 is rock 61 / wood 39 at 158 m). Nothing to mount,
+# so nothing is jumped. Name = MEASURED distance: finish_x kept from the probed build.
+
+[stage]
+id = "hanoi_365"
+name = "Hanoi 365 m"
+schema_version = 1
+biome_skin = "hanoi"
+nominal_length_m = 349
+
+[race]
+paddock_x = 4.0
+paddock_y = 0.0
+finish_x = 349
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 45.0
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 45.0
+x_end = 55.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 55.0
+x_end = 100.0
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 113.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 113.0
+x_end = 158.0
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 158.0
+x_end = 174.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 174.0
+x_end = 219.0
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 219.0
+x_end = 238.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 238.0
+x_end = 283.0
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 283.0
+x_end = 305.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 305.0
+x_end = 375.0
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 375.0
+x_end = 390.0
+y = 0.0
+surface_id = "hard_rock"
+

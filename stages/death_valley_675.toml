@@ -1,0 +1,85 @@
+# Death Valley-675 - roster baseline, band 600-700 (T-586 / D-203).
+# REBALANCED FLAT (T-659, Ian 2026-10-25: "radically reduce the amount of jumping in the
+# stages"). The four decks and their ladders came down to the canyon floor: four long
+# hard_rock slabs at grade with dirt breaks between them where the gaps were, so the
+# stage keeps its rhythm (slab, break, slab) and nothing on it is jumped. A long flat
+# for stayers: rock 87% / dirt 13%, which no other flat carries at this distance
+# (DV-575 is 54/46, DV-375 is all rock). No platform, no wall, no ladder: a lizard
+# runs every metre. Name = MEASURED distance: finish_x kept from the probed deck build.
+
+[stage]
+id = "death_valley_675"
+name = "Death Valley 675 m"
+schema_version = 1
+biome_skin = "death_valley"
+nominal_length_m = 614
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 614
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 20.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 20.0
+x_end = 150.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 174.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 174.0
+x_end = 304.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 304.0
+x_end = 328.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 328.0
+x_end = 458.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 458.0
+x_end = 482.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 482.0
+x_end = 625.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 625.0
+x_end = 635.0
+y = 0.0
+surface_id = "standard_dirt"
+

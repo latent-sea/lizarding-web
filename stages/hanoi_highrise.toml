@@ -1,0 +1,119 @@
+# Hanoi "The Highrise" - SIGNATURE (T-586 / D-203), band 400-500.
+#
+# Roster: "A really high platform so falls are really costly - the time of the
+# fall, plus the climb back." Ian 2026-08-28: "15m high long with start on it.
+# Wood platform. End on wood platform. Rock below. Stepped ladder at end."
+#
+# THE DECK IS AT 15.0 m AND THAT IS WHAT MAKES A FALL FINAL. Mount-from-floor tops
+# out at 8.5 m in the census with NOBODY at 9.0, and the best arc lifts ~6.5 m, so
+# nothing climbs back onto the deck where it fell - the stepped ladder at the far
+# end is the only way up. Falling is not a detour here, it is an exile.
+#
+# THE REAL PRICE OF A FALL IS THE SURFACE, not the climb. The deck is WOOD and the
+# floor is ROCK, and those are the two ends of the same axis: surface_response is
+# claw-driven for both, so a clawed body runs wood at up to 1.30 and rock at 0.70.
+# A knocked-down lizard therefore runs the whole remaining course at roughly half
+# the speed it had, THEN pays the ladder. That is the cost the roster asks for and
+# it needs no gaps in the deck to produce it.
+#
+# NOTE THIS STAGE IS COMBAT-DRIVEN AND THEREFORE EXEMPT FROM THE ELECTION LAW
+# (D-203): nothing here is chosen. The deck is continuous, so the only way down is
+# an involuntary knockoff - which is exactly what D-203 anticipates when it says a
+# feature relying on involuntary events needs combat traffic at that spot. If the
+# probe shows no falls, the feature is inert in a combat-free field and only lives
+# in real races.
+#
+# Ladder climbs LEFTWARD from the floor back onto the deck's right end (9 rungs of
+# 1.5 m, 12 m wide advancing 7 m, 5 m overlap - rule 5b).
+# Rock ground, wood deck and rungs per D-202's Hanoi character.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "hanoi_highrise"
+name = "Hanoi The Highrise"
+schema_version = 1
+biome_skin = "hanoi"
+nominal_length_m = 480
+
+[race]
+paddock_x = 5.0
+paddock_y = 15.0
+finish_x = 390
+finish_y = 15.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 480.0
+y = 0.0000
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 400.0
+y = 15.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 446.0
+x_end = 458.0
+y = 1.5000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 439.0
+x_end = 451.0
+y = 3.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 432.0
+x_end = 444.0
+y = 4.5000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 425.0
+x_end = 437.0
+y = 6.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 418.0
+x_end = 430.0
+y = 7.5000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 411.0
+x_end = 423.0
+y = 9.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 404.0
+x_end = 416.0
+y = 10.5000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 397.0
+x_end = 409.0
+y = 12.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 390.0
+x_end = 402.0
+y = 13.5000
+surface_id = "wood"

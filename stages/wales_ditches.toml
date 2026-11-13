@@ -1,0 +1,183 @@
+# T-658 (Ian, 2026-11-01): climb-out hops 1.55 m, grade 3.1 m (rung 0 mounts 1.63 m and stuck on 1.6 m). With the drop fully on
+# 100% finish, was 28%. Heights below are the stage before; widths unchanged.
+#
+# Wales "Ditches" - SIGNATURE (T-586 / D-203), band 500-600.
+#
+# Ian: "3 ditches with mud at bottom that can be jumped by long jumpers if not
+# have to fall in then have a platform on far right of each ditch to allow
+# jumping back. Middle ditch could contain a river." Clarified 2026-08-28:
+# "fall in, swim to edge platform then jump from there", and after seeing a
+# 1.6 m stepless cut: "the only people who go into ditch should be people that
+# can't make the jump... go back to what you had before but instead of a mud
+# step make it wood."
+#
+# DEPTH IS THE ELECTION LEVER, and this is the measured reason the ditch is
+# 3.2 m and not 1.6 m. Width decides who CAN clear a gap; depth decides whether
+# clearing is worth doing at all, because depth prices the detour. Measured on
+# identical widths:
+#           16 m (P50)   20 m (P75)   24 m (P95)
+#   3.2 m:   66% clear     28%          4%       <- roughly the census, kept
+#   1.6 m:   32% clear     14%          0%       <- gap 3 never contested
+# At 1.6 m the drop-in is so cheap that the field declines the jump and strolls
+# out, which is exactly the dead-scenery failure D-203's election law warns of.
+#
+# Grade y=3.2, floors y=0, climb-out step y=1.6 at each ditch's right-hand end.
+# Two 1.6 m P10 hops replace a 3.2 m straight climb (a P50 that would strand
+# half the fallers). The step is 2 m wide and hard against the right wall so it
+# cannot act as a STEPPING STONE that turns the gap into a short drop-hop.
+# The step is WOOD (Ian) - a built plank ledge, reading as constructed against
+# the mud floor rather than as another shelf of bog.
+#
+# RE-CUT 2026-08-28 from 300-400: the roster assigns this signature 500-600 and
+# the first build missed it - my error, the band was never mine to pick. Ian:
+# lengthen by ADDING DITCHES, not runway - so three became FIVE.
+#
+# Five level gaps ESCALATING 13 / 16 / 19 / 22 / 24 m = P25 / P50 / P75 / P90 /
+# P95, so each ditch
+# peels off more of the field. A ditch SORTS rather than eliminates: failing is
+# a legal survivable detour, the thing an obstacle can never be (D-210 - a hedge
+# cannot be declined, so it eliminates or does nothing).
+#
+# THE RIVER (still the middle ditch, now the third of five): you cannot take off from water
+# (`reachability.cpp:441`, "no takeoff from water (locked)"), so the far 6 m of
+# its floor is mud FLUSH WITH THE WATER SURFACE, running under the wood step.
+# The swimmer crosses, walks out onto it, and only then jumps. Without that
+# strip the river is a trap that swallows everyone who misses.
+#
+# PROBE CAVEAT: `--platform <y>` tests `ys[t] > plat_y` ("ever ABOVE"), not
+# "stood on that surface", so it reads ~100% for any y below grade. Use
+# `--gapx0/--gapx1` for crossing questions - it keys off ys<1.2 (on the floor).
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "wales_ditches"
+name = "Wales Ditches"
+schema_version = 1
+biome_skin = "wales"
+nominal_length_m = 560
+
+[race]
+paddock_x = 2.0
+paddock_y = 3.1
+finish_x = 530
+finish_y = 3.1
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 60.0
+y = 3.1
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 73.0
+x_end = 150.0
+y = 3.1
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 166.0
+x_end = 245.0
+y = 3.1
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 264.0
+x_end = 345.0
+y = 3.1
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 367.0
+x_end = 450.0
+y = 3.1
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 474.0
+x_end = 560.0
+y = 3.1
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 60.0
+x_end = 71.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 164.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 245.0
+x_end = 258.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 258.0
+x_end = 264.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 345.0
+x_end = 365.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 450.0
+x_end = 472.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 71.0
+x_end = 73.0
+y = 1.55
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 164.0
+x_end = 166.0
+y = 1.55
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 262.0
+x_end = 264.0
+y = 1.55
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 365.0
+x_end = 367.0
+y = 1.55
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 472.0
+x_end = 474.0
+y = 1.55
+surface_id = "wood"

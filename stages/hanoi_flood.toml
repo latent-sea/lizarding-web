@@ -1,0 +1,655 @@
+# Hanoi "The Flood" - SIGNATURE (T-586 / D-203), band 500-600.
+#
+# Roster: "Lots of lakes below, scaffold platforms above: jumpers thread the
+# network dry, swimmers take the lakes." Ian 2026-08-28: "This is an exception to
+# the rule. Hanoi does flood sometimes!" and "I want the platforms to be towers -
+# stacks of them spaced periodically so different skilled jumpers can jump
+# between them."
+#
+# D-202 EXCEPTION, RULED BY IAN AND NOT AN AMENDMENT. D-202 gives Hanoi "small
+# amounts of water"; this signature is deliberately flooded. The ledger flagged
+# the conflict as unresolved and Ian resolved it as a one-stage exception - the
+# biome distribution still stands for everything else.
+#
+# THE TOWERS ARE A GRADED CROSSING. Platforms WIDEN as they rise, so the gap
+# between adjacent towers SHRINKS with height - 40 m centres against widths
+# 16, 20, 24, 28, 32 m:
+#     y= 1.6   width 16.0 m   gap 24.0 m   P95 ~5%
+#     y= 3.2   width 20.0 m   gap 20.0 m   ~P80 ~20%
+#     y= 4.8   width 24.0 m   gap 16.0 m   P50 ~50%
+#     y= 6.4   width 28.0 m   gap 12.0 m   ~P20 ~80%
+#     y= 8.0   width 32.0 m   gap  8.0 m   easier than P10 >90%
+# So a lizard crosses at the LOWEST level its jump can clear and climbs no higher
+# than it must: the elite cross at ground+1.6 on a P95 gap and never climb, the
+# weak haul themselves up 8.0 m to take an 8 m hop. Whoever cannot make even
+# the top gap goes in the water. Three populations, three routes.
+#
+# WATER IS A REAL THIRD AXIS here, not a hazard: the swim envelope is a separate
+# system from land surface_response, so a swimmer is genuinely fast in the 24 m
+# lakes while a clawed jumper is fast on the wood. Every lake is flanked by rock
+# islands at the SAME level - you cannot take off from water
+# (`reachability.cpp:441`), so a swimmer must be able to WALK out, and it can.
+#
+# The start apron (0..52) is DRY ROCK - the paddock must stand on solid ground,
+# and a field that began in the water would be swimming before it raced.
+# Rock ground and islands, wood towers, per D-202's Hanoi character.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "hanoi_flood"
+name = "Hanoi The Flood"
+schema_version = 1
+biome_skin = "hanoi"
+nominal_length_m = 560
+
+[race]
+paddock_x = 5.0
+paddock_y = 0.0
+finish_x = 540
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 52.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 52.0
+x_end = 68.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 68.0
+x_end = 92.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 92.0
+x_end = 108.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 108.0
+x_end = 132.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 132.0
+x_end = 148.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 148.0
+x_end = 172.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 172.0
+x_end = 188.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 188.0
+x_end = 212.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 212.0
+x_end = 228.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 228.0
+x_end = 252.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 252.0
+x_end = 268.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 268.0
+x_end = 292.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 292.0
+x_end = 308.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 308.0
+x_end = 332.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 332.0
+x_end = 348.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 348.0
+x_end = 372.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 372.0
+x_end = 388.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 388.0
+x_end = 412.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 412.0
+x_end = 428.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 428.0
+x_end = 452.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 452.0
+x_end = 468.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 468.0
+x_end = 492.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 492.0
+x_end = 508.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 508.0
+x_end = 560.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 52.0
+x_end = 68.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 50.0
+x_end = 70.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 48.0
+x_end = 72.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 46.0
+x_end = 74.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 44.0
+x_end = 76.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 92.0
+x_end = 108.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 90.0
+x_end = 110.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 88.0
+x_end = 112.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 86.0
+x_end = 114.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 84.0
+x_end = 116.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 132.0
+x_end = 148.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 150.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 128.0
+x_end = 152.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 126.0
+x_end = 154.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 124.0
+x_end = 156.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 172.0
+x_end = 188.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 170.0
+x_end = 190.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 168.0
+x_end = 192.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 166.0
+x_end = 194.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 164.0
+x_end = 196.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 212.0
+x_end = 228.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 210.0
+x_end = 230.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 208.0
+x_end = 232.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 206.0
+x_end = 234.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 204.0
+x_end = 236.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 252.0
+x_end = 268.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 250.0
+x_end = 270.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 248.0
+x_end = 272.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 246.0
+x_end = 274.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 244.0
+x_end = 276.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 292.0
+x_end = 308.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 290.0
+x_end = 310.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 288.0
+x_end = 312.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 286.0
+x_end = 314.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 284.0
+x_end = 316.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 332.0
+x_end = 348.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 330.0
+x_end = 350.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 328.0
+x_end = 352.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 326.0
+x_end = 354.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 324.0
+x_end = 356.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 372.0
+x_end = 388.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 370.0
+x_end = 390.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 368.0
+x_end = 392.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 366.0
+x_end = 394.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 364.0
+x_end = 396.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 412.0
+x_end = 428.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 410.0
+x_end = 430.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 408.0
+x_end = 432.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 406.0
+x_end = 434.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 404.0
+x_end = 436.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 452.0
+x_end = 468.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 450.0
+x_end = 470.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 448.0
+x_end = 472.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 446.0
+x_end = 474.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 444.0
+x_end = 476.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 492.0
+x_end = 508.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 490.0
+x_end = 510.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 488.0
+x_end = 512.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 486.0
+x_end = 514.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 484.0
+x_end = 516.0
+y = 8.0
+surface_id = "wood"

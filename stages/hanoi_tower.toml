@@ -1,0 +1,718 @@
+# Hanoi "The Tower" - SIGNATURE (T-586 / D-203), band 100-200.
+#
+# Roster: "A high stacked vertical straight-up race." Ian 2026-08-28: "A tower
+# with 5 different ladders each 10m right next to each other. The first with
+# rungs P0 the next P25 the next P50 and the next P75 and the last P95."
+#
+# FIVE PARALLEL LADDERS, GRADED BY RUNG HEIGHT - the canyon's idea stood upright.
+# Every column climbs the same 40 m; they differ only in how big each step is, so
+# a lizard picks the hardest ladder it can actually climb and pays in rungs for
+# anything easier. Rung heights are read off the pooled step-up census (10,400
+# samples, 800 bodies x 13 ages); the P is the share of the field SHUT OUT:
+#
+#   column   P     rung     climbs it    rungs to the top
+#     1    P0     1.4 m     100%           29
+#     2    P25    2.0 m      75%           20
+#     3    P50    2.2 m      50%           19
+#     4    P75    2.4 m      25%           17
+#     5    P95    3.2 m       5%           13
+#
+# NOTE THE MIDDLE THREE ARE NEARLY THE SAME GATE. Step-up capability is tightly
+# clustered - P25/P50/P75 are 2.0 / 2.2 / 2.4 m - so columns 2-4 sort weakly and
+# the real decision is column 1 against column 5. That is a property of the
+# population, not of the build: the honest spread is 1.4 m vs 3.2 m.
+#
+# THE FINISH IS AT THE TOWER'S FAR TOP RIGHT (Ian), directly above the hardest
+# ladder, and that is what makes the grading a TRADE rather than a pure gate:
+# column 5 is both the steepest climb AND the shortest line to the flag, while
+# column 1 is climbable by anyone but lands you 50 m of summit away from it.
+# A centre finish (the first cut) gave the easy ladder no penalty at all.
+#
+# NOTE THE SHAFTS ARE OPEN TO EACH OTHER - no dividers (Ian). Adjacent columns
+# are laterally linked: a hop from one column's rung to the next is a ~10 m gap
+# at a ~2 m rise, a P50 jump, so roughly half the field CAN weave between shafts
+# and take whichever rung is cheapest at each level. The tower is therefore a
+# graded lattice rather than five sealed ladders - deliberate.
+#
+# Rungs are stacked FLUSH within a column (legal since T-593 discharged the
+# stagger rule). Rock ground, wood rungs and platform per D-202's Hanoi
+# character - hard rock ground, wood and rock platforms, lots of verticality.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "hanoi_tower"
+name = "Hanoi The Tower"
+schema_version = 1
+biome_skin = "hanoi"
+nominal_length_m = 180
+
+[race]
+paddock_x = 10.0
+paddock_y = 0.0
+finish_x = 150.0
+finish_y = 40.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 180.0
+y = 0.0000
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 1.3793
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 2.7586
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 4.1379
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 5.5172
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 6.8966
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 8.2759
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 9.6552
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 11.0345
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 12.4138
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 13.7931
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 15.1724
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 16.5517
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 17.9310
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 19.3103
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 20.6897
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 22.0690
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 23.4483
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 24.8276
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 26.2069
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 27.5862
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 28.9655
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 30.3448
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 31.7241
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 33.1034
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 34.4828
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 35.8621
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 37.2414
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 110.0
+y = 38.6207
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 2.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 4.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 6.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 8.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 10.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 12.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 14.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 16.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 18.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 20.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 22.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 24.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 26.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 28.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 30.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 32.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 34.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 36.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 120.0
+y = 38.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 2.1053
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 4.2105
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 6.3158
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 8.4211
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 10.5263
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 12.6316
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 14.7368
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 16.8421
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 18.9474
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 21.0526
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 23.1579
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 25.2632
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 27.3684
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 29.4737
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 31.5789
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 33.6842
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 35.7895
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 130.0
+y = 37.8947
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 2.3529
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 4.7059
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 7.0588
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 9.4118
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 11.7647
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 14.1176
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 16.4706
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 18.8235
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 21.1765
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 23.5294
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 25.8824
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 28.2353
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 30.5882
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 32.9412
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 35.2941
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 37.6471
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 3.0769
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 6.1538
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 9.2308
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 12.3077
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 15.3846
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 18.4615
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 21.5385
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 24.6154
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 27.6923
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 30.7692
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 33.8462
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 150.0
+y = 36.9231
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 158.0
+y = 40.0000
+surface_id = "wood"

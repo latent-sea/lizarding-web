@@ -1,0 +1,79 @@
+# Hanoi-265 - roster baseline, band 200-300 (T-586 / D-203).
+# Sheet spec: "Start on top of tower of platforms - jump down into water - rock
+# rest of floor". Ian 2026-08-26: 12 m tower, no ladders, 40 m water.
+#   TOWER   a stack of wood decks (Hanoi convention: scaffolding is wood,
+#           structure is rock) rising to 12.0 m - FLUSH-STACKED as authored,
+#           12/9/6/3 with each deck under the one above. Above the 8.5 m mount
+#           ceiling, so leaving the top is a one-way commitment; that is fine
+#           here because nothing on the tower is needed after the start.
+#           KNOWN: ~1-2 lizards in 50 stall on the top deck and DNF against
+#           this geometry - a suspected PLANNER DEFECT (routes demonstrably
+#           exist and are not taken), tracked as its own sim task with a
+#           minimal repro at _capability_ladders/repro_flush_stack.toml. Ian
+#           ruled the tower stays as designed and the SIM gets fixed, rather
+#           than the stage being reshaped around the bug.
+#   DIVE    the opening move is an airborne arc terminating on water - no new
+#           mechanic, just a platform placed at height above it (Ian's ruling).
+#   WATER   40 m of swim from the tower base to the far bank; flush bank so
+#           swimmers glide out (no jump-takeoff from water).
+#   ROCK    hard_rock floor for the rest, the biome's ground surface.
+# Name = MEASURED distance: finish_x tuned by probe. Run-out 12 m.
+
+[stage]
+id = "hanoi_265"
+name = "Hanoi 265 m"
+schema_version = 1
+biome_skin = "hanoi"
+nominal_length_m = 263
+
+[race]
+paddock_x = 6.0
+paddock_y = 12.0
+finish_x = 263
+finish_y = 0.0
+
+# Water landing zone, right off the tower.
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 55
+y = 0.0
+surface_id = "water"
+depth = 4.0
+
+# Rock floor, the rest of the way.
+[[primitives]]
+type = "surface"
+x_start = 55
+x_end = 275
+y = 0.0
+surface_id = "hard_rock"
+
+# The tower: flush-stacked wood decks, as originally authored.
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 15
+y = 12.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 11
+y = 9.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 8
+y = 6.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 5
+y = 3.0
+surface_id = "wood"

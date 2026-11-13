@@ -1,0 +1,85 @@
+# T-658 (Ian, 2026-11-01): hedges 0.5 m wide, 2.6, 2.2, 1.8, then three at 1.5 m (rung 0 mounts 1.63 m). With the drop
+# fully on 73% finish, was 11%; by drop third 94 / 82 / 44%. The heights and widths in the notes below are the stage before.
+#
+# Wales-435 - roster baseline, band 400-500 (T-586 / D-203).
+# Sheet spec: "80% dirt at beginning 20% mud at end, three obstacles at 20% 40%
+# 60% hedge variety". Amended by Ian 2026-08-26: keep dry; MORE hedges (six, the
+# three were too sparse); hedges 2 m wide, gated P15 rising LINEARLY to P25 -
+# heights interpolated off the census width-2 obstacle envelope (clear fractions
+# 85%..75%): 2.06/2.13/2.19/2.26/2.33/2.40 m at 12/24/36/48/60/72%. Attrition by
+# design: ~15% of a pooled field stops at hedge one, ~25% gone by the last -
+# hedges cannot be declined, so the DNFs are the stage's statement (enter the
+# wrong lizard and it does not finish). Hedge DISPLAY variant is T-588's lane.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "wales_435"
+name = "Wales 435 m"
+schema_version = 1
+biome_skin = "wales"
+nominal_length_m = 424.7
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 424.7
+finish_y = 0.0
+
+# Dirt (~80%).
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 348
+y = 0.0
+surface_id = "standard_dirt"
+
+# The bog (~20%).
+[[primitives]]
+type = "surface"
+x_start = 348
+x_end = 446
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 52.0
+x_end = 52.5
+bottom_y = 0.0
+top_y = 2.6
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 104.0
+x_end = 104.5
+bottom_y = 0.0
+top_y = 2.2
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 157.0
+x_end = 157.5
+bottom_y = 0.0
+top_y = 1.8
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 209.0
+x_end = 209.5
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 261.0
+x_end = 261.5
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 313.0
+x_end = 313.5
+bottom_y = 0.0
+top_y = 1.5
+

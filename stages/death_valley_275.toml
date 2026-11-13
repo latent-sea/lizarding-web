@@ -1,0 +1,131 @@
+# T-658 (Ian, 2026-11-01): ramp treads 1.55 m to 4.65 m, step 1.55 m onto a 6.2 m mesa, walls 5.8 m (rung 0 mounts 1.63 m).
+# With the drop fully on 100% finish, was 64%. Heights below are the stage before.
+#
+# Death Valley-275 - roster baseline, band 200-300 (T-586 / D-203).
+# Sheet spec: "100% dirt floor, 80% platform rock", under Ian's option-B ruling:
+# rock earns election by being the UNOBSTRUCTED route ("use obstacles to block
+# paths below"), blockers at P95 (~5% clear).
+#   walls 6.0 m x 2 m  = census pooled clear-rate ~5%
+#   mesa y = 6.5       = rock; THE PADDOCK IS ON IT (a stair up from the floor
+#                        failed - 5 m treads are too small to mount)
+#   SCREE RAMPS        = Ian's ruling (a) after the measured trap (27/50 DNF:
+#                        knocked-off lizards died between walls). One ramp per
+#                        walled floor section - three 15 m treads rising 1.6
+#                        (below the p05 mount floor of 1.8) to 4.8, then a 1.7
+#                        step onto the mesa. Every lizard can climb out; the
+#                        elite bypass survives; the trap is gone.
+# Name = MEASURED distance: finish_x tuned by probe. Run-out >= 5 m.
+
+[stage]
+id = "death_valley_275"
+name = "Death Valley 275 m"
+schema_version = 1
+biome_skin = "death_valley"
+nominal_length_m = 256
+
+[race]
+paddock_x = 1.0
+paddock_y = 6.2
+finish_x = 256
+finish_y = 0.0
+
+# The rock mesa - default road and paddock.
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 215
+y = 6.2
+surface_id = "hard_rock"
+
+# The fast dirt floor below.
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 300
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 60.0
+x_end = 62.0
+bottom_y = 0.0
+top_y = 5.8
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 130.0
+x_end = 132.0
+bottom_y = 0.0
+top_y = 5.8
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 200.0
+x_end = 202.0
+bottom_y = 0.0
+top_y = 5.8
+
+[[primitives]]
+type = "surface"
+x_start = 8
+x_end = 23
+y = 1.55
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 23
+x_end = 38
+y = 3.1
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 38
+x_end = 53
+y = 4.65
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 68
+x_end = 83
+y = 1.55
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 83
+x_end = 98
+y = 3.1
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 98
+x_end = 113
+y = 4.65
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 138
+x_end = 153
+y = 1.55
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 153
+x_end = 168
+y = 3.1
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 168
+x_end = 183
+y = 4.65
+surface_id = "hard_rock"
+

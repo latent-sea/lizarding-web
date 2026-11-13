@@ -1,0 +1,192 @@
+# Jungle-Stepping stones - SIGNATURE, band 400-500 (T-586 / D-203).
+# Ledger concept: small platforms over water; a miss lands in the water and
+# swims on - jump ability buys SPEED, not survival.
+# Ian 2026-08-26, over several passes: vary the jumps; escalate P10 -> P95;
+# shape the escalation as an ELBOW two thirds along; and cut the RUN-IN 5x.
+#   NOTE ON "RUN-IN": it means the FINAL STRAIGHT to the finish, not the
+#   approach to the chain. It was 153 m of mud after the water and is now 31 m -
+#   the chain now runs almost to the line, so the last and hardest hops decide
+#   the race instead of a long flat gallop afterwards.
+#   start      26 m of mud to stand the field up.
+#   stones     19 wood platforms, 6 m each, 1.6 m above the water. The chain
+#              grew from 14 to 20 to keep the stage in band once the run-in was
+#              cut - the extra stones land in the easy section, which lengthens
+#              the truce rather than the reckoning.
+#   gaps       ELBOW AT STONE 13 (66% along). Hops 1-13 creep P10 -> P25
+#              (10-13 m: nine in ten clear them, the field stays whole and
+#              fast); hops 14-20 ramp P25 -> P95 (14 -> 24 m) and shed the pack
+#              late. Measured against a linear ramp with the same endpoints, the
+#              elbow returns the median while keeping the tail - the escalation
+#              SHAPE is its own lever.
+#   the point  NO JUMP TAKEOFF FROM WATER: a lizard that misses cannot rejoin
+#              the chain, it swims the rest. Nobody is eliminated.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "jungle_stepping_stones"
+name = "Jungle Stepping Stones"
+schema_version = 1
+biome_skin = "jungle"
+nominal_length_m = 428.0
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 428.0
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 26.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 26.0
+x_end = 404.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 404.0
+x_end = 447.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 30.0
+x_end = 36.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 46.0
+x_end = 52.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 62.0
+x_end = 68.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 78.0
+x_end = 84.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 94.0
+x_end = 100.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 111.0
+x_end = 117.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 128.0
+x_end = 134.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 145.0
+x_end = 151.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 162.0
+x_end = 168.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 179.0
+x_end = 185.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 197.0
+x_end = 203.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 215.0
+x_end = 221.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 233.0
+x_end = 239.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 252.0
+x_end = 258.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 272.0
+x_end = 278.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 294.0
+x_end = 300.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 317.0
+x_end = 323.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 342.0
+x_end = 348.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 368.0
+x_end = 374.0
+y = 1.6
+surface_id = "wood"
+

@@ -1,0 +1,41 @@
+# Wales-535 - roster baseline, band 500-600 (T-586 / D-203).
+# REBALANCED FLAT (T-659, Ian 2026-10-25). The nineteen-shelf mountain is gone; what is
+# left is the valley it stood in: dirt approaches at both ends and the mud gully between
+# them, all at grade. A long flat for stayers where the mud is the sort: dirt 55% / mud
+# 45%, a ratio no other flat carries (wales_335 is 75/25 at 335 m). Nothing to mount, so
+# nothing is jumped. Name = MEASURED distance: finish_x kept from the probed build.
+
+[stage]
+id = "wales_535"
+name = "Wales 535 m"
+schema_version = 1
+biome_skin = "wales"
+nominal_length_m = 506.1
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 506.1
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 130.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 380.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 380.0
+x_end = 542.0
+y = 0.0
+surface_id = "standard_dirt"
+

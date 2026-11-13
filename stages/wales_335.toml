@@ -1,0 +1,90 @@
+# Wales-335 - roster baseline, band 300-400 (T-586 / D-203).
+# Sheet spec: "15% dirt 5% mud repeated 5 times - no obstacles"; Ian: keep it
+# dry. Five re-acceleration cycles - 50.3 m dirt / 16.8 m mud, five times over,
+# start on dirt, finish standing in the fifth bog. The transition-pricing stage:
+# mud patches too short to slog, each one is a brake-and-relaunch.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "wales_335"
+name = "Wales 335 m"
+schema_version = 1
+biome_skin = "wales"
+nominal_length_m = 336
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 336
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 50.3
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 50.3
+x_end = 67.1
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 67.1
+x_end = 117.4
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 117.4
+x_end = 134.2
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 134.2
+x_end = 184.5
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 184.5
+x_end = 201.3
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 201.3
+x_end = 251.6
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 251.6
+x_end = 268.4
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 268.4
+x_end = 318.7
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 318.7
+x_end = 346.0
+y = 0.0
+surface_id = "mud"
+

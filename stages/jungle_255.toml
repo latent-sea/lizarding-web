@@ -1,0 +1,60 @@
+# Jungle-255 - roster baseline, band 200-300 (T-586 / D-203). Rev 2, 2026-08-26:
+# gates re-derived from the CENSUS (pooled bench corpus, all ages - Ian's rule),
+# replacing the original un-aged-probe tuning; and the GAP POND added (Ian's
+# water-retrofit slate: max 10% of the stage).
+#   platform y = 1.8   = pooled mount-from-floor p10 ("90% can get to it")
+#   gap 10.0 m         = pooled level-gap p10 ("90% can cross")
+#   pond [119..137]    = 18 m water (7%) under the gap: a missed gap-jump is a
+#                        SPLASH - swim out at the flush bank, remount, carry on.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "jungle_255"
+name = "Jungle 255 m"
+schema_version = 1
+biome_skin = "jungle"
+nominal_length_m = 250.5
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 250.5
+finish_y = 0.0
+
+# Floor: mud, with the gap pond inset under the platform gap.
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 119
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 119
+x_end = 137
+y = 0.0
+surface_id = "water"
+depth = 2.5
+
+[[primitives]]
+type = "surface"
+x_start = 137
+x_end = 260
+y = 0.0
+surface_id = "mud"
+
+# The wood platform: middle ~80% of the raced span, one 10 m gap over the pond.
+[[primitives]]
+type = "surface"
+x_start = 26
+x_end = 122
+y = 1.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 132
+x_end = 230
+y = 1.8
+surface_id = "wood"

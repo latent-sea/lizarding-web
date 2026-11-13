@@ -1,0 +1,336 @@
+# Jungle-Canopy - SIGNATURE, band 600-700 (T-586 / D-203).
+# Ledger concept: high canopy wood route with gaps to hold, over mud; trunk
+# climbs let fallen lizards re-ascend. Ian 2026-08-26: two rows, varied spacing,
+# "like the monkey one but with a bigger fall - and then the routes up".
+# CORRECTED same day, on Ian's reading: a first build seeded the two rows
+# INDEPENDENTLY so their gaps never aligned - "making the gaps never line up
+# means there is never any big jumps without a second platform to catch them".
+# Exactly right: with a catch always available, no gap was ever a real jump.
+#   canopy     TWO rows at 9.6 and 11.2 (1.6 apart, a P10 hop between them).
+#   safe gaps  WITHIN a section the two rows' gaps are offset and small (7-12 m,
+#              level-gap P05-P15) - miss one and the other row catches you. This
+#              is the fast, forgiving travelling.
+#   ALIGNED BREAKS  five places where BOTH ROWS STOP DEAD, so there is nothing
+#              to catch you and the jump is real: 13 / 16 / 19 / 22 / 16 m -
+#              level-gap P25 / P50 / P75 / P90 / P50. Miss one and it is a 9.6 m
+#              fall to the mud and a slog to the next trunk. These five moments
+#              are the stage.
+#   trunks     three flush wood columns (rungs 1.6-8.0, then a 1.6 m step onto
+#              the canopy), each snapped under a row-A span so the climb always
+#              meets something. Sparse: a fall is expensive.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "jungle_canopy"
+name = "Jungle Canopy"
+schema_version = 1
+biome_skin = "jungle"
+nominal_length_m = 635
+
+[race]
+paddock_x = 23.0
+paddock_y = 9.6
+finish_x = 635
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 690
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 20.0
+x_end = 46.1
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 55.4
+x_end = 115.0
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 128.0
+x_end = 166.3
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 174.3
+x_end = 215.0
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 231.0
+x_end = 257.1
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 267.2
+x_end = 294.0
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 304.6
+x_end = 330.0
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 349.0
+x_end = 398.4
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 407.7
+x_end = 449.8
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 472.0
+x_end = 520.9
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 532.3
+x_end = 545.0
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 561.0
+x_end = 620.0
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 20.0
+x_end = 43.3
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 51.3
+x_end = 93.2
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.9
+x_end = 115.0
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 128.0
+x_end = 151.9
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 160.5
+x_end = 182.6
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 191.0
+x_end = 215.0
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 231.0
+x_end = 274.4
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 284.6
+x_end = 330.0
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 349.0
+x_end = 373.5
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 384.7
+x_end = 423.5
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 431.6
+x_end = 450.0
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 472.0
+x_end = 505.1
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 512.5
+x_end = 545.0
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 561.0
+x_end = 595.2
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 605.8
+x_end = 620.0
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 162.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 162.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 162.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 162.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 162.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 360.0
+x_end = 372.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 360.0
+x_end = 372.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 360.0
+x_end = 372.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 360.0
+x_end = 372.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 360.0
+x_end = 372.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 500.0
+x_end = 512.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 500.0
+x_end = 512.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 500.0
+x_end = 512.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 500.0
+x_end = 512.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 500.0
+x_end = 512.0
+y = 8.0
+surface_id = "wood"
+

@@ -1,0 +1,116 @@
+# Hanoi "The Wall" - SIGNATURE (T-586 / D-203), band 200-300.
+#
+# Roster: "A wall too tall for weak jumpers, with a legal long-way detour; strong
+# jumpers go over, the rest sort into the detour." Ian chose the FORK over the
+# feat - a wall a large minority clears, so both routes carry a crowd.
+#
+# THIS IS THE OBSTACLE DONE RIGHT, the counterpart to the Hedgerow. D-210: an
+# obstacle cannot be DECLINED, so alone it either does nothing or eliminates.
+# Give it a legal detour and it inverts into a ditch-style SELECTOR where failing
+# is a survivable cost. The wall is 3.8 m at 2 m wide = 38% clear it (pooled
+# obstacle census; at that width 1.8 m is 92%, 5.0 m is 17%, 7.0 m is 3%).
+#
+# THE DETOUR CLIMBS BACKWARD, AND THAT IS THE WHOLE POINT. Built first with the
+# stairs advancing FORWARD 10 m per rung and 50 of 50 took the detour - the wall
+# was scenery. The reason is the same one the High Road taught: the route search
+# prices a jump as max(air_time, ground_equivalent), so a rung that carries you
+# 10 m forward costs almost exactly what WALKING those 10 m costs - a forward
+# staircase is a walk with extra steps, and climbing it is free. Turned around,
+# the detour runs 42 m BACKWARD to climb, then must re-cover that ground on the
+# bridge: ~84 m of wasted horizontal plus 16 m of climbing, against one jump.
+# GENERAL RULE: a detour only costs something if it moves you AWAY from the line.
+#
+# Top rung and bridge are ONE span - two surfaces may not share a y. Rungs 12 m
+# wide advancing 10 m (2 m overlap, rule 5b). Rock ground, wood stairs and
+# bridge per D-202's Hanoi character.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "hanoi_wall"
+name = "Hanoi The Wall"
+schema_version = 1
+biome_skin = "hanoi"
+nominal_length_m = 200
+
+[race]
+paddock_x = 10.0
+paddock_y = 0.0
+finish_x = 190
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 200.0
+y = 0.0000
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 78.0
+x_end = 90.0
+y = 1.6000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 68.0
+x_end = 80.0
+y = 3.2000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 58.0
+x_end = 70.0
+y = 4.8000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 48.0
+x_end = 60.0
+y = 6.4000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 46.0
+x_end = 115.0
+y = 8.0000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 113.0
+x_end = 125.0
+y = 6.4000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 123.0
+x_end = 135.0
+y = 4.8000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 133.0
+x_end = 145.0
+y = 3.2000
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 143.0
+x_end = 155.0
+y = 1.6000
+surface_id = "wood"
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 100.0
+x_end = 102.0
+bottom_y = 0.0
+top_y = 3.8

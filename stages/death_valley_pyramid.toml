@@ -1,0 +1,416 @@
+# T-658 (Ian, 2026-11-01: redesign the stages over 50% DNF): STEPS 1.55 m, TIERS 15.5 m, same plan and widths.
+# Under the body map a jump can fall to 4.0 m/s (rung 0), which mounts 4.0^2/9.81 = 1.63 m; the old 1.7 m step
+# stranded every lizard that had dropped there (3% finished, drop fully on; 100% at 1.55). The map's top launch
+# is 11.6 m/s, which mounts 13.7 m, so a 15.5 m tier still cannot be mounted straight and the hairpins hold.
+# The heights in the notes below are the stage before this change.
+#
+# Death Valley "The Pyramid" - SIGNATURE (T-586 / D-203), band 600-700.
+#
+# Roster: "A stepped pyramid climbed switchback - the field runs left to right
+# repeatedly, reversing at every tier." Ian 2026-08-28, rejecting a first cut
+# that split the climb from each tier's MIDDLE: "it is all jump and no running...
+# They start bottom left then run to right - the stairs there go out to the right
+# then back to the left to get to the next stage, they then have to run over the
+# left where the double back stairs happen again - and so on."
+#
+# THE STAIRS ARE HAIRPINS AT THE TIER ENDS, NOT A V AT THE MIDDLE. That is the
+# whole difference: a middle-split makes every leg a HALF tier and the stage
+# becomes climbing with running in between. An end hairpin goes OUT past the tier
+# edge, doubles BACK inward, and delivers the lizard one tier up AT THE SAME END -
+# so it sets off across the FULL width the other way. Running dominates and the
+# reversals are the punctuation.
+#
+# TIERS ARE 17 m APART AND THAT IS LOAD-BEARING. A switchback cannot be forced
+# with tiers a lizard can mount: wherever platforms overlap a lizard hops between them and the
+# route search climbs at the earliest legal point, so an ordinary ziggurat gives
+# a DIAGONAL up one side. Above 16.4 m nothing can be mounted, so the hairpins are the only way up.
+#
+# LIFTED FROM 9.6 m TO 17 m (T-624, Ian 2026-10-04: "need their levels lifting higher because lizards are
+# evolving to just jump up in one go and skip the running back and forth"; then "Make them 17m"). 9.6 m
+# stood on a census of RANDOM lizards (mount topped out at 8.5 m). Twenty generations of selection broke it:
+# of the 780 T-624 specialists 318 mount a 9.6 m ledge straight from the floor and the best four mount 12.8 m.
+# 17 m STANDS ON THE CEILING, NOT ON A CENSUS. A mount reaches v*v/g, and the launch speed cannot exceed
+# 8.0 (the body's cap) x 1.30 (full grip) x 1.22 (the top of the legs_to_jump tower) = 12.69 m/s, so nothing
+# this genome can breed mounts more than 16.4 m - measured: all 780 given that launch get onto 16.4 m and
+# none onto 16.8 m.
+# IF THE BODY CAP, THE GRIP GAIN OR THE TOWER BAND IS RAISED, RE-DERIVE THIS HEIGHT: 17 m stops holding at a
+# tower top of 1.25.
+# Each hairpin is now 9 rungs 1.7 m apart: four OUT past the tier end, one turning rung directly above the
+# fourth, four BACK, the last overlapping the tier above - the same out-and-back shape, taller.
+#
+# Rungs 12 m wide advancing 10 m - shallow, 2 m overlap (rule 5b; gapped rungs add a
+# failure mode and cost 5 DNF in 50 on the High Road). A reversing landing STICKS
+# at v=0 (D-138), so the field visibly stops and turns at every hairpin.
+# Tier widths 80, 70, 60, 50, 40 m; apex y=85.0, finish at its centre.
+# ALL ROCK structure on a DIRT floor (Ian). Death Valley has no water (D-202).
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "death_valley_pyramid"
+name = "Death Valley The Pyramid"
+schema_version = 1
+biome_skin = "death_valley"
+nominal_length_m = 300
+
+[race]
+paddock_x = 10.0
+paddock_y = 0.0
+finish_x = 112.0
+finish_y = 77.5
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 300.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 72.0
+x_end = 152.0
+y = 15.5
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 80.0
+x_end = 150.0
+y = 31.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 82.0
+x_end = 142.0
+y = 46.5
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 90.0
+x_end = 140.0
+y = 62.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 92.0
+x_end = 132.0
+y = 77.5
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 160.0
+x_end = 172.0
+y = 1.55
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 170.0
+x_end = 182.0
+y = 3.1
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 180.0
+x_end = 192.0
+y = 4.65
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 190.0
+x_end = 202.0
+y = 6.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 190.0
+x_end = 202.0
+y = 7.75
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 180.0
+x_end = 192.0
+y = 9.3
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 170.0
+x_end = 182.0
+y = 10.85
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 160.0
+x_end = 172.0
+y = 12.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 162.0
+y = 13.95
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 60.0
+x_end = 72.0
+y = 17.05
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 50.0
+x_end = 62.0
+y = 18.6
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 40.0
+x_end = 52.0
+y = 20.15
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 30.0
+x_end = 42.0
+y = 21.7
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 30.0
+x_end = 42.0
+y = 23.25
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 40.0
+x_end = 52.0
+y = 24.8
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 50.0
+x_end = 62.0
+y = 26.35
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 60.0
+x_end = 72.0
+y = 27.9
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 70.0
+x_end = 82.0
+y = 29.45
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 162.0
+y = 32.55
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 160.0
+x_end = 172.0
+y = 34.1
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 170.0
+x_end = 182.0
+y = 35.65
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 180.0
+x_end = 192.0
+y = 37.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 180.0
+x_end = 192.0
+y = 38.75
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 170.0
+x_end = 182.0
+y = 40.3
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 160.0
+x_end = 172.0
+y = 41.85
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 162.0
+y = 43.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 152.0
+y = 44.95
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 70.0
+x_end = 82.0
+y = 48.05
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 60.0
+x_end = 72.0
+y = 49.6
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 50.0
+x_end = 62.0
+y = 51.15
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 40.0
+x_end = 52.0
+y = 52.7
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 40.0
+x_end = 52.0
+y = 54.25
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 50.0
+x_end = 62.0
+y = 55.8
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 60.0
+x_end = 72.0
+y = 57.35
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 70.0
+x_end = 82.0
+y = 58.9
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 80.0
+x_end = 92.0
+y = 60.45
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 152.0
+y = 63.55
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 162.0
+y = 65.1
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 160.0
+x_end = 172.0
+y = 66.65
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 170.0
+x_end = 182.0
+y = 68.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 170.0
+x_end = 182.0
+y = 69.75
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 160.0
+x_end = 172.0
+y = 71.3
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 150.0
+x_end = 162.0
+y = 72.85
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 152.0
+y = 74.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 142.0
+y = 75.95
+surface_id = "hard_rock"

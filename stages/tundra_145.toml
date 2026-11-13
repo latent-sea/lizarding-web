@@ -1,0 +1,60 @@
+# Tundra-145 - roster baseline, band 100-200 (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "Rock, mud, dirt, water, dirt - equal
+# distances per section". Five 29 m bands, nothing else - Tundra's character is
+# "varied but sparse", and this is that stated at its plainest: every dry
+# surface in the game plus a water crossing, in equal measure, with NO
+# obstacles (D-202: Tundra has none) and no platforms.
+# The water sits flush with its banks so swimmers glide out (no jump-takeoff
+# from water). 29 m of water = 20% - the wettest band ratio outside Shore, but
+# it is one crossing, not a character.
+# Name = MEASURED distance: paddock x=1, finish 146 -> 145 m raced.
+
+[stage]
+id = "tundra_145"
+name = "Tundra 145 m"
+schema_version = 1
+biome_skin = "tundra"
+nominal_length_m = 146
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 146
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 29.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 29.0
+x_end = 58.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 58.0
+x_end = 87.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 87.0
+x_end = 116.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 116.0
+x_end = 156.0
+y = 0.0
+surface_id = "standard_dirt"
+

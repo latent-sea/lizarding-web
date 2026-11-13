@@ -1,0 +1,79 @@
+# Hanoi-465 - roster baseline, band 400-500 (T-586 / D-203).
+# Sheet spec: "Rock then water with wood platforms vertically stacked above the
+# rock - repeated a few times". Ian 2026-08-26: towers NARROW and NOT jumpable
+# between; the WATER gets platforms decent jumpers can reach; THREE channels.
+#   towers    NONE since T-659 (Ian 2026-10-25, "radically reduce the amount of
+#             jumping"): the three climbs and the dives off them were five of
+#             the eight jumps a race, and a wet stage wants three or fewer.
+#   channels  three 26 m water crossings with NO stepping platform (T-659): a
+#             lizard leaps at the water and swims the rest, one jump a channel.
+#             78 m of water = 17% of the course, a wet stage by the T-658
+#             regions, inside Hanoi's small-water character.
+#   floor     hard_rock street; flush banks so swimmers glide out.
+# Name = MEASURED distance: finish_x tuned by probe. Run-out >= 5 m.
+
+[stage]
+id = "hanoi_465"
+name = "Hanoi 465 m"
+schema_version = 1
+biome_skin = "hanoi"
+nominal_length_m = 452
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 452
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 90
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 116
+x_end = 200
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 226
+x_end = 310
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 336
+x_end = 470.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 90
+x_end = 116
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 200
+x_end = 226
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 310
+x_end = 336
+y = 0.0
+surface_id = "water"
+depth = 3.0
+

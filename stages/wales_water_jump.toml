@@ -1,0 +1,93 @@
+# Wales "The water jump" - SIGNATURE (T-586 / D-203), band 100-200.
+#
+# Ian: "one oversized compound obstacle: a hedge with water immediately behind
+# it; clearing is not enough, it must be spanned"; "difficult to have short
+# sections of water - might have to be stepped down hill"; then 2026-08-28:
+# "I want this leap high and I want two of them", and "has to be 100-200".
+#
+# THREE TIERS, TWO LEAPS: 9.6 -> 4.8 -> 0.0, each leap a 4.8 m drop. The band
+# forces the descending staircase - there is no room in 100-200 for the ground
+# to climb back between the leaps.
+#
+# HEIGHT IS WHAT GATES IT. Off a 4.8 m drop the two ways of leaving a ledge
+# separate cleanly (vx=6.8, vy=6.0, g=4.905):
+#     run off the edge  -> carries ~9.5 m
+#     commit a real leap -> carries ~21.0 m
+# so a 16 m pool is decisive: nothing but a genuine jump crosses, and
+# everything else goes in. This is "spanned, not merely cleared".
+#
+# The hedge is NOT the gate - per D-210 an obstacle cannot be declined, so it
+# can only eliminate or do nothing. Its real job here is as a TAKEOFF-LINE
+# ENFORCER: at 1.2 m it stops a lizard creeping to the water's edge for a
+# short hop, and adds its own width to the span that must be carried.
+#
+# Each pool ends FLUSH with dry ground on its own tier. That is compulsory, not
+# stylistic - `reachability.cpp:441`, "no takeoff from water (locked)" - so a
+# lizard that lands wet swims to the far side and WALKS out, losing real time
+# but never trapped. The miss is survivable, which is why this SORTS where the
+# hedgerow could not.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "wales_water_jump"
+name = "Wales The Water Jump"
+schema_version = 1
+biome_skin = "wales"
+nominal_length_m = 175
+
+[race]
+paddock_x = 2.0
+paddock_y = 9.6
+finish_x = 160.0
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 40.0
+y = 9.6
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 40.0
+x_end = 56.0
+y = 4.8
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 56.0
+x_end = 100.0
+y = 4.8
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 116.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 116.0
+x_end = 175.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 38.0
+x_end = 40.0
+bottom_y = 9.6
+top_y = 10.799999999999999
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 98.0
+x_end = 100.0
+bottom_y = 4.8
+top_y = 6.0

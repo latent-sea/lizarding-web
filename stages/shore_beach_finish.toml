@@ -1,0 +1,128 @@
+# T-658 (Ian, 2026-11-01: "Easier jumps 10% dnf"): crates 0.5 m wide, 1.8 m then five at 1.5 m (rung 0 mounts 1.63 m
+# and could not carry a 1 m or 2 m crate at all). With the drop fully on 90% finish; was 9%.
+# The crate ladder in the notes below is the stage before this change.
+#
+# Shore "Beach Finish" - SIGNATURE (T-586 / D-203), band 600-700. THE LAST OF THE 60.
+#
+# Roster: "All water until a dry run-in with crates on the shore; swimmers build a
+# lead, runners claw it back on the boards." Ian 2026-08-29: "50 50 with crates
+# progressively getting bigger from P05 to P50."
+#
+# ⚠ biome_skin is "coast", NOT "shore" - the ids are shore_* per the roster but the
+# palette key is D-202's biome name, and `biome_palettes.gd` falls back to JUNGLE
+# for anything unknown, silently.
+#
+# THE CORPUS'S ONLY COMEBACK STAGE. Two body types set against each other over
+# TIME rather than over route: swimmers own the 320 m of open water and arrive
+# ahead, runners get 325 m of dry shore to reel them in. Nothing else in the sixty
+# is shaped as a lead-and-chase. Ian set the split at 50/50.
+#
+# ⭐ THE CRATES ARE WHAT POWERS THE COMEBACK, WHICH IS THE OPPOSITE OF HOW THEY
+# LOOK. Per D-210, obstacles ACCELERATE races: jump_strength_h is 6.2-8.2 m/s
+# against a 4.9-5.6 m/s cruise, so every arc outpaces running and a 20-hedge course
+# measured 37 s FASTER than a flat one of the same length. The clutter in the
+# chasers' path is the thing that lets them chase.
+#
+# THE LADDER IS READ OFF THE POOLED OBSTACLE CENSUS (10,400 samples), not guessed -
+# height against clear-rate at 2 m wide, interpolated between measured rungs:
+#     crate 1: 1.6 m   P5   ~95% clear
+#     crate 2: 2.0 m   P14  ~86% clear
+#     crate 3: 2.3 m   P23  ~77% clear
+#     crate 4: 2.6 m   P32  ~68% clear
+#     crate 5: 2.9 m   P41  ~59% clear
+#     crate 6: 3.3 m   P50  ~50% clear
+#
+# ⚠ AND THAT MAKES THIS THE FIRST STAGE THAT ELIMINATES BY DESIGN. An obstacle
+# cannot be DECLINED (D-210) - there is no way round a crate on a beach - so every
+# lizard that cannot clear one is stopped there. The ladder ends at P50, so on the
+# census roughly half the field never reaches the line. That is a direct
+# consequence of Ian's P05->P50 instruction, stated here so nobody later reads the
+# DNF count as a defect. Measured DNFs are in the T-586 log.
+#
+# LAND IS DIRT (Ian, on the Pier: "land is dirt not wood") - the roster's "boards"
+# wording is not followed. Water + dirt + crates; the crate is the existing
+# obstacle visual, so no display work (T-588 only ever concerned the wales hedge).
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "shore_beach_finish"
+name = "Shore Beach Finish"
+schema_version = 1
+biome_skin = "coast"
+nominal_length_m = 665
+
+[race]
+paddock_x = 4.0
+paddock_y = 0.0
+finish_x = 650
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 20.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 20.0
+x_end = 340.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 340.0
+x_end = 665.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 385.0
+x_end = 385.5
+bottom_y = 0.0
+top_y = 1.8
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 430.0
+x_end = 430.5
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 475.0
+x_end = 475.5
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 520.0
+x_end = 520.5
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 565.0
+x_end = 565.5
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 610.0
+x_end = 610.5
+bottom_y = 0.0
+# T-586 (Ian, 2026-09-02): 3.3 -> 3.0. At 3.3 m x 2 m the stage DNF'd 70.4% of races and
+# only 31 of 800 lizards finished all 39 - because jump capability is FIXED per race
+# (D-132), so a lizard that clears the tallest crate clears every smaller one and this
+# ONE crate is the whole gate; the other five sort nobody. 3.0 is the height the obstacle
+# census actually measured at width 2 (58.3% of lizard-ages clear it) rather than an
+# interpolation. Ian: keep it a hard race, just let more through.
+top_y = 1.5

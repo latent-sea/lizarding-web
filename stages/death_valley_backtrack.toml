@@ -1,0 +1,135 @@
+# T-658 (Ian, 2026-11-01): ledges 1.55 m apart, mesa 15.5 m (rung 0 mounts 1.63 m; the top launch of 11.6 m/s mounts 13.7 m,
+# so the mesa still cannot be mounted straight). With the drop fully on 100% finish, was 21%. Heights below are the stage before.
+#
+# Death Valley "Backtrack" - SIGNATURE (T-586 / D-203), band 200-300.
+#
+# Roster: "Run the low ground rightward past the finish, climb the far end,
+# return leftward along the mesa top to an elevated line."
+#
+# THE MESA SITS AT 17 m AND THAT NUMBER IS LOAD-BEARING (see LIFTED below): at
+# 17 m the mesa is STRUCTURALLY unreachable from
+# the valley floor. That is what forces the whole out-leg: the planner elects the
+# shortest route, so at any lower height the field would climb at the first legal
+# point and the backtrack would never happen. Below ~16.5 m this stage does not exist.
+#
+# LIFTED FROM 9.6 m TO 17 m (T-624, Ian 2026-10-04: "need their levels lifting higher because lizards are
+# evolving to just jump up in one go and skip the running back and forth"; then "Make them 17m"). 9.6 m
+# stood on a census of RANDOM lizards (mount topped out at 8.5 m). Twenty generations of selection broke it:
+# of the 780 T-624 specialists 318 mount a 9.6 m ledge straight from the floor and the best four mount 12.8 m.
+# 17 m STANDS ON THE CEILING, NOT ON A CENSUS. A mount reaches v*v/g, and the launch speed cannot exceed
+# 8.0 (the body's cap) x 1.30 (full grip) x 1.22 (the top of the legs_to_jump tower) = 12.69 m/s, so nothing
+# this genome can breed mounts more than 16.4 m - measured: all 780 given that launch get onto 16.4 m and
+# none onto 16.8 m.
+# IF THE BODY CAP, THE GRIP GAIN OR THE TOWER BAND IS RAISED, RE-DERIVE THIS HEIGHT: 17 m stops holding at a
+# tower top of 1.25.
+#
+# CLIMB LEDGES MUST OVERLAP, NOT ABUT. Built first with ledges meeting edge-to-
+# edge (4 m wide, 4 m apart) and it produced 40 DNF in 50: a zero-width
+# edge-touch is not somewhere a 1 m body can stand, so the staircase dead-ended
+# and four fifths of the field never reached the mesa. Ledges are now 4 m wide
+# stepping 2 m, so consecutive ledges share 2 m of standable overlap, and the
+# mesa overlaps the top ledge outright. Worth carrying as an authoring rule:
+# a climb chain needs a BODY WIDTH of overlap at every rung.
+#
+# One way up, at the far end (9 ledges, 1.7 m apart, ascending LEFTWARD), so the
+# whole field reverses together on the mesa top. This is a SHAPE signature, not a
+# sorter - every lizard runs the identical route and only speed separates them.
+# Named as such deliberately (cf. D-210 and the Hedgerow): the drama is the mass
+# reversal, and nothing is claimed about selection. The graded alternative -
+# several climb points at different difficulties - was offered and declined.
+#
+# The finish is ELEVATED (validation rule 5 permits it) and the field arrives
+# travelling LEFT, so the 6 m of run-out is to the LEFT of the line.
+# Dirt valley floor, ROCK mesa and ledges - D-202's "mixture of dirt and rock",
+# and it reads the two legs apart. Death Valley has no water.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "death_valley_backtrack"
+name = "Death Valley Backtrack"
+schema_version = 1
+biome_skin = "death_valley"
+nominal_length_m = 150
+
+[race]
+paddock_x = 2.0
+paddock_y = 0.0
+finish_x = 40
+finish_y = 15.5
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 150.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 34.0
+x_end = 131.0
+y = 15.5
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 143.0
+x_end = 147.0
+y = 1.55
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 141.0
+x_end = 145.0
+y = 3.1
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 139.0
+x_end = 143.0
+y = 4.65
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 137.0
+x_end = 141.0
+y = 6.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 135.0
+x_end = 139.0
+y = 7.75
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 133.0
+x_end = 137.0
+y = 9.3
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 131.0
+x_end = 135.0
+y = 10.85
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 129.0
+x_end = 133.0
+y = 12.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 127.0
+x_end = 131.0
+y = 13.95
+surface_id = "hard_rock"

@@ -1,0 +1,172 @@
+# Shore "Island Hopping" - SIGNATURE (T-586 / D-203), band 500-600.
+#
+# Roster: "Land, water, land, water - every transition costs an entry and an exit;
+# platforms thrown in too." Ian 2026-08-29: "mixed channels - averaging wide -
+# only a few platforms - like 4 - make irregular not rhythmic."
+#
+# ⭐ T-602 IS WHAT MAKES THIS A DECISION STAGE. Before that fix water at grade was
+# unjumpable full stop, so alternating land and water AUTOMATICALLY meant a forced
+# swim at every channel and the roster's "every transition costs" was guaranteed by
+# the engine. It no longer is: a channel under ~24 m can now be leapt. Ian chose
+# MIXED over wide-only, so every narrow channel is a live fork - a strong jumper
+# stays dry and keeps its land speed, a swimmer takes the water and may gain -
+# while the wide ones are still a committed entry and exit.
+#
+# 6 channels, 22-67 m, mean 45 m ("averaging wide"): 2 are leapable
+# (<= 24 m, the pooled P95 level gap), 4 are past any arc in the field and must be
+# swum. Widths and island lengths are randomly drawn (seed 586955) so the rhythm
+# never establishes - Ian: "irregular not rhythmic". Water is 50% of the course.
+#
+# FOUR RAISED PLATFORMS (Ian: "like 4"), one at the midpoint of each of the four
+# WIDEST channels, wood at 1.6 m. They split an uncrossable channel into two
+# halves that a good jumper can take dry - so the widest water is the most
+# rewarding to be able to jump, not merely the longest to swim. A SWIMMER CANNOT
+# USE THEM: there is no takeoff from water (`reachability.cpp:441`), so a lizard in
+# the sea cannot climb a raised platform and simply swims past underneath. That
+# asymmetry is the point - the platforms are a jumper's route, not a rest stop.
+#
+# Wood islands and platforms per D-202's Shore palette (water + wood, no
+# obstacles). Shore's visual identity is T-587 (Asa), not settled here.
+# Name = MEASURED distance: finish_x tuned by probe.
+#
+# ⚠ biome_skin is "coast", NOT "shore". The stage IDs are shore_* per the roster, but the
+# palette key is D-202's biome name - `biome_palettes.gd` has "coast" and falls back to
+# JUNGLE for anything unknown, silently. All six shore_* baselines use "coast".
+
+[stage]
+id = "shore_island_hopping"
+name = "Shore Island Hopping"
+schema_version = 1
+biome_skin = "coast"
+nominal_length_m = 532
+
+[race]
+paddock_x = 4.0
+paddock_y = 0.0
+finish_x = 514
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 26.0
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 26.0
+x_end = 48.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 48.0
+x_end = 85.1
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 85.1
+x_end = 152.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 152.0
+x_end = 172.1
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 172.1
+x_end = 194.1
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 194.1
+x_end = 234.5
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 234.5
+x_end = 294.8
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 294.8
+x_end = 344.1
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 344.1
+x_end = 395.6
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 395.6
+x_end = 439.9
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 439.9
+x_end = 484.7
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 484.7
+x_end = 532.6
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 114.6
+x_end = 122.6
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 260.6
+x_end = 268.6
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 365.8
+x_end = 373.8
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 458.3
+x_end = 466.3
+y = 1.6
+surface_id = "wood"

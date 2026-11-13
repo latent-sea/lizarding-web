@@ -1,0 +1,269 @@
+# T-658 (Ian, 2026-11-01: "The jumps have to get easier later on... Not too tall at beginning, stayers need to get
+# through... about 50% dnf"): hedges 2.6, 2.3, 2.3, 2.0 m, then seventeen at 1.5 m (rung 0 mounts 1.63 m).
+# With the drop fully on: 51% finish; by drop third low / mid / high 88 / 59 / 5%.
+# The notes below on 1.2 m hedges and on none eliminating are the stage before this change.
+#
+# T-658 (Ian, 2026-11-01: "I want poor jumpers to fail this one... The jumps have to get easier later on"):
+# the first hedge is 3.7 m and the other twenty are 1.5 m. The first is the test: rung 6 (6.4 m/s) and up clear it.
+# Rung 0 (4.0 m/s) mounts 1.63 m, so a lizard that has dropped to the bottom still clears the rest.
+# With the drop fully on, by starting rung 0-3 / 4-5 / 6-8 / 9+: 0 / 0 / 97 / 100% finish, 65% overall.
+# The notes below on 1.2 m hedges and on none eliminating are the stage before this change.
+#
+# Wales Hedgerow steeplechase - SIGNATURE (T-586 / D-203), band 600-700.
+#
+# Ledger spec: "low hedges at steady spacing over dirt and mud". 21 hedges at
+# 1.2 m, every 23 m, across four mud bogs (two hedges inside each) on dirt.
+#
+# HONEST NOTE ON THE THESIS (D-210, and Ian's ruling 2026-08-28 to build it as
+# is): the ledger called the gate "cumulative jump cost". It is not, and cannot
+# be. jump_effort_rate is worth <1% of race time across the whole cohort; the
+# landing ceremony is retired (D-156) so a landing costs nothing; and there is
+# no windup on the live path. Obstacles ACCELERATE races - a jump arc out-paces
+# cruise for 800/800 lizards - so the hedges make this course FAST, not hard.
+# What actually sorts the field here is the MUD: surface_response is the one
+# live axis on the course. The hedges are character, the bogs are the race.
+# Hedges stay at 1.2 m (100% clear rate at 2 m wide) so none of them eliminates
+# - a capability-gated obstacle cannot be declined in 2D (authoring rule 9).
+#
+# Renders as crates until T-588 lands the hedge visual.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "wales_hedgerow"
+name = "Wales Hedgerow"
+schema_version = 1
+biome_skin = "wales"
+nominal_length_m = 640
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 606
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 78.8
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 78.8
+x_end = 119.8
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 119.8
+x_end = 189.2
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 189.2
+x_end = 230.2
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 230.2
+x_end = 299.6
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 299.6
+x_end = 340.6
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 340.6
+x_end = 410.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 410.0
+x_end = 451.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 451.0
+x_end = 520.3
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 520.3
+x_end = 561.3
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 561.3
+x_end = 640.0
+y = 0.0
+surface_id = "standard_dirt"
+
+
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 30.0
+x_end = 30.5
+bottom_y = 0.0
+top_y = 2.6
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 57.6
+x_end = 58.1
+bottom_y = 0.0
+top_y = 2.3
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 85.2
+x_end = 85.7
+bottom_y = 0.0
+top_y = 2.3
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 112.8
+x_end = 113.3
+bottom_y = 0.0
+top_y = 2.0
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 140.4
+x_end = 140.9
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 168.0
+x_end = 168.5
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 195.6
+x_end = 196.1
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 223.2
+x_end = 223.7
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 250.8
+x_end = 251.3
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 278.4
+x_end = 278.9
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 306.0
+x_end = 306.5
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 333.6
+x_end = 334.1
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 361.2
+x_end = 361.7
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 388.8
+x_end = 389.3
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 416.4
+x_end = 416.9
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 444.0
+x_end = 444.5
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 471.6
+x_end = 472.1
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 499.2
+x_end = 499.7
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 526.8
+x_end = 527.3
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 554.4
+x_end = 554.9
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 582.0
+x_end = 582.5
+bottom_y = 0.0
+top_y = 1.5
+

@@ -1,0 +1,46 @@
+# Tundra-545 - roster baseline, band 500-600 (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "mud - water - rock - equal distances". Three
+# 182 m thirds, no obstacles (D-202), no platforms, flush banks.
+# The corpus's most extreme surface statement: a THIRD of the race is water -
+# by far the longest single swim outside Shore - bracketed by the two surfaces
+# that punish hardest. There is no neutral ground anywhere in it: mud taxes
+# everyone without webbing, the swim is a pure swim-gene readout at a length
+# where it compounds, and rock takes the tired field home. A webbed lizard has
+# two thirds of this race in its favour and a clawed one has none of it.
+# Name = MEASURED distance: 3 x 182 = 546; finish tuned by probe.
+
+[stage]
+id = "tundra_545"
+name = "Tundra 545 m"
+schema_version = 1
+biome_skin = "tundra"
+nominal_length_m = 546
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 546
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 182.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 182.0
+x_end = 364.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 364.0
+x_end = 566.0
+y = 0.0
+surface_id = "hard_rock"
+

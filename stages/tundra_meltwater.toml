@@ -1,0 +1,123 @@
+# Tundra "Meltwater" - SIGNATURE (T-586 / D-203), band 400-500.
+# Roster: "Ground punctuated by small water pools, each a swim-or-jump micro-choice."
+# REBALANCED (T-659, Ian 2026-10-25, "radically reduce the amount of jumping"). The
+# seventeen 8 m pools were a jump every lizard made (8 m is below the level-gap P10), so
+# the stage was seventeen jumps. A lizard leaps at ANY at-grade water and swims the rest
+# (measured: twelve 16 m pools were still twelve jumps for everyone), so the only way to
+# fewer jumps is fewer pools: SIX POOLS OF 32 m, each a leap and a swim, six jumps a
+# race. No two pools closer than 8 m (Ian) so every lizard has solid ground between
+# crossings; dry runs 30-50 m. 192 m of water = 44% of the course, a water stage by the
+# T-658 regions. Dry ground cycles rock / mud / dirt per D-202's Tundra. Everything at
+# y = 0; the pools are at-grade water, jumpable since T-602. The layout is a fixed
+# rhythm, not seeded. Name = MEASURED distance: finish_x kept from the probed build.
+
+[stage]
+id = "tundra_meltwater"
+name = "Tundra Meltwater"
+schema_version = 1
+biome_skin = "tundra"
+nominal_length_m = 460
+
+[race]
+paddock_x = 2.0
+paddock_y = 0.0
+finish_x = 440
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 30.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 30.0
+x_end = 62.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 62.0
+x_end = 106.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 106.0
+x_end = 138.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 138.0
+x_end = 174.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 174.0
+x_end = 206.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 206.0
+x_end = 256.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 256.0
+x_end = 288.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 288.0
+x_end = 328.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 328.0
+x_end = 360.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 360.0
+x_end = 406.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 406.0
+x_end = 438.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 438.0
+x_end = 460.0
+y = 0.0
+surface_id = "hard_rock"
+

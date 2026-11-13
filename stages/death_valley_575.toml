@@ -1,0 +1,65 @@
+# T-658 (Ian, 2026-11-01): rises 2.0, then three at 1.55 m (rung 0 mounts 1.63 m); summit 6.65 m. With the drop fully on
+# 91% finish, was 43%. Heights below are the stage before.
+#
+# Death Valley-575 - roster baseline, band 500-600 (T-586 / D-203).
+# Sheet spec: "Rock platforms, dirt below - starting off low then stepping up to
+# finish high - 4 steps". Ian 2026-08-26: P25 steps, first mount P10, NO WALLS.
+#   platform 1 at y=1.8  = pooled mount-from-floor p10 (90% get started)
+#   rises of 2.0 to 3.8 / 5.8 / 7.8 = pooled step-up p25 (75% make each)
+#   FINISH ON THE SUMMIT at 7.8, with 20 m of run-out past it (the >=5 m rule
+#   does not come free at height), and clear of any obstacle x-range.
+# THE ASCENT GATES ITSELF - no blocking walls needed: each platform is reachable
+# only from the one below, so the dirt floor cannot reach the finish and the
+# planner elects the climb from the start. Knockoffs land on OPEN dirt (no
+# walls), run back to the staircase base and re-climb - attrition of time, not
+# elimination (the Wales-535 gully philosophy, not the 435 eliminator).
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "death_valley_575"
+name = "Death Valley 575 m"
+schema_version = 1
+biome_skin = "death_valley"
+nominal_length_m = 497
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 497
+finish_y = 6.65
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 560
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 80
+x_end = 190
+y = 2.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 190
+x_end = 300
+y = 3.55
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 300
+x_end = 410
+y = 5.1
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 410
+x_end = 530
+y = 6.65
+surface_id = "hard_rock"
+

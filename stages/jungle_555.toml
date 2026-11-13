@@ -1,0 +1,59 @@
+# Jungle-555 - roster baseline, band 500-600 (T-586 / D-203).
+# REBALANCED FLAT (T-659, Ian 2026-10-25, "radically reduce the amount of jumping"). The
+# three bulb trees are gone: the race is the mud floor and its two 25 m glide ponds,
+# which every lizard leaps at and swims the rest of (two jumps a race, measured). A long
+# flat for stayers on mud: no other flat is mud with ponds at this distance (jungle_155
+# is pure mud at 155, jungle_355 has wood). No tree, even out of reach: a lifted canopy
+# was measured to cost the sim 5,450 arcs that nobody could take.
+# Name = MEASURED distance: finish_x kept from the probed build.
+
+[stage]
+id = "jungle_555"
+name = "Jungle 555 m"
+schema_version = 1
+biome_skin = "jungle"
+nominal_length_m = 528.2
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 528.2
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 162
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 162
+x_end = 187
+y = 0.0
+surface_id = "water"
+depth = 2.5
+
+[[primitives]]
+type = "surface"
+x_start = 187
+x_end = 337
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 337
+x_end = 362
+y = 0.0
+surface_id = "water"
+depth = 2.5
+
+[[primitives]]
+type = "surface"
+x_start = 362
+x_end = 541
+y = 0.0
+surface_id = "mud"
+

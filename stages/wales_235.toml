@@ -1,0 +1,54 @@
+# Wales-235 - roster baseline, band 200-300 (T-586 / D-203).
+# Sheet spec: "80% dirt at beginning 20% mud at end, one obstacle at 40% hedge
+# variety" + Ian 2026-08-26: hedge same height as the crate (1.2 x 0.5; hedge
+# DISPLAY variant is T-588's lane), and a SMALL STREAM at P40 - gap set at the
+# pooled level-gap p40 value (15 m), Ian-confirmed direction: the top 60% jump
+# it dry, the bottom 40% swim. Stream sits at the dirt->mud boundary so the
+# geography reads: cross the stream into the bog it feeds.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "wales_235"
+name = "Wales 235 m"
+schema_version = 1
+biome_skin = "wales"
+nominal_length_m = 234.4
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 234.4
+finish_y = 0.0
+
+# Dirt sprint (~80%).
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 185
+y = 0.0
+surface_id = "standard_dirt"
+
+# The stream: 15 m = pooled level-gap p40; bare bank-to-bank jump, flush banks.
+[[primitives]]
+type = "surface"
+x_start = 185
+x_end = 200
+y = 0.0
+surface_id = "water"
+depth = 2.0
+
+# The bog the stream feeds (~20%).
+[[primitives]]
+type = "surface"
+x_start = 200
+x_end = 246
+y = 0.0
+surface_id = "mud"
+
+# The hedge at 40% (renders as a crate until T-588).
+[[primitives]]
+type = "hard_obstacle"
+x_start = 94.0
+x_end = 94.5
+bottom_y = 0.0
+top_y = 1.2

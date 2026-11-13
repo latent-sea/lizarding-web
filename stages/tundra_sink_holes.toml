@@ -1,0 +1,221 @@
+# Tundra "Sink holes" - SIGNATURE (T-586 / D-203), band 300-400.
+#
+# Roster: "Three or four progressively wider gaps with mud below." Ian 2026-08-29
+# replaced that shape entirely: "narrow and deep and the holes plentiful. None
+# above a P10... two levels and a ladder at the left end. Combat does the knock
+# offs. No obstacles." Then "Platforms need to be rock. Need to be higher. Holes
+# need to be narrower, like a third." Then: "Less of them (60%), narrower again
+# (60%) and irregularly spaced. Make sure none are closer than within 2m."
+#
+# 11 holes of 1.8 m, IRREGULARLY spaced (seed 586903), never closer than 2 m apart.
+# Dry runs 4.8-32.3 m. Rock deck at 16.0 m over a mud-and-rock floor.
+#
+# ⭐ NOTHING HERE SORTS ON JUMP REACH, AND IT CANNOT. Every hole is 1.8 m against a
+# pooled P10 level gap of 10 m, so the whole field clears every one; and jump
+# capability is FIXED for a race (D-132 - the ceiling is always
+# max_jump_strength_v, no in-race decay), so identical gates never compound. The
+# holes are texture and hazard, not a gate. COMBAT is the intended killer.
+#
+# ⚠ THE KILLER HAS NOT FIRED YET - FOUR CONFIGURATIONS, ZERO FALLS:
+#     wood deck  9.6 m, 9 m holes, 37% coverage -> 0 of 50 on the floor
+#     wood deck  9.6 m, 9 m holes, 50% coverage -> 0 of 50
+#     rock deck 16.0 m, 3 m holes, 20% coverage -> 0 of 50
+#     (this cut)                                -> see the task log
+# against hanoi_highrise, a CONTINUOUS deck at 15 m, which put 24 of 50 on the
+# rock by knockoff. So the knockoff mechanism plainly works; it just does not put
+# anyone through a GAP. Hole width, coverage, deck height and deck material have
+# all been varied and none of them moved it. A hypothesis that narrow holes on a
+# mostly-solid deck would restore combat adjacency was tested and DISPROVED.
+# Standing suspicion, unproven: a knockoff resolves against the surface the lizard
+# is standing on, so it can only drop a body off a platform's outer edge, never
+# through a hole beside it. If that is right, no arrangement of holes will ever
+# eliminate anyone here and the premise needs the sim looked at (cf. T-602).
+#
+# THE FALLBACK IS RUINOUS BY DESIGN, for whoever does go down. The deck is at
+# 16.0 m, well above the census mount ceiling (8.5 m, NOBODY at 9.0), so nothing
+# climbs out where it fell; the only way back is the ladder at the FAR LEFT - run
+# the floor BACKWARD to the start, climb 9 rungs, re-run the whole deck.
+# NO OBSTACLES ANYWHERE (Ian). Rock is a universal tax, so the deck is not a speed
+# prize - it is simply the only route that is not a catastrophe.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "tundra_sink_holes"
+name = "Tundra Sink Holes"
+schema_version = 1
+biome_skin = "tundra"
+nominal_length_m = 300
+
+[race]
+paddock_x = 32
+paddock_y = 16.0
+finish_x = 270
+finish_y = 16.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.00
+x_end = 110.00
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 110.00
+x_end = 210.00
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 210.00
+x_end = 300.00
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 0.00
+x_end = 8.00
+y = 1.6
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 3.00
+x_end = 11.00
+y = 3.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 6.00
+x_end = 14.00
+y = 4.8
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 9.00
+x_end = 17.00
+y = 6.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 12.00
+x_end = 20.00
+y = 8.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 15.00
+x_end = 23.00
+y = 9.6
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 18.00
+x_end = 26.00
+y = 11.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 21.00
+x_end = 29.00
+y = 12.8
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 24.00
+x_end = 32.00
+y = 14.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 28.00
+x_end = 57.90
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 59.70
+x_end = 74.73
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 76.53
+x_end = 87.07
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 88.87
+x_end = 93.74
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 95.54
+x_end = 112.89
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 114.69
+x_end = 143.34
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 145.14
+x_end = 149.96
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 151.76
+x_end = 180.20
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 182.00
+x_end = 214.31
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 216.11
+x_end = 235.90
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 237.70
+x_end = 252.63
+y = 16.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 254.43
+x_end = 280.00
+y = 16.0
+surface_id = "hard_rock"

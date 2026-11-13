@@ -1,0 +1,70 @@
+# Shore "The Big Dive" - SIGNATURE (T-586 / D-203), band 100-200.
+#
+# Roster: "Start on a high short platform with a big dive down into water."
+# Ian 2026-08-29: "Finish on beach. Platform should be 20m up."
+#
+# THE ONLY STAGE IN THE CORPUS DECIDED BY THE SWIM ENVELOPE ALONE. Everything else
+# that touches water offers a dry alternative; here there is none - once the field
+# leaves the platform it is in the sea until the beach. Water is a separate system
+# from land surface_response, so this is the one race a pure swimmer wins outright.
+#
+# THE DIVE SORTS BEFORE THE SWIM STARTS. The arc carries `jump_strength_h`, so a
+# stronger launcher lands further out and begins the swim ahead - a jumper's
+# advantage converted into a HEAD START rather than a route. Off 20 m the spread is
+# real: stepping off the edge (vy=0) carries ~18 m, a committed leap ~40 m, so the
+# field enters the water strung out over ~23 m before a stroke is taken.
+# No engine work, per Ian's own ruling: "diving is just an arc landing in water" -
+# the existing airborne arc terminating on a water surface.
+#
+# NOBODY CAN CLEAR THE WATER OUTRIGHT. The channel is 108 m from the platform
+# edge, well past the 40 m best arc, so the dive can never become a jump to dry
+# land - asserted at build time, not assumed.
+#
+# THE BEACH IS FLUSH WITH THE SEA and that is compulsory, not scenery: there is no
+# takeoff from water (`reachability.cpp:441`), so a swimmer can only ever WALK out
+# onto a surface at the water's own level. The beach runs 120..170 at y=0 with the
+# line at 155, giving a short run-in on solid ground.
+#
+# Wood platform and wood beach, per D-202's Shore palette (water + wood, ~90%
+# water, no obstacles). There is no sand material; wood is the biome's dry
+# surface. Shore's visual identity is T-587 (Asa) and not settled here.
+# Name = MEASURED distance: finish_x tuned by probe.
+#
+# ⚠ biome_skin is "coast", NOT "shore". The stage IDs are shore_* per the roster, but the
+# palette key is D-202's biome name - `biome_palettes.gd` has "coast" and falls back to
+# JUNGLE for anything unknown, silently. All six shore_* baselines use "coast".
+
+[stage]
+id = "shore_big_dive"
+name = "Shore The Big Dive"
+schema_version = 1
+biome_skin = "coast"
+nominal_length_m = 170
+
+[race]
+paddock_x = 4
+paddock_y = 20.0
+finish_x = 155
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 120.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 120.0
+x_end = 170.0
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 12.0
+y = 20.0
+surface_id = "wood"

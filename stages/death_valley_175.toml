@@ -1,0 +1,35 @@
+# Death Valley-175 - roster baseline, band 100-200 (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "50% rock 50% dirt - no obstacles or platforms".
+# The Death Valley band-1 control, and the corpus's FIRST hard_rock: the surface
+# the old 45-stage set never tested, and the one that punishes claws where wood
+# rewards them. Rock first (sorts the field on low traction while fresh), then
+# dirt home. Completes the flat-control surface triangle with jungle_155 (mud)
+# and wales_135 (dirt). No water - DV character (D-202).
+# Name = MEASURED distance: paddock x=1, finish 176. Run-out: 10 m (>= 5 m rule).
+
+[stage]
+id = "death_valley_175"
+name = "Death Valley 175 m"
+schema_version = 1
+biome_skin = "death_valley"
+nominal_length_m = 176
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 176
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 88.5
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 88.5
+x_end = 186
+y = 0.0
+surface_id = "standard_dirt"

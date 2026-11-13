@@ -1,0 +1,61 @@
+# Tundra-245 - roster baseline, band 200-300 (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "dirt - water - dirt - mud - rock - equal
+# distances". Five 49 m bands, no obstacles (D-202), no platforms, flush water
+# banks.
+# PAIRED WITH tundra_145 BY CONSTRUCTION: the same five ingredients in equal
+# bands, in a different ORDER - 145 runs rock/mud/dirt/water/dirt and finishes
+# on neutral ground, 245 opens on neutral ground, crosses early, and finishes
+# on the two hardest surfaces back to back (mud then rock). Any outcome
+# difference between the pair is a pure ordering effect, which nothing else in
+# the corpus isolates.
+# Name = MEASURED distance: finish_x tuned by probe. Run-out >= 5 m.
+
+[stage]
+id = "tundra_245"
+name = "Tundra 245 m"
+schema_version = 1
+biome_skin = "tundra"
+nominal_length_m = 246
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 246
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 49.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 49.0
+x_end = 98.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 98.0
+x_end = 147.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 147.0
+x_end = 196.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 196.0
+x_end = 256.0
+y = 0.0
+surface_id = "hard_rock"
+

@@ -1,0 +1,133 @@
+# Jungle-Wave - SIGNATURE, band 300-400 (T-586 / D-203).
+# Ledger concept: "Start high, step drops in rhythm down the whole course; mud
+# floor." Ian 2026-08-26: 1.6 m gaps - "will start nice and high".
+#   staircase  13 wood steps of 22 m, each 1.6 m below the last and
+#              separated by a 1.6 m gap. The field starts on the top step at
+#              20.8 m - the highest opening in the corpus - and descends in a
+#              steady drumbeat to the mud.
+#   rhythm     the drops are FREE (falling costs no capability) and the gaps are
+#              1.6 m, which every lizard clears - so nothing here gates anyone.
+#              The wave is about MOMENTUM, not selection: wood is the fastest
+#              surface in the game and mud the slowest, so holding the staircase
+#              is simply worth it, and the only way off it is being knocked off.
+#   floor      mud the whole length, so a lizard that loses the rhythm finishes
+#              slowly rather than not at all. There is no way back up: each step
+#              is 1.6 m above the next, but the mud is 20.8 m below the top.
+#   contrast   Stepping Stones owns escalation and capability; the Wave owns
+#              cadence. Same biome, opposite question.
+#   finish     the staircase now ENDS BEFORE THE LINE (Ian: the last platform
+#              overshot it), with a 20 m mud run-in - so the last step is the
+#              last feature and the line is on open ground.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "jungle_wave"
+name = "Jungle Wave"
+schema_version = 1
+biome_skin = "jungle"
+nominal_length_m = 331.8
+
+[race]
+paddock_x = 4.0
+paddock_y = 20.8
+finish_x = 331.8
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 348.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 22.6
+y = 20.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 24.2
+x_end = 46.8
+y = 19.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 48.4
+x_end = 71.0
+y = 17.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 72.6
+x_end = 95.2
+y = 16.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 96.8
+x_end = 119.4
+y = 14.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 121.0
+x_end = 143.6
+y = 12.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 145.2
+x_end = 167.8
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 169.4
+x_end = 192.0
+y = 9.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 193.6
+x_end = 216.2
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 217.8
+x_end = 240.4
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 242.0
+x_end = 264.6
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 266.2
+x_end = 288.8
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 290.4
+x_end = 313.0
+y = 1.6
+surface_id = "wood"
+

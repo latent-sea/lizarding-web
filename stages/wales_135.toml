@@ -1,0 +1,26 @@
+# Wales-135 - roster baseline, band 100-200 (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "100% dirt". The Wales band-1 control: flat
+# standard dirt, nothing else - the purest speed read in the corpus (dirt is the
+# neutral surface, so no surface_response penalty for anyone). Paired reading
+# with jungle_155 (same shape on mud): the pace gap between the two controls IS
+# the field's mud response. Name = MEASURED distance: paddock x=1, finish 136.
+
+[stage]
+id = "wales_135"
+name = "Wales 135 m"
+schema_version = 1
+biome_skin = "wales"
+nominal_length_m = 136
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 136
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 146
+y = 0.0
+surface_id = "standard_dirt"

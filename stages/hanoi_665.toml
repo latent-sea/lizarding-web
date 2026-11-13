@@ -1,0 +1,36 @@
+# Hanoi-665 - roster baseline, band 600-700 (T-586 / D-203).
+# REBALANCED FLAT (T-659, Ian 2026-10-25, "radically reduce the amount of jumping"). The
+# seven storeys with their escalating gaps were the sim's dearest stage (16,547 arcs) and
+# eight jumps a race. Now the street IS the boardwalk: one wood surface at grade, end
+# to end, with rock only in the run-out past the line. A long flat for stayers on wood,
+# the best traction in the game. No storey above the street, not even one: a raised
+# wood row over rock was measured at 2,105 arcs and two hops a race for nothing.
+# Name = MEASURED distance: finish_x kept from the probed build.
+
+[stage]
+id = "hanoi_665"
+name = "Hanoi 665 m"
+schema_version = 1
+biome_skin = "hanoi"
+nominal_length_m = 654
+
+[race]
+paddock_x = 4.0
+paddock_y = 0.0
+finish_x = 654
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 700.0
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 700.0
+x_end = 720.0
+y = 0.0
+surface_id = "hard_rock"
+

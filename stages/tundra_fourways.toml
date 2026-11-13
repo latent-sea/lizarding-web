@@ -1,0 +1,224 @@
+# Tundra "Fourways" - SIGNATURE (T-586 / D-203), band 300-400.
+#
+# Roster: "An early fork into four routes - one per surface - that do not rejoin
+# until near the finish." Ian 2026-08-28: "Dropping dirt is fine. Wood highest,
+# then rock, then mud then water."
+#
+# THE FOUR SURFACES ARE WOOD / ROCK / MUD / WATER, AND DIRT IS DELIBERATELY OUT.
+# Tundra has five materials but they are not five axes - `body_to_phenotype.gd`
+# derives three of them from the SAME claw value c:
+#     wood = 1 + 0.30c    dirt = 1 + 0.10c    rock = 1 - 0.20c
+#     mud  = 1 + 0.26w + 0.20b - 0.35m        water = the swim envelope
+# so for any lizard either wood > dirt > rock (c>0) or rock > dirt > wood (c<0).
+# DIRT IS NEVER STRICTLY BEST FOR ANY BODY - it always sits between the other two,
+# so a dirt lane would be dead scenery, the exact election failure D-203 warns of.
+# The four kept are claw-positive, claw-negative, the webbing/breadth/mass axis,
+# and a separate system entirely. Four routes, four different winners.
+#
+# LANES SIT 9.6 m APART BECAUSE COMMITMENT NEEDS IT. Anything closer than ~9 m
+# is mutually reachable (mount ceiling 8.5, nobody at 9.0) and the lanes become a
+# lattice a lizard can sample mid-route - the Hanoi tower's problem. At this
+# spacing the fork staircase at the start is the ONLY place to choose, which is
+# what "do not rejoin until near the finish" asks for.
+#
+# THE FORK STAIRCASE'S SLOPE IS THE BALANCE DIAL, and it was swept, not guessed.
+# A forward staircase costs about what WALKING the same distance costs (the search
+# prices a jump as max(air_time, ground_equivalent)), so its shallowness sets how
+# much the climb taxes the high lanes - the same law used in reverse on
+# hanoi_wall, where a detour had to run BACKWARD to cost anything. It also starts
+# each lane further along, so a shallower fork makes the higher lane the SHORTER
+# one, offsetting the climb again. Measured, 50 lizards, lane usage mid-course:
+#
+#     advance    wood  rock  mud  water
+#        3 m        8     1    3     38     <- three lanes dead
+#        6 m       20     1    3     26
+#        8 m       25     5    4     16     <- KEPT: all four carry traffic
+#       10 m       35     1    4     10     <- wood dominates
+#
+# At 3 m the field was not choosing water on merit, it was DECLINING THE CLIMB -
+# proved by extending the water to swallow its dry aprons, which changed the split
+# not at all (identical 8/1/3/38). Ian's read that the rock aprons were the cause
+# was tested and disproved; the climb was.
+#
+# Rock and mud stay thin at every setting because their niches are narrow - rock
+# only beats wood for a CLAWLESS body, and such a body is often better still in
+# mud or water. That is the population's shape, not the build's.
+#
+# THE CLIMB IS THE PRICE OF THE FAST SURFACE. Wood is the best surface a clawed
+# body can run and it costs 28.8 m of climbing to reach; water costs nothing. The
+# lanes are ~293 m so the surface advantage has room to repay that - shorter
+# and the climb would never be worth taking, and everyone would swim.
+#
+# Higher lanes END FURTHER RIGHT so a lizard walking off the end drops clear to
+# the floor instead of being caught by the lane below - and all three end past
+# 300, over DRY rock, so nobody finishes by falling in the lake.
+#
+# THE WATER RUNS 18..300 - ALMOST THE WHOLE LANE - AND THAT IS A FIX, NOT A
+# FLOURISH. Built first with water 60..310 inside a 360 m course, the bottom lane
+# was a third dry rock and 38 of 50 took it; the other three lanes were nearly
+# dead (wood 8, rock 1, mud 3). Ian: "it is the rock on either side that is
+# making more choose it" - exactly right. A lane that costs no climb only has to
+# be not-much-worse to win, and padding it with fast dry rock made it not-much-
+# worse. A swimmer must WALK out of water (no takeoff), so the exit stays flush.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "tundra_fourways"
+name = "Tundra Fourways"
+schema_version = 1
+biome_skin = "tundra"
+nominal_length_m = 360
+
+[race]
+paddock_x = 2.0
+paddock_y = 0.0
+finish_x = 345
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 18.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 18.0
+x_end = 300.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 300.0
+x_end = 360.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 2.0
+x_end = 12.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 10.0
+x_end = 20.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 18.0
+x_end = 28.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 26.0
+x_end = 36.0
+y = 6.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 34.0
+x_end = 44.0
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 50.0
+x_end = 60.0
+y = 11.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 58.0
+x_end = 68.0
+y = 12.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 66.0
+x_end = 76.0
+y = 14.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 74.0
+x_end = 84.0
+y = 16.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 82.0
+x_end = 92.0
+y = 17.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 98.0
+x_end = 108.0
+y = 20.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 106.0
+x_end = 116.0
+y = 22.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 114.0
+x_end = 124.0
+y = 24.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 122.0
+x_end = 132.0
+y = 25.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 140.0
+y = 27.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 42.0
+x_end = 310.0
+y = 9.6
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 90.0
+x_end = 320.0
+y = 19.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 138.0
+x_end = 330.0
+y = 28.8
+surface_id = "wood"

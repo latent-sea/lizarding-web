@@ -1,7 +1,7 @@
 // The i on every page: what can be done on it, and what its figures,
 // colours and marks mean. One pop-up, opened with the page it explains.
 
-import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=5fa37ac932e2";
+import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=c9eebf89955b";
 
 export const OPENS_HELP = "explains_this_page";
 
@@ -26,7 +26,7 @@ export const HELP = {
   ],
   lizard: [
     ["The lizard", "Its number, name, age and stable, its prices in this race, and your stakes on it. The arrows go to the runner before or after it on the card."],
-    ["Form", "Its races, newest first. The line under its career says how many of its races are shown."],
+    ["Form", "Its races, newest first. The line under its career says how many of its races are shown. Tap a stage's name to see its map."],
     ["Pct and For age", "How well it ran that day, as a percentile from 0 (worst) to 99 (best): against every lizard, and against lizards of its own age. Shaded red to green."],
     ["Downs and Knocks", "How often it was knocked down, and how often it knocked others down."],
     ["Sprints", "Ten bars, one for each tenth of the course: the taller the bar, the longer it sprinted there."],
@@ -54,7 +54,7 @@ export const HELP = {
     ["Friends' leagues", "Make one with a name and a length, then copy its code to friends; they enter it to join. Leave takes you out of it."],
   ],
   stage: [
-    ["The course", "The next race's course, side on. Each stretch of ground is coloured by its surface, obstacles are blocks, and the flags are the start and finish."],
+    ["The course", "The next race's course, or the stage you tapped, side on. Each stretch of ground is coloured by its surface, obstacles are blocks, and the flags are the start and finish."],
     ["Height", "Height is drawn larger than length, so the rises show: the map says by how much."],
   ],
   settings: [

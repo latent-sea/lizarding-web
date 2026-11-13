@@ -1,0 +1,107 @@
+# Wales "Mud line or boardwalk" - SIGNATURE (T-586 / D-203), band 300-400.
+#
+# Ian's three-tier revision (2026-08-28): "water at bottom then mud platform 1.6
+# then wood another 1.6 up". THREE PARALLEL LANES, one per body type, and the
+# only stage on the roster routed on surface_response across all three:
+#
+#   wood  y=3.2   claws          (v_mult 1.30 clawed .. 0.70 clawless)
+#   mud   y=1.6   webbing+breadth+light   (1.30 .. 0.70, INVERTED vs wood)
+#   water y=0     the swim envelope       (a separate system entirely)
+#
+# REBALANCED (T-659, Ian 2026-10-25, "radically reduce the amount of jumping"): the wood
+# lane is UNBROKEN and the mud lane has ONE gap (95-110 m, over the first pool), so a
+# lizard jumps at most once or twice: the step up to the wood, or the mud gap, or the
+# drop into the water at that gap. Three lanes still, water still 27% of the course - a
+# wet stage by the T-658 regions, no longer a few-jumps one.
+#
+# The ladder is deliberately one-way DOWNWARD. Every gap drops you exactly one
+# tier: the wood gaps sit over mud, the mud gaps sit over water. Going back up
+# is a 1.6 m step (a P10 hop, ~90% clear). Going up OUT OF WATER is impossible -
+# `reachability.cpp:441`, "no takeoff from water (locked)" - so the water lane
+# is left only by walking onto a bank at its own level. The three banks are what
+# make water a genuine ROUTE a swimmer can elect, rather than a punishment pit.
+#
+# RE-CUT 2026-08-28 from 400-500: the roster assigns this signature (Wales-Choice)
+# 300-400 and the first build missed it - my error, the band was never mine to
+# pick. Shortened by dropping ONE water pool and one span from each lane rather
+# than scaling x, so every gap keeps its percentile meaning.
+#
+# Ian did not rule on segmented-vs-full-length water; I chose SEGMENTED (two
+# 120 m pools, a 15 m bank between) so the bottom lane is re-enterable and the
+# swimmer tier can actually be elected. Easy to flip to one continuous channel.
+#
+# Flush stacking is legal again - T-593 landed and discharged the stagger rule.
+# All three lanes stop at 435 so the last 5 m to the line is open ground and
+# nothing overhangs the finish. Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "wales_boardwalk"
+name = "Wales Mud Line or Boardwalk"
+schema_version = 1
+biome_skin = "wales"
+nominal_length_m = 355
+
+[race]
+paddock_x = 2.0
+paddock_y = 1.6
+finish_x = 335
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 20.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 20.0
+x_end = 140.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 140.0
+x_end = 155.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 155.0
+x_end = 275.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 275.0
+x_end = 355.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 95.0
+y = 1.6
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 110.0
+x_end = 320.0
+y = 1.6
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 20.0
+x_end = 320.0
+y = 3.2
+surface_id = "wood"
+

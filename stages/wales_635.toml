@@ -1,0 +1,93 @@
+# T-658 (Ian, 2026-11-01: "33% is OK"): far-wall rises 1.8, then three at 1.55 m; summit and rim 6.45 m, shelf 3.225 m. The first rise
+# is the trap: rung 0 mounts 1.63 m. With the drop fully on 67% finish, was 29%; by drop third 99 / 79 / 24%. Heights below are the stage before.
+#
+# Wales-635 - roster baseline, band 600-700 (T-586 / D-203). The TRAP VALLEY, Ian
+# 2026-08-26: "it can be a trap but we need a mud gulley where the river is - but the
+# finish is at top of the second mountain."
+# REBALANCED (T-659, Ian 2026-10-25, "radically reduce the amount of jumping"): the rims
+# come down from 18.0 m to 7.2 m. The near wall is TWO free drops of 3.6 m (dirt rim,
+# then a mud shelf) to the gully floor; the far wall is FOUR rises of 1.8 m (= pooled
+# mount p10, ~90% each) to the finish on the 7.2 m summit (elevated finish, validation
+# rule 5). Six jumps a race against nineteen before (a first cut at 9.0 m with three
+# drops and five rises measured ten: the field hops more than the shelves count). The
+# trap is unchanged: a sub-p10 lizard descends free, swims the river and cannot climb
+# out - capability-DNF by design (~10% of a pooled field; Ian accepted the trap
+# explicitly). The rims are dirt, the shelves and gully mud. Name = MEASURED distance: finish_x kept from the probed build.
+
+[stage]
+id = "wales_635"
+name = "Wales 635 m"
+schema_version = 1
+biome_skin = "wales"
+nominal_length_m = 590
+
+[race]
+paddock_x = 1.0
+paddock_y = 6.45
+finish_x = 590
+finish_y = 6.45
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 75.0
+y = 6.45
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 75.0
+x_end = 150.0
+y = 3.23
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 275.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 275.0
+x_end = 300.0
+y = 0.0
+surface_id = "water"
+depth = 2.5
+
+[[primitives]]
+type = "surface"
+x_start = 300.0
+x_end = 595.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 325.0
+x_end = 360.0
+y = 1.8
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 360.0
+x_end = 395.0
+y = 3.35
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 395.0
+x_end = 430.0
+y = 4.9
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 430.0
+x_end = 595.0
+y = 6.45
+surface_id = "standard_dirt"
+

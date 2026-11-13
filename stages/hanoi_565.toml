@@ -1,0 +1,101 @@
+# T-658 (Ian, 2026-11-01): hurdles 0.5 m wide, 1.8, 1.6, 1.5, 1.4, 1.3, then three at 1.2 m, so a lizard that has dropped
+# to rung 0 (mounts 1.63 m) still clears the rest. With the drop fully on 99% finish, was 20%. Heights below are the stage before.
+#
+# Hanoi-565 - roster baseline, band 500-600 (T-586 / D-203).
+# Sheet spec: "8 obstacles - random smattering of platforms". Ian 2026-08-26,
+# after correcting an earlier misread: obstacles are **P0 to P10** on a linear
+# escalation, the platforms are "just random", and THE MAIN ROUTE IS ALONG THE
+# BOTTOM.
+#   obstacles  eight, 2 m wide, 1.20 -> 1.90 m in equal steps. MEASURED clear
+#              rates (width-2 wall): 1.2 m = 100%, 1.8 m = 92%. So they are
+#              HURDLES, not gates - the first is free to everyone and the last
+#              turns back one lizard in ten. They cost rhythm and time, not
+#              places, and cannot trap anyone.
+#   platforms  NONE since T-659 (Ian 2026-10-25, "radically reduce the amount of
+#              jumping"): the six garnish spans added six hops to the eight hurdles
+#              and put the stage in the many-jumps band. The hurdles alone are the
+#              stage: eight jumps a race, a few-jumps stage.
+#   street     hard_rock, the main line, passable end to end. No ladders and no
+#              escape structures are needed: nothing here can strand a lizard.
+# An earlier build inverted this - a near-continuous 402 m elevated road plus 48
+# ladder treads, 55 wood surfaces over 74% of the course - which made the
+# platforms the race and the street a death zone. That is the opposite of the
+# brief and is recorded on T-586 as the mistake it was.
+# Name = MEASURED distance: finish_x tuned by probe. Run-out >= 5 m.
+
+[stage]
+id = "hanoi_565"
+name = "Hanoi 565 m"
+schema_version = 1
+biome_skin = "hanoi"
+nominal_length_m = 541
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 541
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 585
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 58.0
+x_end = 58.5
+bottom_y = 0.0
+top_y = 1.8
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 124.0
+x_end = 124.5
+bottom_y = 0.0
+top_y = 1.6
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 190.0
+x_end = 190.5
+bottom_y = 0.0
+top_y = 1.5
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 256.0
+x_end = 256.5
+bottom_y = 0.0
+top_y = 1.4
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 322.0
+x_end = 322.5
+bottom_y = 0.0
+top_y = 1.3
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 388.0
+x_end = 388.5
+bottom_y = 0.0
+top_y = 1.2
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 454.0
+x_end = 454.5
+bottom_y = 0.0
+top_y = 1.2
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 512.0
+x_end = 512.5
+bottom_y = 0.0
+top_y = 1.2
+

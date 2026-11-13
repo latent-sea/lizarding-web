@@ -1,0 +1,83 @@
+# Shore "The Pier" - SIGNATURE (T-586 / D-203), band 200-300.
+#
+# Roster: "A full-length wooden pier above open water; clawed runners hop its
+# gaps, swimmers take the water below - knockoffs just splash and swim on."
+# Ian 2026-08-29: "piers don't have gaps" - so the deck is CONTINUOUS and nothing
+# here sorts on jump reach. Then: "A Pier ends in water - not land!! and land is
+# dirt not wood."
+#
+# THE PIER RUNS OUT AND STOPS OVER OPEN SEA. It begins at 12 over the near shore -
+# low enough at 2.4 m to be mounted from the sand (the pooled P50 mount is 3.2 m) -
+# and ends at 125, 75 m short of the far shore. So a runner takes 113 m dry and
+# fast, then drops off the head into the sea and swims the rest like everyone
+# else. The pier is a HEAD START, not a route to the line.
+#
+# ⭐ THE DELIBERATE INVERSE OF `hanoi_highrise`. That is an unbroken deck over ROCK:
+# a knockoff is exile - the fall, the slow floor, a long climb back. This is the
+# same shape over WATER, and D-203 says why it flips - hits while swimming are
+# velocity-cap only, with no `fallen` state, so water is a REFUGE. MEASURED as a
+# pair on an earlier cut of this stage: knockoffs 24/50 (highrise) vs 27/50 (pier),
+# near-identical, but the time spread was 156 s against 37 s. Same event, a quarter
+# of the consequence.
+#
+# A CONTINUOUS DECK IS ALSO THE ONLY SHAPE THAT RELIABLY PRODUCES KNOCKOFFS, which
+# is lucky and was learned the hard way: `tundra_sink_holes` produced ZERO falls
+# through gaps across five configurations (width, coverage, spacing, height and
+# material all varied), while both unbroken decks drop about half the field.
+# Whatever the mechanism is, it works on solid deck and not on holes - so Ian's
+# "piers don't have gaps" is the right instrument as well as the right look.
+#
+# NOBODY CLIMBS BACK ON. There is no takeoff from water at any height
+# (`reachability.cpp:441`), so a lizard knocked off - or one that simply reaches
+# the pier head - is in the sea for good. "Splash and swim on", literally.
+#
+# LAND IS DIRT (Ian), wood is the pier alone. D-202's Shore is water + wood with
+# no obstacles; the sand reads as dirt because no sand material exists. Visual
+# identity is T-587 (Asa).
+# Name = MEASURED distance: finish_x tuned by probe.
+#
+# ⚠ biome_skin is "coast", NOT "shore". The stage IDs are shore_* per the roster, but the
+# palette key is D-202's biome name - `biome_palettes.gd` has "coast" and falls back to
+# JUNGLE for anything unknown, silently. All six shore_* baselines use "coast".
+
+[stage]
+id = "shore_pier"
+name = "Shore The Pier"
+schema_version = 1
+biome_skin = "coast"
+nominal_length_m = 250
+
+[race]
+paddock_x = 4
+paddock_y = 0.0
+finish_x = 235
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 25.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 25.0
+x_end = 200.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 200.0
+x_end = 250.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 12.0
+x_end = 125.0
+y = 2.4
+surface_id = "wood"

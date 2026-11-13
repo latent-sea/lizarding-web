@@ -1,0 +1,45 @@
+# Shore-225 - roster baseline (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "90% water with two 5% platforms to start and
+# finish" - identical wording for all six Shore rows. NOT a redundancy (Ian,
+# 2026-08-26): the six are the corpus's DISTANCE LADDER FOR SWIMMING, and a
+# short swim and a long one demand different animals - the swim envelope and the
+# fatigue economy resolve differently at each length. Nothing else provides it.
+# Shore's dominant pair is water + wood (D-202): the two 5% end platforms are
+# WOOD, flush at the waterline so swimmers glide on and off without a jump
+# (no jump-takeoff from water).
+# Name = MEASURED distance: finish_x tuned by probe. Run-out on the far platform.
+
+[stage]
+id = "shore_225"
+name = "Shore 225 m"
+schema_version = 1
+biome_skin = "coast"
+nominal_length_m = 226
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 226
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 11.3
+y = 0.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 11.3
+x_end = 214.7
+y = 0.0
+surface_id = "water"
+depth = 4.0
+
+[[primitives]]
+type = "surface"
+x_start = 214.7
+x_end = 246
+y = 0.0
+surface_id = "wood"

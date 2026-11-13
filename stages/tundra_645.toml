@@ -1,0 +1,149 @@
+# Tundra-645 - roster baseline, band 600-700 (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "dirt - mud - rock - repeated 6 times equal
+# distances". EIGHTEEN 36.5 m bands - the longest alternation in the corpus, and
+# the biome's staying test. No obstacles (D-202), no platforms, no water.
+# Every lizard meets each of the three dry surfaces SIX times, in the same
+# order, while the fatigue economy runs down underneath - so the same boundary
+# that cost nothing at band 3 is being crossed by a much emptier animal at band
+# 16. The field re-sorts seventeen times.
+# Name = MEASURED distance: 18 x 36.5 = 657; finish tuned by probe.
+
+[stage]
+id = "tundra_645"
+name = "Tundra 645 m"
+schema_version = 1
+biome_skin = "tundra"
+nominal_length_m = 646
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 646
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 36.5
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 36.5
+x_end = 73.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 73.0
+x_end = 109.5
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 109.5
+x_end = 146.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 146.0
+x_end = 182.5
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 182.5
+x_end = 219.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 219.0
+x_end = 255.5
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 255.5
+x_end = 292.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 292.0
+x_end = 328.5
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 328.5
+x_end = 365.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 365.0
+x_end = 401.5
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 401.5
+x_end = 438.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 438.0
+x_end = 474.5
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 474.5
+x_end = 511.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 511.0
+x_end = 547.5
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 547.5
+x_end = 584.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 584.0
+x_end = 620.5
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 620.5
+x_end = 666.0
+y = 0.0
+surface_id = "hard_rock"
+

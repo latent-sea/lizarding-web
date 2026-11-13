@@ -1,0 +1,57 @@
+# Death Valley-475 - roster baseline, band 400-500 (T-586 / D-203).
+# REBALANCED FLAT (T-659, Ian 2026-10-25, "radically reduce the amount of jumping"). The
+# five descending rock platforms, three P95 walls and three escape ramps are gone: the
+# race is the dirt floor with two 85 m rock slabs set into it where platforms two and
+# four stood. A mid flat for the dirt runner: dirt 60% / rock 40%, a ratio no other Death
+# Valley flat carries (175 is 50/50, 375 all rock, 575 is 54/46, 675 is 15/85). No wall:
+# a P95 wall cannot be declined on a flat and would DNF the field.
+# Name = MEASURED distance: finish_x kept from the probed build.
+
+[stage]
+id = "death_valley_475"
+name = "Death Valley 475 m"
+schema_version = 1
+biome_skin = "death_valley"
+nominal_length_m = 421
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 421
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 85.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 85.0
+x_end = 170.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 170.0
+x_end = 255.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 255.0
+x_end = 340.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 340.0
+x_end = 480.0
+y = 0.0
+surface_id = "standard_dirt"
+

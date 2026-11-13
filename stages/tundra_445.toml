@@ -1,0 +1,123 @@
+# T-658 (Ian, 2026-11-01): the chasm 7 m wide, was 8 m: a wide body at rung 0 could not carry 8 m, and every DNF stopped on the
+# plateau before it. With the drop fully on 100% finish, was 64%. Steps unchanged; the 8 m in the notes below is the stage before.
+#
+# Tundra-445 - roster baseline, band 400-500 (T-586 / D-203).
+# Sheet spec: "mud - dirt - rock - rising platforms - then a jump over a chasm
+# with water at bottom". Ian 2026-08-26: the mud/dirt/rock sections ARE the
+# rising platforms - NINE steps - and the water is "like a sink hole but with a
+# P0 jump".
+#   steps      nine 44 m terraces cycling mud / dirt / rock, each 1.6 m above
+#              the last = pooled step-up P10, so 90% make every step; the
+#              plateau tops out at 14.4 m. Surface and altitude climb together,
+#              so the field is sorted twice by the same feature.
+#   sinkhole   an 8 m hole in the top plateau with water in it. 8 m is a P0
+#              jump: every lizard that can jump at all clears it (the census's
+#              level-gap p10 is 10 m, and its p05 zeros are mount failures, not
+#              jump failures - on flat ground 8 m is universal). So nobody falls
+#              in by capability; only a knockoff puts you there.
+#   chasm      the water is at the BOTTOM, y = 0 - a real 14.4 m shaft, not a
+#              pool suspended in the gap (Ian, on seeing the first build: "Water
+#              doesn't float! It should be at the bottom - remember I said a
+#              chasm?"). Consequence, measured and accepted rather than designed
+#              around: a lizard that ends up in the chasm cannot climb 14.4 m of
+#              sheer wall and is lost. The P0 jump means nobody falls in by
+#              capability - only a knockoff at the lip can put you there.
+# Name = MEASURED distance: finish_x tuned by probe. Run-out on the plateau.
+
+[stage]
+id = "tundra_445"
+name = "Tundra 445 m"
+schema_version = 1
+biome_skin = "tundra"
+nominal_length_m = 436
+
+[race]
+paddock_x = 1.0
+paddock_y = 1.6
+finish_x = 436
+finish_y = 14.4
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 44.0
+y = 1.6
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 44.0
+x_end = 88.0
+y = 3.2
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 88.0
+x_end = 132.0
+y = 4.8
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 132.0
+x_end = 176.0
+y = 6.4
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 176.0
+x_end = 220.0
+y = 8.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 220.0
+x_end = 264.0
+y = 9.6
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 264.0
+x_end = 308.0
+y = 11.2
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 308.0
+x_end = 352.0
+y = 12.8
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 352.0
+x_end = 396.0
+y = 14.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 396.0
+x_end = 427.0
+y = 14.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 427.0
+x_end = 434.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 434.0
+x_end = 460.0
+y = 14.4
+surface_id = "hard_rock"

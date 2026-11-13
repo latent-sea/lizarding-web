@@ -1,0 +1,66 @@
+# Jungle-355 - roster baseline, band 300-400 (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "Start on platform 20% of length wood, 100% mud
+# floor - small obstacle at 60%". Consult ruling trail: obstacle = corpus-standard
+# 1.2 x 0.5 crate (census: everyone-clears with margin - even 4 m wide at h=1.2
+# [rev 2 adds the dive pool off the start platform - Ian's water slate]
+# clears the whole 800 field; obstacle gates are binary so baselines stay < p05).
+# Start platform y=3.0 = the POOLED all-ages bench-corpus step-up p90 (10,400 samples,
+# 13 ages x 800; gates from the bench corpus at all ages - Ian 2026-08-26). Everyone
+# starts on it and jumps DOWN; only the top decile can get back up: everyone starts on it and jumps DOWN;
+# only the top-decile jumpers can get back UP (Ian's correction, 2026-08-26).
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "jungle_355"
+name = "Jungle 355 m"
+schema_version = 1
+biome_skin = "jungle"
+nominal_length_m = 350.8
+
+[race]
+paddock_x = 1.0
+paddock_y = 3.0
+finish_x = 350.8
+finish_y = 0.0
+
+# Floor: mud, with the dive pool inset right off the start platform's edge.
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 71
+y = 0.0
+surface_id = "mud"
+
+# The dive pool (Ian's water-retrofit slate, 25 m = 7%): the field's opening move
+# is a plunge off the start wood into water - swim, exit flush at the far bank,
+# start the slog wet. Top gliders may clear it dry from 3.0 m; that is election.
+[[primitives]]
+type = "surface"
+x_start = 71
+x_end = 96
+y = 0.0
+surface_id = "water"
+depth = 2.5
+
+[[primitives]]
+type = "surface"
+x_start = 96
+x_end = 361
+y = 0.0
+surface_id = "mud"
+
+# The wood start platform: first ~20% of the course.
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 71
+y = 3.0
+surface_id = "wood"
+
+# The small obstacle at 60%: corpus-standard crate, everyone clears.
+[[primitives]]
+type = "hard_obstacle"
+x_start = 213.0
+x_end = 213.5
+bottom_y = 0.0
+top_y = 1.2

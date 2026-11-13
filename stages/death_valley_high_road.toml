@@ -1,0 +1,185 @@
+# Death Valley "The High Road" - SIGNATURE (T-586 / D-203), band 400-500.
+#
+# Roster: "Start on top of mesa 1, finish on top of mesa 3; good jumpers span the
+# gaps and never come down, poor jumpers fall to the valley and must climb back."
+# Ian 2026-08-28: mesas "so high nobody can jump straight back up"; "unpassable
+# obstacles in between mesas to stop running along bottom"; "double the size of
+# the obstacles"; "make the ladders less steep so they have a chance of jumping
+# diagonally up them"; "make the ladders return them to the beginning of the mesa
+# so going right to left - keep rock mesa dirt floor".
+#
+# THE LADDERS RUN RIGHT-TO-LEFT AND THAT IS THE WHOLE ECONOMY OF THE STAGE. A
+# faller must run the valley RIGHTWARD past the mesa it just lost, climb the
+# ladder backwards, and rejoin at that mesa's LEFT EDGE - so it runs the mesa's
+# whole length again. Measured why this matters: with left-to-right ladders the
+# climb ADVANCED the lizard 72 m while it ascended, which made falling nearly
+# free - gap-1 clearances collapsed 16 -> 6 and gap 2 went 8 -> 0 of 50, i.e. the
+# field stopped contesting the high road at all. A climb-out must not double as
+# progress, or the gap it protects becomes scenery (same law as ditch depth).
+#
+# MESA HEIGHT IS A CENSUS NUMBER. At 12.8 m the high road is unreachable from the
+# valley - mount-from-floor tops out at 8.5 m with NOBODY at 9.0, best arc ~6.5 m
+# - so a fall COMMITS.
+#
+# VALLEY BLOCKS 8 x 8 m. At 4 x 4 they were ~29% passable (height dominates:
+# a 12 m WIDE block at 3.8 m tall is still 8.5% passable). At 8 m the census gives
+# 0.6% at 2 m wide, harder again at 8 m. Doubling them took gap-2 clearances from
+# 2 to 8 of 50 - a sealed valley makes the low road worse and the planner elects
+# the jump.
+#
+# LADDER STEEPNESS AND RUNG OVERLAP ARE INDEPENDENT (Ian: "a jump up chain
+# doesn't need a gap"). Shallowness is the HORIZONTAL ADVANCE per rise, not a gap
+# between rungs - a lizard jumps onto an overlapping ledge fine, since an
+# ascending arc passes through and a descending one is caught. 12 m rungs
+# advancing 10 m per 1.6 m of rise, overlapping 2 m. Gapping them was tried and
+# cost 5 DNF in 50: a gap adds a failure mode to a climb-out that has none.
+#
+# ROCK MESAS, DIRT VALLEY (Ian). An inverted cut was tried - rock valley, dirt
+# tops - and is NOT kept.
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "death_valley_high_road"
+name = "Death Valley The High Road"
+schema_version = 1
+biome_skin = "death_valley"
+nominal_length_m = 290
+
+[race]
+paddock_x = 2.0
+paddock_y = 12.8
+finish_x = 280
+finish_y = 12.8
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 290.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 50.0
+y = 12.8
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 66.0
+x_end = 160.0
+y = 12.8
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 180.0
+x_end = 290.0
+y = 12.8
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 126.0
+x_end = 138.0
+y = 1.6
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 116.0
+x_end = 128.0
+y = 3.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 106.0
+x_end = 118.0
+y = 4.8
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 96.0
+x_end = 108.0
+y = 6.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 86.0
+x_end = 98.0
+y = 8.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 76.0
+x_end = 88.0
+y = 9.6
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 66.0
+x_end = 78.0
+y = 11.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 240.0
+x_end = 252.0
+y = 1.6
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 230.0
+x_end = 242.0
+y = 3.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 220.0
+x_end = 232.0
+y = 4.8
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 210.0
+x_end = 222.0
+y = 6.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 200.0
+x_end = 212.0
+y = 8.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 190.0
+x_end = 202.0
+y = 9.6
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 180.0
+x_end = 192.0
+y = 11.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 145.0
+x_end = 153.0
+bottom_y = 0.0
+top_y = 8.0

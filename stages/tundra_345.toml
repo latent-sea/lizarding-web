@@ -1,0 +1,87 @@
+# Tundra-345 - roster baseline, band 300-400 (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "rock - dirt - mud - rock - dirt - mud - rock
+# - dirt - mud - equal distances". NINE 38.5 m bands - the three-surface cycle
+# run three times. No obstacles (D-202), no platforms, no water.
+# The corpus's first THREE-surface alternation: wales_335 cycles two (dirt/mud)
+# and prices the transition; this cycles all three dry surfaces, so every lizard
+# meets its best and worst footing three times each, in the same order, and the
+# field re-sorts eight times over the course. Rock is the accel-and-speed tax,
+# mud the webbing tax, dirt the neutral breath between them.
+# Name = MEASURED distance: 9 x 38.5 = 346.5; finish tuned by probe.
+
+[stage]
+id = "tundra_345"
+name = "Tundra 345 m"
+schema_version = 1
+biome_skin = "tundra"
+nominal_length_m = 346
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 346
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 38.5
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 38.5
+x_end = 77.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 77.0
+x_end = 115.5
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 115.5
+x_end = 154.0
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 154.0
+x_end = 192.5
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 192.5
+x_end = 231.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 231.0
+x_end = 269.5
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 269.5
+x_end = 308.0
+y = 0.0
+surface_id = "standard_dirt"
+
+[[primitives]]
+type = "surface"
+x_start = 308.0
+x_end = 356.0
+y = 0.0
+surface_id = "mud"
+

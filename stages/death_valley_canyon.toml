@@ -1,0 +1,214 @@
+# T-658 (Ian, 2026-11-01): ledges 1.55 m apart, rim 17.05 m; the first ledge each side 5 m deep, reaching 3 m under the rim.
+# A drop is straight down from where the body stands, so a 1 m overlap gave a wide body no drop, only a full-power arc, and at
+# rung 4 that arc landed nowhere. With the drop fully on 100% finish, was 40%; gap widths unchanged. Heights below are the stage before.
+#
+# Death Valley "The Canyon" - SIGNATURE (T-586 / D-203), band 100-200.
+#
+# Roster: "One wide chasm: clear it rim-to-rim in one arc, or take stepped ledges
+# down to the rock floor and out the far side." Ian 2026-08-28: "Top level should
+# be 99 then next gap below 95 then 90 down to 0 going down in 1.6m steps.
+# Symmetrical race."
+#
+# A GRADED CHASM, not a binary one. Every level is a DIFFICULTY PERCENTILE read
+# straight off the pooled level-gap census (10,400 samples, 800 bodies x 13 ages):
+# the number is the share of the field the gap SHUTS OUT, so the rim is P99 and
+# the floor is a free walk. Descending buys a shorter jump and costs altitude -
+# 1.6 m per level, a P10 step each way - so a lizard picks the height it can
+# afford and the field stratifies down the canyon wall instead of splitting in two.
+#
+#   level   y     P    gap     clears it
+#      0   17.6   99   28.0 m     1%
+#      1   16.0   95   24.0 m     5%
+#      2   14.4   90   22.0 m    10%
+#      3   12.8   80   20.0 m    20%
+#      4   11.2   70   19.0 m    30%
+#      5    9.6   60   17.0 m    40%
+#      6    8.0   50   16.0 m    50%
+#      7    6.4   40   15.0 m    60%
+#      8    4.8   30   14.0 m    70%
+#      9    3.2   20   11.0 m    80%
+#     10    1.6   10   10.0 m    90%
+#     11    0.0    0    0.0 m   100%
+#
+# Symmetrical: both walls mirror about x=70, approach and run-out equal (56 m).
+# Ledges are 3.0 m deep and stack FLUSH beneath the level above - legal only since
+# T-593 landed and discharged the no-flush-stacks rule; this stage is the first
+# in the corpus to depend on that. The bottom span bridges the lowest ledges so
+# the floor is continuous. Dirt rim, ROCK ledges and floor: rock is a universal
+# tax (0 of 800 bodies are faster on it than dirt), so the descent is priced
+# without an obstacle. Death Valley has no water (D-202).
+# Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "death_valley_canyon"
+name = "Death Valley The Canyon"
+schema_version = 1
+biome_skin = "death_valley"
+nominal_length_m = 140
+
+[race]
+paddock_x = 2.0
+paddock_y = 17.05
+finish_x = 130
+finish_y = 17.05
+
+[[primitives]]
+type = "surface"
+x_start = 0.00
+x_end = 56.00
+y = 17.05
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 84.00
+x_end = 140.00
+y = 17.05
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 53.00
+x_end = 58.00
+y = 15.5
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 82.00
+x_end = 87.00
+y = 15.5
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 56.00
+x_end = 59.00
+y = 13.95
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 81.00
+x_end = 84.00
+y = 13.95
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 57.00
+x_end = 60.00
+y = 12.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 80.00
+x_end = 83.00
+y = 12.4
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 57.50
+x_end = 60.50
+y = 10.85
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 79.50
+x_end = 82.50
+y = 10.85
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 58.50
+x_end = 61.50
+y = 9.3
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 78.50
+x_end = 81.50
+y = 9.3
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 59.00
+x_end = 62.00
+y = 7.75
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 78.00
+x_end = 81.00
+y = 7.75
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 59.50
+x_end = 62.50
+y = 6.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 77.50
+x_end = 80.50
+y = 6.2
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 60.00
+x_end = 63.00
+y = 4.65
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 77.00
+x_end = 80.00
+y = 4.65
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 61.50
+x_end = 64.50
+y = 3.1
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 75.50
+x_end = 78.50
+y = 3.1
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 62.00
+x_end = 65.00
+y = 1.55
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 75.00
+x_end = 78.00
+y = 1.55
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 62.00
+x_end = 78.00
+y = 0.0
+surface_id = "hard_rock"

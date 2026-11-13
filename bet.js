@@ -6,12 +6,12 @@
 // tried again, on whichever card is open then. Accepted, the pop-up closes.
 // There is no taking a bet back.
 
-import { Controller, Phrase, Ui } from "./gd_chime/gd_chime.js?v=5fa37ac932e2";
-import { ANSWERED, BOOK } from "./wire.js?v=5fa37ac932e2";
-import { POINTS, SHARES, countdownSaid, oddsSaid, ordinal, placeReturns, shareOf, threeFigures, winReturns } from "./rules.js?v=5fa37ac932e2";
-import { countdown } from "./nav.js?v=5fa37ac932e2";
-import { credits, nameSaid, runnersOf, square } from "./parts.js?v=5fa37ac932e2";
-import { OPENS_BET } from "./card.js?v=5fa37ac932e2";
+import { Controller, Phrase, Ui } from "./gd_chime/gd_chime.js?v=c9eebf89955b";
+import { ANSWERED, BOOK } from "./wire.js?v=c9eebf89955b";
+import { POINTS, SHARES, countdownSaid, oddsSaid, ordinal, placeReturns, shareOf, threeFigures, winReturns } from "./rules.js?v=c9eebf89955b";
+import { countdown } from "./nav.js?v=c9eebf89955b";
+import { credits, nameSaid, runnersOf, square } from "./parts.js?v=c9eebf89955b";
+import { OPENS_BET } from "./card.js?v=c9eebf89955b";
 
 export const PICKS_BOOK = "picks_a_book";
 export const TYPES_STAKE = "types_a_stake";

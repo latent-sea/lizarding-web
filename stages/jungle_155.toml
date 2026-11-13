@@ -1,0 +1,26 @@
+# Jungle-155 — roster baseline, band 100-200 (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "100% mud - no obstacles - no platforms".
+# Flat 155 m of mud, nothing else: the band-1 jungle baseline. Measured
+# distance target 155 m MEASURED: paddock sits at x=1, so finish_x = 156
+# makes the raced start->finish span exactly 155 m (the name is the measured
+# distance, not the finish coordinate).
+
+[stage]
+id = "jungle_155"
+name = "Jungle 155 m"
+schema_version = 1
+biome_skin = "jungle"
+nominal_length_m = 156
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 156
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 166
+y = 0.0
+surface_id = "mud"

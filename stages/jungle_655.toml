@@ -1,0 +1,222 @@
+# Jungle-655 - roster baseline, band 600-700 (T-586 / D-203). Ian 2026-08-26:
+# the biome's FIRST WATER - "I would like more" - so EIGHT rivers, platform
+# crossings gated p50 -> p95 on the +1 m gap census axis (platforms 20 m wood,
+# 1 m above the banks; entry gap = the gate, exit is a -1 m drop-gap which every
+# entrant can make by physics, so nobody strands). Entry gaps 11/12/13/14/15/16/
+# 17/20 m -> river widths 42/44/46/48/50/52/54/60 (396 m of water). Swimmers swim
+# bank to bank; the dry field thins river by river to the p95 elite on the last.
+# Start: the 355-convention elevated wood platform (first 20%, y=3.0 = pooled
+# step-up p90 return gate). Name = MEASURED distance: finish_x tuned by probe.
+
+[stage]
+id = "jungle_655"
+name = "Jungle 655 m"
+schema_version = 1
+biome_skin = "jungle"
+nominal_length_m = 641.6
+
+[race]
+paddock_x = 1.0
+paddock_y = 3.0
+finish_x = 641.6
+finish_y = 0.0
+
+# Start platform (everyone begins up here and jumps down).
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 131
+y = 3.0
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 145.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 187.0
+x_end = 200.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 244.0
+x_end = 257.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 303.0
+x_end = 316.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 364.0
+x_end = 377.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 427.0
+x_end = 440.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 492.0
+x_end = 505.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 559.0
+x_end = 572.0
+y = 0.0
+surface_id = "mud"
+
+[[primitives]]
+type = "surface"
+x_start = 632.0
+x_end = 660.0
+y = 0.0
+surface_id = "mud"
+
+# River 1 (p50 gate, entry gap 11 m)
+[[primitives]]
+type = "surface"
+x_start = 145.0
+x_end = 187.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 156.0
+x_end = 176.0
+y = 1.0
+surface_id = "wood"
+
+# River 2 (p56 gate, entry gap 12 m)
+[[primitives]]
+type = "surface"
+x_start = 200.0
+x_end = 244.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 212.0
+x_end = 232.0
+y = 1.0
+surface_id = "wood"
+
+# River 3 (p63 gate, entry gap 13 m)
+[[primitives]]
+type = "surface"
+x_start = 257.0
+x_end = 303.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 270.0
+x_end = 290.0
+y = 1.0
+surface_id = "wood"
+
+# River 4 (p69 gate, entry gap 14 m)
+[[primitives]]
+type = "surface"
+x_start = 316.0
+x_end = 364.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 330.0
+x_end = 350.0
+y = 1.0
+surface_id = "wood"
+
+# River 5 (p76 gate, entry gap 15 m)
+[[primitives]]
+type = "surface"
+x_start = 377.0
+x_end = 427.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 392.0
+x_end = 412.0
+y = 1.0
+surface_id = "wood"
+
+# River 6 (p82 gate, entry gap 16 m)
+[[primitives]]
+type = "surface"
+x_start = 440.0
+x_end = 492.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 456.0
+x_end = 476.0
+y = 1.0
+surface_id = "wood"
+
+# River 7 (p89 gate, entry gap 17 m)
+[[primitives]]
+type = "surface"
+x_start = 505.0
+x_end = 559.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 522.0
+x_end = 542.0
+y = 1.0
+surface_id = "wood"
+
+# River 8 (p95 gate, entry gap 20 m)
+[[primitives]]
+type = "surface"
+x_start = 572.0
+x_end = 632.0
+y = 0.0
+surface_id = "water"
+depth = 3.0
+
+[[primitives]]
+type = "surface"
+x_start = 592.0
+x_end = 612.0
+y = 1.0
+surface_id = "wood"
+

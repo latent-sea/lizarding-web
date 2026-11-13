@@ -1,0 +1,115 @@
+# Hanoi-165 - roster baseline, band 100-200 (T-586 / D-203).
+# Ian's build ruling 2026-08-26 (the sheet's "50% rock floor then jump up to
+# wood platform" let lizards ignore the platform entirely):
+#   START ON A ROCK DECK 7 m up, first 50%; WOOD DECK at 8 m for the second 50%
+#   (1 m step at the seam - free; the point is the rock->wood SURFACE swap)
+#   ROCK FLOOR at y=0 full length; 7 m x 3 m OBSTACLE on it, halfway along the
+#   wood deck, so the floor is not a free alternative.
+# LADDERS BOTH SIDES OF THE OBSTACLE (Ian, after the first build measured 40%
+# DNF - every casualty stalled at the obstacle's near face, unable to remount a
+# 7-8 m deck against a measured mount ceiling of 8.5 m). The floor stays useless
+# as a ROUTE (slower, and interrupted) but a knockoff now costs time, not the
+# race - the v1 rule that a fallen lizard always has a forward path.
+#   left ladder  4 treads at 1.4/2.8/4.2/5.6 -> 1.4 m step onto the 7.0 rock deck
+#   BOTH LADDERS ARE WOOD (Ian, 2026-08-26) - scaffolding against the stone.
+#   right ladder 4 treads at 1.6/3.2/4.8/6.4 -> 1.6 m step onto the 8.0 wood deck
+#   both >1 m clear of their deck (the DV-475 near-miss rule)
+# Name = MEASURED distance: finish_x tuned by probe. Run-out on the deck.
+
+[stage]
+id = "hanoi_165"
+name = "Hanoi 165 m"
+schema_version = 1
+biome_skin = "hanoi"
+nominal_length_m = 159
+
+[race]
+paddock_x = 1.0
+paddock_y = 7.0
+finish_x = 159
+finish_y = 8.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 175
+y = 0.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 82
+y = 7.0
+surface_id = "hard_rock"
+
+[[primitives]]
+type = "surface"
+x_start = 82
+x_end = 170
+y = 8.0
+surface_id = "wood"
+
+[[primitives]]
+type = "hard_obstacle"
+x_start = 124.5
+x_end = 127.5
+bottom_y = 0.0
+top_y = 7.0
+
+[[primitives]]
+type = "surface"
+x_start = 76.0
+x_end = 88.0
+y = 1.4
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 88.0
+x_end = 100.0
+y = 2.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 100.0
+x_end = 112.0
+y = 4.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 112.0
+x_end = 124.0
+y = 5.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 130.0
+x_end = 142.0
+y = 1.6
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 142.0
+x_end = 154.0
+y = 3.2
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 154.0
+x_end = 166.0
+y = 4.8
+surface_id = "wood"
+
+[[primitives]]
+type = "surface"
+x_start = 166.0
+x_end = 178.0
+y = 6.4
+surface_id = "wood"
+

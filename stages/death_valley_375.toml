@@ -1,0 +1,33 @@
+# Death Valley-375 - roster baseline, band 300-400 (T-586 / D-203).
+# Ian's spec (stage-roster.xlsx): "100% rock floor - no obstacles - no platforms".
+# The pure-rock control: the only stage where a lizard spends its whole race on
+# the surface that penalises it, and the one that isolates hard_rock at full
+# length (DV-175's 50/50 split could not). No election question - the rock is
+# unavoidable. Completes the control set with jungle_155 (mud), wales_135
+# (dirt), death_valley_175 (rock/dirt).
+# NOTE (2026-08-26): surface_response sets v_mult AND accel_mult to the SAME
+# scalar (body_to_phenotype.gd:711-717) - rock is a flat time tax proportional
+# to metres spent on it, NOT an acceleration-specific penalty. The design doc
+# (stages-design-intent.md) says "reduced accel"; the code does not. Doc/code
+# divergence logged on T-586, owned outside it.
+# Name = MEASURED distance: paddock x=1, finish 376. Run-out 10 m.
+
+[stage]
+id = "death_valley_375"
+name = "Death Valley 375 m"
+schema_version = 1
+biome_skin = "death_valley"
+nominal_length_m = 376
+
+[race]
+paddock_x = 1.0
+paddock_y = 0.0
+finish_x = 376
+finish_y = 0.0
+
+[[primitives]]
+type = "surface"
+x_start = 0.0
+x_end = 386
+y = 0.0
+surface_id = "hard_rock"
