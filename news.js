@@ -8,7 +8,7 @@
 // words and time, and hands a Yes to Brevo's double opt-in. Until it is set up
 // (or before it is merged), none of this shows.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=a63959e04b58";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=09189471fb4e";
 
 export const SAYS_YES = "says_yes_to_lizarding_news";
 export const SAYS_NO = "says_no_to_lizarding_news";
@@ -90,7 +90,7 @@ export class News extends Controller {
     if (!done.ok) { this.said.setValue(Phrase.with("That didn't go through: %s", [done.error ?? ""])); return; }
     if (done.body?.configured === false) { this.me.setValue({ configured: false }); return; }
     this.asking.setValue(null);
-    this.me.setValue({ ...this.me._held, configured: true, ask: false, state: done.body?.state ?? (yes ? "waiting" : "no"), email: yes ? body.email : null });
+    this.me.setValue({ ...this.me._held, configured: true, ask: false, state: done.body?.state ?? (yes ? "waiting" : "no"), email: yes ? body.email : null, stops: done.body?.stops ?? null });
     const listed = done.body?.state === "yes";
     this.said.setValue(Phrase.of(!yes ? "No Lizarding news: nothing else changes." : listed ? "You're on the list already: Lizarding news comes to that address." : "Check your email for the link to confirm."));
   }
@@ -101,7 +101,8 @@ export class News extends Controller {
     this.busy.setValue(false);
     if (!done.ok) { this.said.setValue(Phrase.with("That didn't go through: %s", [done.error ?? ""])); return; }
     this.me.setValue({ ...this.me._held, state: "withdrawn", email: null, ask: false });
-    this.said.setValue(Phrase.of("Lizarding news stopped."));
+    // an address that isn't the one signed in with: only the answer is taken back; the emails stop from their own link
+    this.said.setValue(Phrase.of(done.body?.stops === "mail" ? "Your answer is taken back. If you confirmed, stop the emails with the link at the foot of any of them." : "Lizarding news stopped."));
   }
 }
 
@@ -109,7 +110,10 @@ export class News extends Controller {
 export function stateWords(me) {
   switch (me?.state) {
     case "yes": return Phrase.with("Yes: Lizarding news goes to %s.", [me.email ?? ""]);
-    case "waiting": return Phrase.with("Waiting for you to confirm: we emailed a link to %s.", [me.email ?? ""]);
+    // an address that isn't the one signed in with (a guest's): the game is never told whether it was confirmed
+    case "waiting": return me.stops === "mail"
+      ? Phrase.with("We emailed a link to confirm to %s. Every Lizarding email has a link to stop them.", [me.email ?? ""])
+      : Phrase.with("Waiting for you to confirm: we emailed a link to %s.", [me.email ?? ""]);
     case "no": return Phrase.of("No: you get no Lizarding news.");
     case "withdrawn": return Phrase.of("Stopped: you get no Lizarding news.");
     default: return Phrase.of("Not answered yet.");

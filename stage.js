@@ -5,7 +5,7 @@
 // along the course and y up; a course may double back, so nothing here
 // assumes it runs left to right.
 
-import { parseToml } from "./toml.js?v=a63959e04b58";
+import { parseToml } from "./toml.js?v=09189471fb4e";
 
 export const SURFACES = Object.freeze({
   hard_rock: { label: "Rock", colour: "#9EA1B3" },
