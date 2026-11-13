@@ -6,12 +6,17 @@
 // tried again, on whichever card is open then. Accepted, the pop-up closes.
 // There is no taking a bet back.
 
-import { Controller, Phrase, Ui } from "./gd_chime/gd_chime.js?v=9945d15d82b6";
-import { ANSWERED, BOOK } from "./wire.js?v=9945d15d82b6";
-import { POINTS, SHARES, countdownSaid, oddsSaid, ordinal, placeReturns, shareOf, threeFigures, winReturns } from "./rules.js?v=9945d15d82b6";
-import { countdown } from "./nav.js?v=9945d15d82b6";
-import { credits, nameSaid, runnersOf, square } from "./parts.js?v=9945d15d82b6";
-import { OPENS_BET } from "./card.js?v=9945d15d82b6";
+import { Controller, Phrase, Ui } from "./gd_chime/gd_chime.js?v=463ccde34b8c";
+import { ANSWERED, BOOK } from "./wire.js?v=463ccde34b8c";
+import { POINTS, SHARES, countdownSaid, oddsSaid, ordinal, placeReturns, shareOf, threeFigures, winReturns } from "./rules.js?v=463ccde34b8c";
+import { countdown } from "./nav.js?v=463ccde34b8c";
+import { credits, nameSaid, runnersOf, square } from "./parts.js?v=463ccde34b8c";
+import { OPENS_BET } from "./card.js?v=463ccde34b8c";
+import { LOST } from "./connection.js?v=463ccde34b8c";
+
+/** How long a bet whose answer was lost waits for the game to be back, to see whether it went through. */
+export const LOST_WAIT_MS = 30_000;
+const LOST_LOOK_MS = 250;
 
 export const PICKS_BOOK = "picks_a_book";
 export const TYPES_STAKE = "types_a_stake";
@@ -30,9 +35,11 @@ export const WORDS = {
 const BOOKS = ["win", "place"];
 
 export class Betting extends Controller {
-  constructor(chimes, play) {
+  constructor(chimes, play, { timers = globalThis, lostWait = LOST_WAIT_MS } = {}) {
     super(chimes);
     this.play = play;
+    this._timers = timers;
+    this._lostWait = lostWait;
     this.lizard = this.value(null);
     this.book = this.value("win");
     this.stakes = this.value({ win: "", place: "" });
@@ -102,6 +109,27 @@ export class Betting extends Controller {
 
   _stake(book, line) { this.stakes.update((held) => ({ ...held, [book]: line })); }
 
+  /** How many of the seat's bets on this race are this one's like: the same lizard, book and stake. */
+  _matching(asked) {
+    const game = this.play.game._held;
+    return game ? game.betsOn(asked.race).filter((b) => b.lizard === asked.lizard && b.book === asked.book && b.stake === asked.stake).length : 0;
+  }
+
+  /**
+   * Whether a bet whose answer was lost went through: true once the game is back (rebuilt from a fresh copy after the
+   * reconnect) with one more like it than before; false once it is back without; null if it isn't back in time.
+   */
+  async _landed(asked, before) {
+    const gone = this.play.game._held;
+    const until = this._lostWait;
+    for (let waited = 0; waited <= until; waited += LOST_LOOK_MS) {
+      const game = this.play.game._held;
+      if (game && game !== gone && this.play.connection._held?.status === "playing") return this._matching(asked) > before;
+      await new Promise((resolve) => this._timers.setTimeout(resolve, LOST_LOOK_MS));
+    }
+    return null;
+  }
+
   /** Each bet sent in turn, win first, the next only once the last was accepted. */
   async _send(bets) {
     const making = this._made;
@@ -113,9 +141,28 @@ export class Betting extends Controller {
       // the card open now: a bet tried again goes on the race open then
       const card = this.play.openCard();
       if (!card) { this.said.setValue(Phrase.of("No race is open")); break; }
-      const answer = await this.play.send("bet", { race: card.race, lizard, book: BOOK[bet.book.toUpperCase()], stake: Number(bet.stake) });
+      const asked = { race: card.race, lizard, book: BOOK[bet.book.toUpperCase()], stake: Number(bet.stake) };
+      const before = this._matching(asked);
+      const answer = await this.play.send("bet", asked);
       if (making !== this._made) return;
       if (answer.kind === ANSWERED.ACCEPTED) { this._stake(bet.book, ""); continue; }
+      // the answer lost with the connection (hardening: Try again then staked twice): the game, back, says whether
+      // the bet went through - one more like it among the seat's bets - before Try again is offered (a stopgap until the
+      // betting server takes an idempotency key)
+      if (answer.kind === ANSWERED.FAILED && answer.reason === LOST) {
+        this.said.setValue(Phrase.of("The connection dropped: checking whether the bet went through…"));
+        const landed = await this._landed(asked, before);
+        if (making !== this._made) return;
+        if (landed === true) { this._stake(bet.book, ""); this.said.setValue(""); continue; }
+        this.book.setValue(bet.book);
+        if (landed === null) {
+          this.said.setValue(Phrase.of("The game isn't back yet, so whether the bet went through isn't known: look at your stakes on the card before betting again."));
+          break;
+        }
+        this.said.setValue(Phrase.of("The connection dropped and the bet didn't go through."));
+        this.failed.setValue(bet);
+        break;
+      }
       this.book.setValue(bet.book);
       this.said.setValue(answer.reason);
       if (answer.kind === ANSWERED.DECLINED) this.play.notice(answer.reason);
