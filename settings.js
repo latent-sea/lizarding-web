@@ -4,12 +4,12 @@
 // colours the shaded figures wear: a class per band of the scale chosen,
 // and per runner's number, written again whenever the scale changes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=c9eebf89955b";
-import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=c9eebf89955b";
-import { safeStorage } from "./auth.js?v=c9eebf89955b";
-import { KEEPS_GUEST, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=c9eebf89955b";
-import { describeJoining } from "./joining.js?v=c9eebf89955b";
-import { describeNewsSettings } from "./news.js?v=c9eebf89955b";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=2831cc56e2f9";
+import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=2831cc56e2f9";
+import { safeStorage } from "./auth.js?v=2831cc56e2f9";
+import { KEEPS_GUEST, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=2831cc56e2f9";
+import { describeJoining } from "./joining.js?v=2831cc56e2f9";
+import { describeNewsSettings } from "./news.js?v=2831cc56e2f9";
 
 export const SETTINGS = "settings";
 export const PICKS_SCALE = "picks_a_colour_scale";
@@ -79,7 +79,7 @@ export function describeSettings(ui, settings, play, joining, news) {
     describeNewsSettings(ui, news),
     ui.column([
       ui.text(Phrase.of("Colour scale"), "PartHeading"),
-      ui.text(Phrase.of("Every shaded figure - percentiles above all - runs from bad to good on this scale."), "Hint").wraps(),
+      ui.text(Phrase.of("Every shaded figure - P-Nums above all - runs from bad to good on this scale."), "Hint").wraps(),
       ...Object.entries(SCALES).map(([key, scale]) => ui.pressable(PICKS_SCALE, { scale: key }, [
         ui.text(Phrase.of(scale.name), "Face").grow(),
         ui.row(samples(key).map((_, at) => ui.surface(`Sample Sample${at} ${key}`)), "Samples"),

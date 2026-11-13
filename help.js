@@ -1,7 +1,7 @@
 // The i on every page: what can be done on it, and what its figures,
 // colours and marks mean. One pop-up, opened with the page it explains.
 
-import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=c9eebf89955b";
+import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=2831cc56e2f9";
 
 export const OPENS_HELP = "explains_this_page";
 
@@ -21,13 +21,13 @@ export const HELP = {
     ["Bet", "Opens the bet: choose Win or Place, type a stake or take a share of your credits, and see what it would return. A bet can't be taken back."],
     ["Your stakes", "What you have bet on each lizard in this race."],
     ["Credits", "Your balance, top right. The bar fills towards the next power of ten. Under 50 after a race, you are topped up to 50."],
-    ["A lizard's form", "Tap a lizard's name to see its races, its percentiles and its career."],
-    ["The full game", "The betting here is free. The full game, on Steam and Google Play, adds Battle Ladder, the races as they really run and a whole world to browse, with Breeding Challenge and Dynasty coming."],
+    ["A lizard's form", "Tap a lizard's name to see its races, its P-Nums and its career."],
+    ["The full game", "The betting here is free. The full game, on Steam and Google Play, adds Battle Ladder, the races as they really run, a whole world to browse, buying and breeding your own stable, and Dynasty."],
   ],
   lizard: [
     ["The lizard", "Its number, name, age and stable, its prices in this race, and your stakes on it. The arrows go to the runner before or after it on the card."],
     ["Form", "Its races, newest first. The line under its career says how many of its races are shown. Tap a stage's name to see its map."],
-    ["Pct and For age", "How well it ran that day, as a percentile from 0 (worst) to 99 (best): against every lizard, and against lizards of its own age. Shaded red to green."],
+    ["P-Num and P-Num (age)", "How fast it ran, against every lizard on that stage, from 0 to 99: 90 means faster than 90 lizards in a hundred. P-Num (age) compares it only with lizards its age. Shaded red to green."],
     ["Downs and Knocks", "How often it was knocked down, and how often it knocked others down."],
     ["Sprints", "Ten bars, one for each tenth of the course: the taller the bar, the longer it sprinted there."],
   ],

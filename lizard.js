@@ -1,14 +1,14 @@
 // The lizard screen (the brief's section 8.6), opened from a runner: its
 // strip along the top - square, name, age, stable, prices, the player's
 // stakes, BET, and arrows through the field - and its form: a table of its
-// races, newest first, its percentiles shaded, its sprint map drawn, and its
+// races, newest first, its P-Nums shaded, its sprint map drawn, and its
 // career under it. Results only: never its genes or its body.
 
-import { Phrase } from "./gd_chime/gd_chime.js?v=c9eebf89955b";
-import { OPENS_BET } from "./card.js?v=c9eebf89955b";
-import { ageSaid, bandStyle, credits, nameSaid, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=c9eebf89955b";
-import { ordinal } from "./rules.js?v=c9eebf89955b";
-import { stageLink } from "./course.js?v=c9eebf89955b";
+import { Phrase } from "./gd_chime/gd_chime.js?v=2831cc56e2f9";
+import { OPENS_BET } from "./card.js?v=2831cc56e2f9";
+import { ageSaid, bandStyle, credits, nameSaid, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=2831cc56e2f9";
+import { ordinal } from "./rules.js?v=2831cc56e2f9";
+import { stageLink } from "./course.js?v=2831cc56e2f9";
 
 export const LIZARD = "lizard";
 export const GOES_EARLIER = "goes_to_the_runner_before";
@@ -53,8 +53,8 @@ export function describeLizard(ui, play, { betPopUp }) {
     cell("Time", held.map((s) => (s?.finished ? seconds(s.time) : "–")), "Time"),
     cell("Behind", held.map((s) => (s?.finished && s.behind > 0 ? `+${seconds(s.behind)}` : "–")), "Behind"),
     cell("Prize", held.map((s) => (s ? (s.prize ? credits(s.prize) : "–") : "")), "Prize"),
-    cell("Pct", held.map((s) => (s?.band == null ? "–" : String(s.band))), "Pct", held.map((s) => bandStyle(s?.band ?? null, "CellValue Shade"))),
-    cell("For age", held.map((s) => (s?.bandForAge == null ? "–" : String(s.bandForAge))), "Pct", held.map((s) => bandStyle(s?.bandForAge ?? null, "CellValue Shade"))),
+    cell("P-Num", held.map((s) => (s?.band == null ? "–" : String(s.band))), "Pct", held.map((s) => bandStyle(s?.band ?? null, "CellValue Shade"))),
+    cell("P-Num age", held.map((s) => (s?.bandForAge == null ? "–" : String(s.bandForAge))), "Pct", held.map((s) => bandStyle(s?.bandForAge ?? null, "CellValue Shade"))),
     cell("Downs", held.map((s) => (s?.knockedDown == null ? "–" : String(s.knockedDown))), "Knocks"),
     cell("Knocks", held.map((s) => (s?.knockedOthers == null ? "–" : String(s.knockedOthers))), "Knocks"),
     ui.surface("Cell Sprints", [sprintMap(ui, held.map((s) => s?.sprintMap ?? []))]),
@@ -88,7 +88,7 @@ export function describeLizard(ui, play, { betPopUp }) {
       ui.when(starts.map((s) => s.length > 0), ui.column([
         ui.surface("FormRow FormHead", [
           heading("Season"), heading("Stage", "Stage"), heading("Place"), heading("Time"), heading("Behind"), heading("Prize"),
-          heading("Pct", "Pct"), heading("For age", "Pct"), heading("Downs"), heading("Knocks"), heading("Sprints"),
+          heading("P-Num", "Pct"), heading("P-Num (age)", "Pct"), heading("Downs"), heading("Knocks"), heading("Sprints"),
         ]),
         ui.each(starts, startRow, (s) => s.race, "FormRows"),
       ], "FormTable")),
@@ -96,14 +96,14 @@ export function describeLizard(ui, play, { betPopUp }) {
   ]);
 }
 
-/** The career line: races, wins, top threes, prize, and the average percentile of the races it finished. */
+/** The career line: races, wins, top threes, prize, and the average P-Num of the races it finished. */
 export function careerSaid(career) {
   if (!career) return "";
   const parts = [
     Phrase.counted("%d race", "%d races", career.races), Phrase.counted("%d win", "%d wins", career.wins),
     Phrase.with("%d in the top three", [career.topThree]), Phrase.with("%s won", [credits(career.prize)]),
   ];
-  if (career.averageBand != null) parts.push(Phrase.with("percentile %d on average", [career.averageBand]));
+  if (career.averageBand != null) parts.push(Phrase.with("average P-Num %d", [career.averageBand]));
   return Phrase.joined(parts.flatMap((part, at) => (at ? [" · ", part] : [part])));
 }
 

@@ -10,10 +10,10 @@
 // only, so another is read from the game's own definitions as copied into
 // stages/ (tooling/sync_lizarding_stages.py), fetched as it is first opened.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=c9eebf89955b";
-import { readStage, summary } from "./stage.js?v=c9eebf89955b";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=2831cc56e2f9";
+import { readStage, summary } from "./stage.js?v=2831cc56e2f9";
 // the app's press on a stage's name (stage_glass.gd's OPENS) is the nav's own: goes_to_the_stage
-import { GOES_STAGE, stageOf } from "./nav.js?v=c9eebf89955b";
+import { GOES_STAGE, stageOf } from "./nav.js?v=2831cc56e2f9";
 
 export const STAGE = "stage";
 
