@@ -15,8 +15,14 @@
 //   is stopped and reads PRACTICE, and betting is off (play.practising).
 // - THE SWITCH: Settings' "Hints and tips" turns all of it off and on.
 //
+// - THE WELCOME (Ian, 13 Nov: "an explainer of general principles on first
+//   entry"): three plates of the web game's own, before Betting's, saying what
+//   the game is, that it runs the full game's engine and races, and that the
+//   extra fun is in the full game - lighting its buying links.
+//
 // The words are the app's, copied by tooling/sync_lizarding_tips.py into
-// tutorial/, never written here. The web game names its controls by the app's
+// tutorial/, never written here; the welcome's are the web's own, in
+// tutorial/welcome.json, which the tutorial stream owns. The web game names its controls by the app's
 // actions (APP_ACTIONS) to find them; what a step lights is the web's own.
 
 export const REMIND_AFTER_MS = 6000;
@@ -101,8 +107,17 @@ const firstShown = (root, selector) => [...root.querySelectorAll(selector)].find
  * Each web view's tips: the app's tip, and of its steps those the web game has, each with what it lights (a finder
  * over the page, or null for a step that lights nothing). The rest of the app's steps are left out.
  */
+/** The welcome's tip, the web game's own (tutorial/welcome.json), merged in among the app's as it is read. */
+export const WELCOME = "web_welcome";
+
 export const WEB_TIPS = {
   card: [
+    [WELCOME, [
+      [0, null],
+      [1, null],
+      // the full game: its buying links, which stand over the card
+      [2, (root) => firstShown(root, ".BuyBar")],
+    ]],
     ["tip_betting", [
       [0, null],
       [1, (root) => firstShown(root, ".Nav .Countdown")],
@@ -342,12 +357,20 @@ export class Tutorial {
   }
 }
 
-/** The app's words, as copied into tutorial/: read over the network in a browser. */
+/** The app's steps with the welcome's among them, as one more tip: the app's copy is never written to. */
+export function withWelcome(steps, welcome) {
+  const plates = Array.isArray(welcome?.steps) ? welcome.steps.filter((s) => Array.isArray(s) && typeof s[1] === "string" && s[1]) : [];
+  return { ...steps, tips: { ...steps.tips, [WELCOME]: plates } };
+}
+
+/** The app's words, as copied into tutorial/, and the welcome's: read over the network in a browser. */
 export async function loadWords(base = "tutorial/") {
-  const [words, notNeeded, steps] = await Promise.all([
+  const [words, notNeeded, steps, welcome] = await Promise.all([
     fetch(`${base}reminder_words.txt`).then((r) => r.text()),
     fetch(`${base}reminders_not_needed.txt`).then((r) => r.text()),
     fetch(`${base}tip_steps.json`).then((r) => r.json()),
+    // the game plays on without its welcome
+    fetch(`${base}welcome.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
   ]);
-  return { words: readReminderWords(words), notNeeded: readNotNeeded(notNeeded), steps };
+  return { words: readReminderWords(words), notNeeded: readNotNeeded(notNeeded), steps: withWelcome(steps, welcome) };
 }

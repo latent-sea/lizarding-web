@@ -1,0 +1,20 @@
+{
+ "_": "The web game's own first plates, before Betting's (Ian, 13 Nov: an explainer of general principles on first entry; the same engine and the same races as the full game's Betting; the extra fun in battles, buying and breeding). Not the app's words, so not copied by tooling/sync_lizarding_tips.py: the tutorial stream owns them, and they are edited here. Each step is [heading, words, FAQ names], as tip_steps.json's are.",
+ "steps": [
+  [
+   "",
+   "Every lizard's genes shape its body and its mind, and its form is the races it has really run. Read the form, then back a lizard to win or to place. It's all play money.",
+   []
+  ],
+  [
+   "",
+   "This is Betting from the full game, stripped down: the same engine and the same races. Everyone bets on the same race.",
+   []
+  ],
+  [
+   "",
+   "The extra fun is in the full game: Battle, where you and a rival race thirty lizards each over six races, and soon, buying and breeding your own stable.",
+   []
+  ]
+ ]
+}
