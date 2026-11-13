@@ -496,3 +496,8 @@ html, body { margin: 0; background: #08070f; }
 .DimmedGo { color: #47ebc7; font-weight: 700; }
 @media (prefers-reduced-motion: reduce) { .DimmedSpot { transition: none; } }
 #app .Countdown.Practice { color: #47ebc7; letter-spacing: 0.06em; font-size: 1.1rem; }
+
+/* the selling points (Ian, 13 Nov): one strip under every side of the advert, each a small teal tag */
+#app .AdvertPoints { flex-wrap: wrap; gap: 6px; justify-content: center; }
+#app .AdvertPoint { padding: 2px 8px; border: 1px solid rgb(71 235 199 / 0.5); border-radius: 999px; background: rgb(71 235 199 / 0.1);
+  color: var(--teal); font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
