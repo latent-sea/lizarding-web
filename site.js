@@ -14,37 +14,37 @@
 // platform and the game (tests/standin.js), never the real ones; opened with
 // ?standin it plays against the stand-in, for a person to try.
 
-import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=2831cc56e2f9";
-import { CONFIG } from "./config.js?v=2831cc56e2f9";
-import { SignIn } from "./auth.js?v=2831cc56e2f9";
-import { Connection } from "./connection.js?v=2831cc56e2f9";
-import { localParts, openLine } from "./hub.js?v=2831cc56e2f9";
-import * as Session from "./play.js?v=2831cc56e2f9";
-import * as Card from "./card.js?v=2831cc56e2f9";
-import * as Bet from "./bet.js?v=2831cc56e2f9";
-import * as Lizard from "./lizard.js?v=2831cc56e2f9";
-import * as League from "./leagues.js?v=2831cc56e2f9";
-import * as World from "./world.js?v=2831cc56e2f9";
-import { Tutorial, loadWords } from "./tutorial.js?v=2831cc56e2f9";
-import * as Race from "./race.js?v=2831cc56e2f9";
-import * as Nav from "./nav.js?v=2831cc56e2f9";
-import * as Course from "./course.js?v=2831cc56e2f9";
-import * as Prefs from "./settings.js?v=2831cc56e2f9";
-import * as Join from "./joining.js?v=2831cc56e2f9";
-import * as News from "./news.js?v=2831cc56e2f9";
-import * as Help from "./help.js?v=2831cc56e2f9";
-import * as Promo from "./promo.js?v=2831cc56e2f9";
-import { RaceView } from "./viewer.js?v=2831cc56e2f9";
-import { drawStageMap } from "./stage.js?v=2831cc56e2f9";
-import { ordinal, paid, secondsLeft } from "./rules.js?v=2831cc56e2f9";
-import { credits } from "./parts.js?v=2831cc56e2f9";
-import { secondsAt } from "./telemetry.js?v=2831cc56e2f9";
-import { drawGoogleButton, drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=2831cc56e2f9";
+import { ChimeApp, Chimes, Driver, Frames, Look, Phrase, Ui } from "./gd_chime/gd_chime.js?v=a63959e04b58";
+import { CONFIG } from "./config.js?v=a63959e04b58";
+import { SignIn } from "./auth.js?v=a63959e04b58";
+import { Connection } from "./connection.js?v=a63959e04b58";
+import { localParts, openLine } from "./hub.js?v=a63959e04b58";
+import * as Session from "./play.js?v=a63959e04b58";
+import * as Card from "./card.js?v=a63959e04b58";
+import * as Bet from "./bet.js?v=a63959e04b58";
+import * as Lizard from "./lizard.js?v=a63959e04b58";
+import * as League from "./leagues.js?v=a63959e04b58";
+import * as World from "./world.js?v=a63959e04b58";
+import { Tutorial, loadWords } from "./tutorial.js?v=a63959e04b58";
+import * as Race from "./race.js?v=a63959e04b58";
+import * as Nav from "./nav.js?v=a63959e04b58";
+import * as Course from "./course.js?v=a63959e04b58";
+import * as Prefs from "./settings.js?v=a63959e04b58";
+import * as Join from "./joining.js?v=a63959e04b58";
+import * as News from "./news.js?v=a63959e04b58";
+import * as Help from "./help.js?v=a63959e04b58";
+import * as Promo from "./promo.js?v=a63959e04b58";
+import { RaceView } from "./viewer.js?v=a63959e04b58";
+import { drawStageMap } from "./stage.js?v=a63959e04b58";
+import { ordinal, paid, secondsLeft } from "./rules.js?v=a63959e04b58";
+import { credits } from "./parts.js?v=a63959e04b58";
+import { secondsAt } from "./telemetry.js?v=a63959e04b58";
+import { drawGoogleButton, drawSignIn, takeGoogleRedirect } from "./backend/google.js?v=a63959e04b58";
 
 // ?probe walks the page against the stand-in; ?standin only plays against it, for a person to try
 const asked = new URLSearchParams(location.search);
 const probing = asked.has("probe") || asked.has("standin");
-const STANDIN = probing ? new (await import("./tests/standin.js?v=2831cc56e2f9")).StandIn() : null;
+const STANDIN = probing ? new (await import("./tests/standin.js?v=a63959e04b58")).StandIn() : null;
 // Google's own button, or the stand-in's; and Google's answer, if the page has just come back from it on a phone.
 // Inside a portal's frame, Google's own button (its pop-up) even on a phone: Google won't open inside a frame, so going there and back can't work
 const drawGoogle = STANDIN?.drawGoogle ?? (Promo.FRAMED ? (place, id, signedIn, look) => drawGoogleButton(place, id, signedIn, look) : drawSignIn);
@@ -545,7 +545,7 @@ class Lizarding extends ChimeApp {
     });
   }
 
-  probe() { return import("./probe.js?v=2831cc56e2f9").then((made) => new made.Probe(this, STANDIN)); }
+  probe() { return import("./probe.js?v=a63959e04b58").then((made) => new made.Probe(this, STANDIN)); }
 }
 
 ChimeApp.start(Lizarding, document.getElementById("app")).then((app) => { if (probing) Object.assign(globalThis, { lizarding: app, standin: STANDIN }); });

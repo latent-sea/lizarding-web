@@ -5,8 +5,8 @@
 // Until the store pages and the clips are public, each is a placeholder that
 // says so (STORES, CLIPS): filling in an address is all it takes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=2831cc56e2f9";
-import { safeStorage } from "./auth.js?v=2831cc56e2f9";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=a63959e04b58";
+import { safeStorage } from "./auth.js?v=a63959e04b58";
 
 export const BUYS = "buys_the_full_game";
 export const KEEPS_PLAYING = "goes_back_to_the_races";
@@ -48,7 +48,7 @@ export const ASPECTS = [
   { key: "field", heading: "Know every runner", said: "Ten procedurally generated lizards in each race, no two alike. Read their form, see each one as it is, and back them to win or to place.", art: "promo/race-card.jpg" },
   { key: "browse", heading: "A whole world to read", said: "Every lizard, stage and race of the world, open to read: families, records and past races played again. No race or form is ever faked.", art: "promo/form-history.jpg" },
   // plain breeding, never the Breeding Challenge mode, which Ian keeps off Steam for now (the coordinator, 13 Nov)
-  { key: "breeding", heading: "Buy and breed", said: "Buy lizards and breed your own stable. Genes build body and mind and pass to the young: breed through the generations for the runners you want.", art: "promo/sprint.jpg" },
+  { key: "breeding", heading: "Buy and breed", said: "Buy lizards and breed your own stable. Genes build body and mind and pass to the young: breed through the generations for the runners you want.", art: "promo/lizard-look.jpg" },
   { key: "dynasty", heading: "Dynasty", said: "Run your own stable in a battle league. Buy, sell and breed lizards, and build a dynasty, where ancestry counts and inbreeding degenerates.", art: "promo/big-dive.jpg" },
 ];
 
