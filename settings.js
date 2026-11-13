@@ -4,12 +4,13 @@
 // colours the shaded figures wear: a class per band of the scale chosen,
 // and per runner's number, written again whenever the scale changes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=09189471fb4e";
-import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=09189471fb4e";
-import { safeStorage } from "./auth.js?v=09189471fb4e";
-import { KEEPS_GUEST, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=09189471fb4e";
-import { describeJoining } from "./joining.js?v=09189471fb4e";
-import { describeNewsSettings } from "./news.js?v=09189471fb4e";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=dadaf39aa503";
+import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=dadaf39aa503";
+import { safeStorage } from "./auth.js?v=dadaf39aa503";
+import { ASKS_TO_DELETE, DELETES_ACCOUNT, KEEPS_ACCOUNT, KEEPS_GUEST, SIGNS_OUT, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=dadaf39aa503";
+import { CONFIG } from "./config.js?v=dadaf39aa503";
+import { describeJoining } from "./joining.js?v=dadaf39aa503";
+import { describeNewsSettings } from "./news.js?v=dadaf39aa503";
 
 export const SETTINGS = "settings";
 export const PICKS_SCALE = "picks_a_colour_scale";
@@ -54,6 +55,25 @@ export class Settings extends Controller {
   }
 }
 
+/** Deleting the account for good, asked once more; and the privacy policy (the coordinator, 13 Nov). */
+export function describeAccountEnd(ui, play) {
+  return ui.column([
+    ui.text(Phrase.of("Delete your account"), "PartHeading"),
+    ui.when(play.deleting, ui.column([
+      ui.text(Phrase.of("This deletes your account for good, everywhere you play Lizarding: your name, your credits, your bets, your leagues and all your play. It can't be undone."), "Warn").wraps(),
+      ui.row([ui.button(DELETES_ACCOUNT, { style: "Pressable Choice DeleteAccount" }), ui.button(KEEPS_ACCOUNT, { style: "Pressable Choice" })], "Choices"),
+    ]), ui.button(ASKS_TO_DELETE, { style: "Pressable" })),
+    ui.text(play.accountSaid, "Said").wraps().hidesEmpty(),
+    ui.text(Phrase.of("What Lizarding keeps about you, and why:"), "Hint").wraps(),
+    privacyLink(ui),
+  ], "Part AccountEnd");
+}
+
+/** The privacy policy, opened in a new tab: in Settings, and at the foot of every page but the race. */
+export function privacyLink(ui) {
+  return ui.hyperlink(CONFIG.privacy, [ui.text(Phrase.of("Privacy policy"), "Face")], "PrivacyLink");
+}
+
 /** The settings screen: the account, then each choice shown as what it does. */
 export function describeSettings(ui, settings, play, joining, news) {
   const guest = play.account.map((a) => a.guest);
@@ -72,9 +92,15 @@ export function describeSettings(ui, settings, play, joining, news) {
         ])),
         ui.surface("GoogleButton", []).named("google-account"),
         ui.when(signingIn, ui.button(KEEPS_GUEST, { style: "Pressable" }), ui.button(WANTS_GOOGLE_SIGN_IN, { style: "Pressable" })),
-      ]), ui.text(Phrase.of("Your account is kept with Google: sign in with it to play on any device."), "Words").wraps()),
+      ]), ui.column([
+        ui.text(Phrase.of("Your account is kept with Google: sign in with it to play on any device."), "Words").wraps(),
+        // signing out: only for an account kept with Google (a guest signed out would be lost: it lives in this browser)
+        ui.button(SIGNS_OUT, { style: "Pressable" }),
+        ui.text(Phrase.of("Signs this browser out. Sign in with Google to play again, here or anywhere."), "Hint").wraps(),
+      ])),
       ui.text(play.googleSaid, "Said").wraps().hidesEmpty(),
     ], "Part"),
+    describeAccountEnd(ui, play),
     describeJoining(ui, joining),
     describeNewsSettings(ui, news),
     ui.column([

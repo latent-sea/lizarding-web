@@ -501,3 +501,8 @@ html, body { margin: 0; background: #08070f; }
 #app .AdvertPoints { flex-wrap: wrap; gap: 6px; justify-content: center; }
 #app .AdvertPoint { padding: 2px 8px; border: 1px solid rgb(71 235 199 / 0.5); border-radius: 999px; background: rgb(71 235 199 / 0.1);
   color: var(--teal); font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
+
+/* the account's own end (13 Nov): deleting it marked as the one press that can't be taken back; the privacy link */
+#app .chime-pressable.DeleteAccount { border-color: var(--neon); color: var(--neon); }
+#app .PrivacyLink { color: var(--teal); text-decoration: underline; text-underline-offset: 3px; align-self: center; }
+#app .PrivacyLink .Face { font-size: 0.9rem; }

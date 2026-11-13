@@ -17,4 +17,7 @@ export const CONFIG = Object.freeze({
   joinApp: true,
   // the factory's Google client (platform/supabase/platform.yml): public, as every page's is
   google: "400837578052-jqnhh565es3a92k58u5r2oggdcf7mrkr.apps.googleusercontent.com",
+  // the privacy policy (lizarding.com/privacy) and where to write about it: linked from Settings and every page's foot
+  privacy: "https://lizarding.com/privacy/",
+  contact: "dev-latent-sea@proton.me",
 });

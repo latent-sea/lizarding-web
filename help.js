@@ -1,7 +1,7 @@
 // The i on every page: what can be done on it, and what its figures,
 // colours and marks mean. One pop-up, opened with the page it explains.
 
-import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=09189471fb4e";
+import { Phrase, Ui } from "./gd_chime/gd_chime.js?v=dadaf39aa503";
 
 export const OPENS_HELP = "explains_this_page";
 

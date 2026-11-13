@@ -8,7 +8,7 @@
 // words and time, and hands a Yes to Brevo's double opt-in. Until it is set up
 // (or before it is merged), none of this shows.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=09189471fb4e";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=dadaf39aa503";
 
 export const SAYS_YES = "says_yes_to_lizarding_news";
 export const SAYS_NO = "says_no_to_lizarding_news";

@@ -16,8 +16,8 @@
 // over the channel, as an intent does; the platform's own tokens never do. Without locks or channels (an old browser), a tab leads
 // on its own.
 
-import { ANSWERED } from "./wire.js?v=09189471fb4e";
-import { LOST } from "./connection.js?v=09189471fb4e";
+import { ANSWERED } from "./wire.js?v=dadaf39aa503";
+import { LOST } from "./connection.js?v=dadaf39aa503";
 
 const LOCK = "lizarding";
 
@@ -49,6 +49,18 @@ export class Led {
 
   /** One of the platform's functions, called as the player: { ok, body } or { ok: false, error }. */
   platform(name, body) {
+    // the account's own: signed out, or deleted for good (platform_delete_me) - the game left, then this browser's
+    // account forgotten, so nothing renews or reconnects; the page then starts afresh
+    if (name === "account/sign-out") {
+      this.connection.stop();
+      return this.signIn.signOut().then(() => ({ ok: true, body: true }));
+    }
+    if (name === "account/delete") {
+      return this.signIn.rpc("platform_delete_me", { app: this.signIn.config.app }).then((done) => {
+        if (done.ok && done.body === true) { this.connection.stop(); this.signIn.forget(); }
+        return done;
+      }, () => ({ ok: false, error: "this browser's guest has gone" }));
+    }
     // "newsletter/<route>" is the platform's newsletter function (T-682); any other name, one of its database functions
     const asked = name.startsWith("newsletter/") ? this.signIn.newsletter(name.slice("newsletter/".length), body) : this.signIn.rpc(name, body);
     return asked.catch(() => ({ ok: false, error: "this browser's guest has gone" }));

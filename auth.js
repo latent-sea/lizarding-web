@@ -76,6 +76,23 @@ export class SignIn {
 
   stop() { this._stopped = true; this._clear(); }
 
+  /** Signed out (an account kept with Google): its refresh token revoked at the platform, and forgotten here. */
+  async signOut() {
+    const access = this.access;
+    this.forget();
+    if (!access) return;
+    try {
+      await this._fetch(`${this.config.auth}/logout?scope=local`, { method: "POST", headers: { apikey: this.config.key, Authorization: `Bearer ${access}`, "Content-Type": "application/json" }, body: "{}" });
+    } catch { /* forgotten here all the same; the platform lets the token lapse */ }
+  }
+
+  /** This browser's account forgotten: nothing kept, nothing renewed (signed out, or the account deleted). */
+  forget() {
+    this.stop();
+    this._storage.remove(KEPT);
+    this.access = null;
+  }
+
   /** Tried again now: a new guest the platform limited, or a renewal. */
   retryNow() {
     this._clear();
@@ -121,8 +138,11 @@ export class SignIn {
     const answer = await this._ask("/token?grant_type=refresh_token", { refresh_token: kept });
     if (this._stopped || epoch !== this._epoch) return;
     if (answer.ok) this._kept(answer.body);
-    else if (answer.refused) this._gone();
-    // the platform out of reach: tried again, and meanwhile the token held stays good for the socket open
+    // gone only when the platform says so in its own words (hardening should-fix 2): any other refusal - a proxy's
+    // 403, a 400 of the moment - leaves the kept token alone, so "start again" never throws away a good one
+    else if (answer.refused && GONE.has(answer.code)) this._gone();
+    // the platform out of reach, or refusing for another reason: tried again, and meanwhile the token held stays
+    // good for the socket open
     else this._later(() => this._renew(starting));
   }
 
@@ -208,13 +228,16 @@ export class SignIn {
       const refused = response.status >= 400 && response.status < 500 && response.status !== 408 && response.status !== 429;
       // the platform's words, never a token: a refusal's body holds none
       console.warn(`signing in: the platform answered ${response.status}${refused ? ", refusing" : ""}`);
-      return { ok: false, status: response.status, refused, error: wordsOf(read) || `The platform answered ${response.status}` };
+      return { ok: false, status: response.status, refused, code: typeof read?.error_code === "string" ? read.error_code : null, error: wordsOf(read) || `The platform answered ${response.status}` };
     } catch {
       console.warn("signing in: the platform could not be reached");
       return { ok: false, status: 0, refused: false, error: "The platform couldn't be reached. Try again in a moment." };
     }
   }
 }
+
+/** The platform's own words for a guest that is gone: its refresh token, session or account no longer there. */
+export const GONE = new Set(["refresh_token_not_found", "session_not_found", "user_not_found"]);
 
 /** The platform's words in a refusal. */
 function wordsOf(read) {
@@ -240,8 +263,16 @@ export function emailOf(token) {
   } catch { return ""; }
 }
 
-/** localStorage, or this visit's memory where the browser refuses it (a private window). */
-export function safeStorage(store = globalThis.localStorage) {
+/** The browser's localStorage, or null where even reading it throws (storage blocked, a portal's frame). */
+export function localStore() {
+  try { return globalThis.localStorage ?? null; } catch { return null; }
+}
+
+/**
+ * localStorage, or this visit's memory where the browser refuses it (a private window). Never reads localStorage
+ * outside a try (hardening should-fix 3): a browser that throws on the read would otherwise leave the page blank.
+ */
+export function safeStorage(store = localStore()) {
   const memory = new Map();
   return {
     get(key) { try { return store.getItem(key); } catch { return memory.get(key) ?? null; } },

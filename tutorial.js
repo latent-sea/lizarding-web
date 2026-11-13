@@ -159,6 +159,12 @@ export function stepsFor(view, steps) {
 
 // --- remembered in the browser ---
 
+// the browser's localStorage, or null where even reading it throws (storage blocked, a portal's frame): never read
+// outside a try, or the page would be left blank (hardening should-fix 3)
+function localStore() {
+  try { return globalThis.localStorage ?? null; } catch { return null; }
+}
+
 function kept(storage, key) {
   try { return new Set(JSON.parse(storage?.getItem(key) ?? "[]")); } catch { return new Set(); }
 }
@@ -270,7 +276,7 @@ export class Dimmed {
  * or lets go of the practice card. Started once the words are read.
  */
 export class Tutorial {
-  constructor({ doc = document, storage = globalThis.localStorage, timers = globalThis, view, on, quiet, practise, words, notNeeded, steps, remindAfter = REMIND_AFTER_MS }) {
+  constructor({ doc = document, storage = localStore(), timers = globalThis, view, on, quiet, practise, words, notNeeded, steps, remindAfter = REMIND_AFTER_MS }) {
     Object.assign(this, { doc, storage, timers, view, on, quiet, practise, words, notNeeded, steps, remindAfter });
     this.dimmed = new Dimmed(doc, steps.plates ?? {});
     this.seen = kept(storage, SEEN);

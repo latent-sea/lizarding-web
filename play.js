@@ -8,11 +8,12 @@
 // The door's actions here are the connection's: choosing the name, taking
 // the game back from another device, starting again as a new guest.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=09189471fb4e";
-import { Game, OutOfOrder } from "./game.js?v=09189471fb4e";
-import { ANSWERED, Malformed, SHOWN, followAnswered, frame } from "./wire.js?v=09189471fb4e";
-import { nameProblem } from "./rules.js?v=09189471fb4e";
-import { readStage } from "./stage.js?v=09189471fb4e";
+import { CONFIG } from "./config.js?v=dadaf39aa503";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=dadaf39aa503";
+import { Game, OutOfOrder } from "./game.js?v=dadaf39aa503";
+import { ANSWERED, Malformed, SHOWN, followAnswered, frame } from "./wire.js?v=dadaf39aa503";
+import { nameProblem } from "./rules.js?v=dadaf39aa503";
+import { readStage } from "./stage.js?v=dadaf39aa503";
 
 export const TYPES_NAME = "types_a_name";
 export const CHOOSES_NAME = "chooses_this_name";
@@ -22,6 +23,12 @@ export const SIGNS_IN_AGAIN = "signs_in_again";
 export const RELOADS = "reloads_the_page";
 export const WANTS_GOOGLE_SIGN_IN = "already_plays_with_google";
 export const KEEPS_GUEST = "keeps_this_guest";
+// the account's own (the coordinator, 13 Nov: a privacy link, sign-out and delete account on the play page)
+export const SIGNS_OUT = "signs_out";
+const CONTACT = CONFIG.contact;
+export const ASKS_TO_DELETE = "asks_to_delete_the_account";
+export const DELETES_ACCOUNT = "deletes_the_account";
+export const KEEPS_ACCOUNT = "keeps_the_account";
 
 export const WORDS = {
   [TYPES_NAME]: ["Your name"],
@@ -32,6 +39,10 @@ export const WORDS = {
   [RELOADS]: ["Reload"],
   [WANTS_GOOGLE_SIGN_IN]: ["I already play with Google"],
   [KEEPS_GUEST]: ["Keep this guest instead"],
+  [SIGNS_OUT]: ["Sign out"],
+  [ASKS_TO_DELETE]: ["Delete my account"],
+  [DELETES_ACCOUNT]: ["Yes, delete it for good"],
+  [KEEPS_ACCOUNT]: ["No, keep it"],
 };
 
 /** How many of a lizard's latest races are asked for: the lizard screen's table, and the strip's last few. */
@@ -63,6 +74,9 @@ export class Play extends Controller {
     this.account = this.value({ state: "signing in", guest: true }); // the sign-in, as the leading tab's says
     this.googleMode = this.value("link"); // what Google's button does for a guest: "link" keeps it, "sign in" plays another account
     this.googleSaid = this.value(""); // the words on the last use of Google
+    this.deleting = this.value(false); // Delete my account pressed: asked once more before it is done
+    this.accountBusy = this.value(false); // signing out, or deleting, under way
+    this.accountSaid = this.value(""); // what came of it, when the page doesn't start afresh
     this._formAsked = new Set();
     this._formQueue = [];
     this._formOut = 0;
@@ -71,7 +85,7 @@ export class Play extends Controller {
     this._tick();
   }
 
-  answers() { return [TYPES_NAME, CHOOSES_NAME, TAKES_IT_BACK, STARTS_AGAIN, SIGNS_IN_AGAIN, RELOADS, WANTS_GOOGLE_SIGN_IN, KEEPS_GUEST]; }
+  answers() { return [TYPES_NAME, CHOOSES_NAME, TAKES_IT_BACK, STARTS_AGAIN, SIGNS_IN_AGAIN, RELOADS, WANTS_GOOGLE_SIGN_IN, KEEPS_GUEST, SIGNS_OUT, ASKS_TO_DELETE, DELETES_ACCOUNT, KEEPS_ACCOUNT]; }
 
   would(action) {
     if (action === CHOOSES_NAME) {
@@ -79,6 +93,7 @@ export class Play extends Controller {
       const problem = nameProblem(this.typedName.read());
       return problem ? Phrase.of(problem) : null;
     }
+    if ((action === SIGNS_OUT || action === DELETES_ACCOUNT) && this.accountBusy.read()) return Phrase.of("A moment…");
     return null;
   }
 
@@ -91,7 +106,34 @@ export class Play extends Controller {
     else if (action === RELOADS) this._reload();
     else if (action === WANTS_GOOGLE_SIGN_IN) { this.googleMode.setValue("sign in"); this.googleSaid.setValue(""); }
     else if (action === KEEPS_GUEST) { this.googleMode.setValue("link"); this.googleSaid.setValue(""); }
+    else if (action === SIGNS_OUT) this._signOut();
+    else if (action === ASKS_TO_DELETE) { this.deleting.setValue(true); this.accountSaid.setValue(""); }
+    else if (action === KEEPS_ACCOUNT) this.deleting.setValue(false);
+    else if (action === DELETES_ACCOUNT) this._delete();
     return null;
+  }
+
+  /** Signed out: the page starts afresh, as a first visit (a guest, or Google's button to sign back in). */
+  async _signOut() {
+    this.accountBusy.setValue(true);
+    await this.line.platform("account/sign-out", {});
+    this._reload();
+  }
+
+  /**
+   * The account deleted for good (platform_delete_me: every part of the platform forgets it, then its sign-in), and
+   * the page starts afresh; or, an account another of the platform's apps also holds, said where to ask instead.
+   */
+  async _delete() {
+    this.accountBusy.setValue(true);
+    this.accountSaid.setValue(Phrase.of("Deleting your account…"));
+    const done = await this.line.platform("account/delete", {});
+    this.accountBusy.setValue(false);
+    if (done.ok && done.body === true) { this._reload(); return; }
+    this.deleting.setValue(false);
+    this.accountSaid.setValue(done.ok
+      ? Phrase.with("This account is also used by another Latent Sea game, so it can't be deleted from here. Write to %s and it will be.", [CONTACT])
+      : Phrase.with("Your account couldn't be deleted: %s. Try again in a moment.", [done.error ?? ""]));
   }
 
   /** Google's ID token used - "link" or "sign in" - and what came of it said. */
