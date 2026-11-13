@@ -4,13 +4,13 @@
 // colours the shaded figures wear: a class per band of the scale chosen,
 // and per runner's number, written again whenever the scale changes.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=dadaf39aa503";
-import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=dadaf39aa503";
-import { safeStorage } from "./auth.js?v=dadaf39aa503";
-import { ASKS_TO_DELETE, DELETES_ACCOUNT, KEEPS_ACCOUNT, KEEPS_GUEST, SIGNS_OUT, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=dadaf39aa503";
-import { CONFIG } from "./config.js?v=dadaf39aa503";
-import { describeJoining } from "./joining.js?v=dadaf39aa503";
-import { describeNewsSettings } from "./news.js?v=dadaf39aa503";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=9945d15d82b6";
+import { DEFAULT_SCALE, SCALES, inkOn, runnerColour, samples, shade } from "./colours.js?v=9945d15d82b6";
+import { safeStorage } from "./auth.js?v=9945d15d82b6";
+import { ASKS_TO_DELETE, DELETES_ACCOUNT, KEEPS_ACCOUNT, KEEPS_GUEST, SIGNS_OUT, WANTS_GOOGLE_SIGN_IN } from "./play.js?v=9945d15d82b6";
+import { CONFIG } from "./config.js?v=9945d15d82b6";
+import { describeJoining } from "./joining.js?v=9945d15d82b6";
+import { describeNewsSettings } from "./news.js?v=9945d15d82b6";
 
 export const SETTINGS = "settings";
 export const PICKS_SCALE = "picks_a_colour_scale";

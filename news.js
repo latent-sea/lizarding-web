@@ -8,7 +8,7 @@
 // words and time, and hands a Yes to Brevo's double opt-in. Until it is set up
 // (or before it is merged), none of this shows.
 
-import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=dadaf39aa503";
+import { Controller, Phrase } from "./gd_chime/gd_chime.js?v=9945d15d82b6";
 
 export const SAYS_YES = "says_yes_to_lizarding_news";
 export const SAYS_NO = "says_no_to_lizarding_news";
@@ -43,7 +43,7 @@ export class News extends Controller {
     this.typed = this.value("");
     this.busy = this.value(false);
     this.said = this.value("");
-    this._looked = false;
+    this._lookedFor = null; // the account the answer as it stands is for: its id and its sign-in email
   }
 
   /** The door holds the player for the question: asked now, or the first answer still awaited. */
@@ -69,15 +69,27 @@ export class News extends Controller {
     return null;
   }
 
-  /** The player's answer as it stands, asked once a session as the player is signed in; the door waits for it, a few seconds at most. */
-  async look() {
-    if (this._looked) return;
-    this._looked = true;
-    this.looking.setValue(true);
-    const late = this._timers.setTimeout(() => this.looking.setValue(false), LOOK_MS);
+  /**
+   * The player's answer as it stands, asked as the player is signed in, and again whenever the account changes (kept
+   * with Google, another account signed in, two accounts joined): an answer is an account's, and whether its address
+   * is the player's own turns on the email it signs in with (hardening: it went stale). The door waits for the first,
+   * a few seconds at most; a later one is quiet. `account` is the sign-in's { user, email }.
+   */
+  async look(account = {}) {
+    const key = `${account.user ?? ""}|${account.email ?? ""}`;
+    if (this._lookedFor === key) return;
+    const first = this._lookedFor === null;
+    this._lookedFor = key;
+    if (first) this.looking.setValue(true);
+    const late = first ? this._timers.setTimeout(() => this.looking.setValue(false), LOOK_MS) : null;
     const done = await this.play.line.platform("newsletter/me", {});
-    this._timers.clearTimeout(late);
-    if (done.ok && done.body) this.me.setValue({ configured: done.body.configured === true, ...done.body });
+    if (late !== null) this._timers.clearTimeout(late);
+    // a newer account asked about meanwhile: this answer is the old one's
+    if (this._lookedFor !== key) return;
+    if (done.ok && done.body) {
+      this.me.setValue({ configured: done.body.configured === true, ...done.body });
+      if (!first) { this.asking.setValue(null); this.said.setValue(""); }
+    }
     this.looking.setValue(false);
   }
 

@@ -3,9 +3,9 @@
 // price and where a place bet pays from; the player's stakes; BET; and its
 // form strip. Two rows of five on a wide screen, a column on an upright phone.
 
-import { Phrase } from "./gd_chime/gd_chime.js?v=dadaf39aa503";
-import { STRIP, ageSaid, bandStyle, credits, nameSaid, placeCell, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=dadaf39aa503";
-import { REVIEWS, lastRaceOf } from "./race.js?v=dadaf39aa503";
+import { Phrase } from "./gd_chime/gd_chime.js?v=9945d15d82b6";
+import { STRIP, ageSaid, bandStyle, credits, nameSaid, placeCell, placeSaid, runnersOf, square, stableSaid, stakesSaid, winSaid } from "./parts.js?v=9945d15d82b6";
+import { REVIEWS, lastRaceOf } from "./race.js?v=9945d15d82b6";
 
 export const CARD = "card";
 export const OPENS_LIZARD = "opens_the_lizard";
